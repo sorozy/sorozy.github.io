@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="聂小涛的博客">
+    <meta name="keyword" content="腾讯">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+        《HTTP协议原理+实践》syudy notes - AirCloud的博客 | AirCloud&#39;s Blog
+        
+    </title>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/aircloud.css">
+    <link rel="stylesheet" href="/css/gitment.css">
+    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
+    <link href="//at.alicdn.com/t/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i> sometimes code， sometimes design </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar ">
+            <img src="/img/avatar.jpg" />
+        </div>
+        <div class="name">
+            <i>Xiaotao Nie</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li >
+                <a href="/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>主页</span>
+                </a>
+            </li>
+            <li >
+                <a href="/tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>标签</span>
+                </a>
+            </li>
+            <li >
+                <a href="/archive">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>存档</span>
+                </a>
+            </li>
+            <li >
+                <a href="/about/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>关于</span>
+                </a>
+            </li>
+            
+            <li>
+                <a id="search">
+                    <i class="iconfont icon-sousuo1"></i>
+                    <span>搜索</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#学习备注"><span class="toc-text">学习备注</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#前言"><span class="toc-text">前言</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#HTTP基础"><span class="toc-text">HTTP基础</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#浏览器输入URL后HTTP请求的完整过程"><span class="toc-text">浏览器输入URL后HTTP请求的完整过程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5层网络模型"><span class="toc-text">5层网络模型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#三次握手时序图"><span class="toc-text">三次握手时序图</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#HTTP各种特性总览-amp-实践"><span class="toc-text">HTTP各种特性总览 &amp; 实践</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#创建一个简单的web服务"><span class="toc-text">创建一个简单的web服务</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CORS"><span class="toc-text">CORS</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#CORS演示"><span class="toc-text">CORS演示</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#浏览器跨域限制"><span class="toc-text">浏览器跨域限制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CORS解决方案"><span class="toc-text">CORS解决方案</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#jsonp"><span class="toc-text">jsonp</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Access-Control-Allow-Origin"><span class="toc-text">Access-Control-Allow-Origin</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CORS预请求"><span class="toc-text">CORS预请求</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CORS限制"><span class="toc-text">CORS限制</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#请求method限制"><span class="toc-text">请求method限制</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Content-Type限制"><span class="toc-text">Content-Type限制</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#请求头限制"><span class="toc-text">请求头限制</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#缓存"><span class="toc-text">缓存</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#缓存到期"><span class="toc-text">缓存到期</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#重新验证"><span class="toc-text">重新验证</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#缓存流程"><span class="toc-text">缓存流程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#缓存验证"><span class="toc-text">缓存验证</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Cookie"><span class="toc-text">Cookie</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#代码演示"><span class="toc-text">代码演示</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#长连接"><span class="toc-text">长连接</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#数据协商"><span class="toc-text">数据协商</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#跳转"><span class="toc-text">跳转</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#资源限制"><span class="toc-text">资源限制</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#使用Nginx实战HTTP"><span class="toc-text">使用Nginx实战HTTP</span></a></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input"/>
+            <span id="begin-search">搜索</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+
+        <div class="index-about-mobile">
+            <i> sometimes code， sometimes design </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        《HTTP协议原理+实践》syudy notes
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">发布于：<span>2020-06-13 13:29:33</span></span>
+        
+        <span class="attr">标签：/
+        
+        <a class="tag" href="/tags/#http" title="http">http</a>
+        <span>/</span>
+        
+        <a class="tag" href="/tags/#network" title="network">network</a>
+        <span>/</span>
+        
+        
+        </span>
+        <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
+</span>
+</span>
+    </div>
+    <div class="post-content ">
+        <h1 id="学习备注"><a href="#学习备注" class="headerlink" title="学习备注"></a>学习备注</h1><p>1、缓存这块，后续可以再学习一遍，把实战的内容实践一遍。也可以深入研究一下</p>
+<p>2、缓存到之后的内容包括csp，理解的比较浅，后序遇到，可以深入理解一下</p>
+<hr>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><blockquote>
+<ol>
+<li>学习了慕课网的《HTTP协议原理+实践》课程，本篇文章是学习笔记。以便温习</li>
+<li>相关的基础知识讲解比较浅，可以参考其它文章</li>
+</ol>
+</blockquote>
+<h1 id="HTTP基础"><a href="#HTTP基础" class="headerlink" title="HTTP基础"></a>HTTP基础</h1><h2 id="浏览器输入URL后HTTP请求的完整过程"><a href="#浏览器输入URL后HTTP请求的完整过程" class="headerlink" title="浏览器输入URL后HTTP请求的完整过程"></a>浏览器输入URL后HTTP请求的完整过程</h2><p><img src="WechatIMG243.png"></p>
+<h2 id="5层网络模型"><a href="#5层网络模型" class="headerlink" title="5层网络模型"></a>5层网络模型</h2><p><img src="WechatIMG244.png"></p>
+<blockquote>
+<ol>
+<li>物理层：定义物理设备如何传输数据</li>
+<li>数据链路层：在通信的实体间建立数据链路连接</li>
+<li>网络层：为数据在节点之间传输创建逻辑链路</li>
+<li>传输层：向客户端提供可靠的端到端服务；向高层屏蔽了下层数据传输细节</li>
+<li>应用层：为软件提供服务；构建于TCP协议之上；屏蔽网络传输细节</li>
+</ol>
+</blockquote>
+<h2 id="三次握手时序图"><a href="#三次握手时序图" class="headerlink" title="三次握手时序图"></a>三次握手时序图</h2><p><img src="WechatIMG253.png"></p>
+<h1 id="HTTP各种特性总览-amp-实践"><a href="#HTTP各种特性总览-amp-实践" class="headerlink" title="HTTP各种特性总览 &amp; 实践"></a>HTTP各种特性总览 &amp; 实践</h1><h2 id="创建一个简单的web服务"><a href="#创建一个简单的web服务" class="headerlink" title="创建一个简单的web服务"></a>创建一个简单的web服务</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* use node.js */</span></span><br><span class="line"><span class="keyword">const</span> http = <span class="built_in">require</span>(<span class="string">"http"</span>);</span><br><span class="line"></span><br><span class="line">http.createServer(<span class="function">(<span class="params">req,res</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"req.url"</span>,req.url);</span><br><span class="line">    res.end(<span class="string">"test"</span>);</span><br><span class="line"></span><br><span class="line">&#125;).listen(<span class="number">9090</span>);</span><br></pre></td></tr></table></figure>
+<h2 id="CORS"><a href="#CORS" class="headerlink" title="CORS"></a>CORS</h2><ul>
+<li>浏览器 为了保证服务端安全（保证数据不被恶意篡改 ），默认不允许跨域</li>
+</ul>
+<h3 id="CORS演示"><a href="#CORS演示" class="headerlink" title="CORS演示"></a>CORS演示</h3><p>server-8001.js</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> http = <span class="built_in">require</span>(<span class="string">"http"</span>);</span><br><span class="line"><span class="keyword">const</span> fs = <span class="built_in">require</span>(<span class="string">"fs"</span>);</span><br><span class="line"></span><br><span class="line">http.createServer(<span class="function">(<span class="params">req,res</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"request come"</span>,req.url);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// read file</span></span><br><span class="line">    <span class="keyword">const</span> html = fs.readFileSync(<span class="string">"test.html"</span>,<span class="string">"utf8"</span>);</span><br><span class="line">    res.writeHead(<span class="number">200</span>,&#123;</span><br><span class="line">        <span class="string">"Content-Type"</span>:<span class="string">"text/html"</span></span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">    res.end(html);</span><br><span class="line">&#125;).listen(<span class="number">8001</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">"server listening on 8001"</span>);</span><br></pre></td></tr></table></figure>
+<p>server-9001.js</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> http = <span class="built_in">require</span>(<span class="string">'http'</span>)</span><br><span class="line"></span><br><span class="line">http.createServer(<span class="function"><span class="keyword">function</span> (<span class="params">request, response</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'request come'</span>, request.url)</span><br><span class="line"></span><br><span class="line">  response.writeHead(<span class="number">200</span>, &#123;</span><br><span class="line">    <span class="comment">// 'Access-Control-Allow-Origin': 'http://127.0.0.1:8888',</span></span><br><span class="line">    <span class="string">'Access-Control-Allow-Origin'</span>: <span class="string">'*'</span>,<span class="comment">// 设置允许所有服务跨域</span></span><br><span class="line">    <span class="comment">// 'Access-Control-Allow-Headers': 'X-Test-Cors', // 设置允许跨域的自定义头</span></span><br><span class="line">    <span class="comment">// 'Access-Control-Allow-Methods': 'POST, PUT, DELETE',// 设置允许跨域的方法</span></span><br><span class="line">    <span class="comment">// 'Access-Control-Max-Age': '1000'</span></span><br><span class="line">  &#125;)</span><br><span class="line">  response.end(<span class="string">'123'</span>)</span><br><span class="line">&#125;).listen(<span class="number">9001</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'server listening on 9001'</span>)</span><br></pre></td></tr></table></figure>
+<p>test.html</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"width=device-width, initial-scale=1.0"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Document<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript">        <span class="keyword">var</span> xhr = <span class="keyword">new</span> XMLHttpRequest()</span></span><br><span class="line"><span class="javascript">        xhr.open(<span class="string">'GET'</span>, <span class="string">'http://127.0.0.1:9001/'</span>)</span></span><br><span class="line">        xhr.send()</span><br><span class="line">      <span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="浏览器跨域限制"><a href="#浏览器跨域限制" class="headerlink" title="浏览器跨域限制"></a>浏览器跨域限制</h3><ul>
+<li><font color="red">浏览器在发送请求的时候并不知道这个服务是否是跨域的，<strong>还是会发送请求，接收内容</strong>。在接收返回数据的时候会看到请求头部中没有 <code>&#39;Access-Control-Allow-Origin&#39;</code> 请求头,并且没有设置为允许的话，就会把请求内容忽略掉，并报错。</font>
+
+</li>
+</ul>
+<h3 id="CORS解决方案"><a href="#CORS解决方案" class="headerlink" title="CORS解决方案"></a>CORS解决方案</h3><h4 id="jsonp"><a href="#jsonp" class="headerlink" title="jsonp"></a>jsonp</h4><p>test.html</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"width=device-width, initial-scale=1.0"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">"X-UA-Compatible"</span> <span class="attr">content</span>=<span class="string">"ie=edge"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">title</span>&gt;</span>Document<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    </span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- cors1 --&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"http://127.0.0.1:8887/"</span> &gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>原理</li>
+</ul>
+<blockquote>
+<p><strong>利用了 link、script、img标签上面的src或ref是允许跨域的这个原理</strong></p>
+</blockquote>
+<h4 id="Access-Control-Allow-Origin"><a href="#Access-Control-Allow-Origin" class="headerlink" title="Access-Control-Allow-Origin"></a>Access-Control-Allow-Origin</h4><p>服务端添加请求头：Access-Control-Allow-Origin</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*允许所有服务跨域*/</span></span><br><span class="line"><span class="string">'Access-Control-Allow-Origin'</span>:<span class="string">'*'</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/*只允许某个域名跨域，不能设置多个值，可以通过判断来实现*/</span></span><br><span class="line"><span class="string">'Access-Control-Allow-Origin'</span>:<span class="string">'http://www.baidu.com'</span></span><br></pre></td></tr></table></figure>
+<h3 id="CORS预请求"><a href="#CORS预请求" class="headerlink" title="CORS预请求"></a>CORS预请求</h3><ul>
+<li>浏览器默认不允许跨域，但是浏览器会发送请求，并且数据有返回。因为安全策略问题，把请求返回忽略了，并报错</li>
+<li>CORS限制时，会发送<code>预请求</code>验证</li>
+</ul>
+<h3 id="CORS限制"><a href="#CORS限制" class="headerlink" title="CORS限制"></a>CORS限制</h3><h4 id="请求method限制"><a href="#请求method限制" class="headerlink" title="请求method限制"></a>请求<code>method</code>限制</h4><ul>
+<li>默认允许跨域的method：post、head、get（这三个方法不用发送预请求）。其它方法默认不允许跨域，且会发送<code>预请求</code></li>
+<li>解决方案</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 添加请求头 'Access-Control-Allow-Methods'，填写对应的方法 如下 */</span></span><br><span class="line"><span class="string">'Access-Control-Allow-Methods'</span>: <span class="string">'POST, PUT, DELETE'</span></span><br></pre></td></tr></table></figure>
+<h4 id="Content-Type限制"><a href="#Content-Type限制" class="headerlink" title="Content-Type限制"></a><code>Content-Type</code>限制</h4><ul>
+<li>默认允许跨域的Content-Type：</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">text/plain</span><br><span class="line"></span><br><span class="line">multipart/form-data</span><br><span class="line"></span><br><span class="line">application/x-www-form-urlencoded</span><br></pre></td></tr></table></figure>
+<ul>
+<li>其它Content-Type需要预请求</li>
+</ul>
+<h4 id="请求头限制"><a href="#请求头限制" class="headerlink" title="请求头限制"></a>请求头限制</h4><ul>
+<li>自定义请求头是不被允许的</li>
+</ul>
+<p>允许或不被允许的请求头，请参考 <a href="https://fetch.spec.whatwg.org/#cors-safelisted-request-header" target="_blank" rel="noopener">https://fetch.spec.whatwg.org/#cors-safelisted-request-header</a></p>
+<ul>
+<li>解决方案</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 允许我们自定义的请求头CORS */</span></span><br><span class="line"><span class="string">'Access-Control-Allow-Headers'</span>: <span class="string">'X-Test-Cors'</span></span><br></pre></td></tr></table></figure>
+<p>####Access-Control-Max-Age </p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 数字（单位：秒）代表 允许跨域的时间，在该时间内，不用发送预请求*/</span></span><br><span class="line"><span class="string">'Access-Control-Max-Age'</span>: <span class="string">'1000'</span></span><br></pre></td></tr></table></figure>
+<h2 id="缓存"><a href="#缓存" class="headerlink" title="缓存"></a>缓存</h2><ul>
+<li>public：所经过的路径中的客户端、代理服务器、源服务器等（任何地方）都可以（对返回内容）进行缓存</li>
+<li>private：发起请求的请求方可以缓存</li>
+<li>no-cache：需要服务端验证</li>
+<li>no-store：任何地方都不可以缓存</li>
+<li>no-transform：告诉代理服务器，不要缓存</li>
+</ul>
+<h3 id="缓存到期"><a href="#缓存到期" class="headerlink" title="缓存到期"></a>缓存到期</h3><p><code>max-age=&lt;seconds&gt;</code>缓存过期时间</p>
+<p><code>s-maxage=&lt;seconds&gt;</code>    代替 <code>max-age=&lt;seconds&gt;</code>，但只有在代理服务器中才可以生效。如果两者都设置了，则代替<code>max-age=&lt;seconds&gt;</code></p>
+<p><code>max-stale=&lt;seconds&gt;</code>在请求方使用，如果<code>max-age=&lt;seconds&gt;</code>到期，缓存过期了，依然可以在<code>max-stale=&lt;seconds&gt;</code>时间内使用过期缓存</p>
+<h3 id="重新验证"><a href="#重新验证" class="headerlink" title="重新验证"></a>重新验证</h3><p><code>must-revalidate</code>，用在客户端，<code>max-age=&lt;seconds&gt;</code>到期后，必须去源服务器重新获取数据</p>
+<p><code>proxy-revalidate</code>，同上，只用在代理服务器上</p>
+<h3 id="缓存流程"><a href="#缓存流程" class="headerlink" title="缓存流程"></a>缓存流程</h3><p><img src="WechatIMG286.png"></p>
+<h3 id="缓存验证"><a href="#缓存验证" class="headerlink" title="缓存验证"></a>缓存验证</h3><p><code>last-modified</code> 上次修改时间，主要配合<code>if-modified-since</code> 和<code>if-unmodified-since</code>使用</p>
+<blockquote>
+<p>对比上次修改时间，以验证资源是否需要更新</p>
+</blockquote>
+<p><code>Etag</code>数据签名，配合<code>if-match</code>和<code>if-non-match</code></p>
+<blockquote>
+<p>对比资源签名，判断是否使用缓存</p>
+</blockquote>
+<h2 id="Cookie"><a href="#Cookie" class="headerlink" title="Cookie"></a>Cookie</h2><blockquote>
+<p>通过 <code>Set-Cookie</code>设置<br></p>
+<p>下次请求会自动带上<br></p>
+<p>健值对，可以设置多个</p>
+<p><code>max-age</code>和<code>expires</code>设置过期时间</p>
+<p>secure只在https的时候发送</p>
+<p>HttpOnly无法通过document.cookie访问</p>
+<p>可以设置二级域名下共享cookie</p>
+</blockquote>
+<h3 id="代码演示"><a href="#代码演示" class="headerlink" title="代码演示"></a>代码演示</h3><ul>
+<li>Server.js</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> http = <span class="built_in">require</span>(<span class="string">'http'</span>)</span><br><span class="line"><span class="keyword">const</span> fs = <span class="built_in">require</span>(<span class="string">'fs'</span>)</span><br><span class="line"></span><br><span class="line">http.createServer(<span class="function"><span class="keyword">function</span> (<span class="params">request, response</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'request come'</span>, request.url)</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (request.url === <span class="string">'/'</span>) &#123;</span><br><span class="line">    <span class="keyword">const</span> html = fs.readFileSync(<span class="string">'test.html'</span>, <span class="string">'utf8'</span>)</span><br><span class="line">    response.writeHead(<span class="number">200</span>, &#123;</span><br><span class="line">      <span class="string">'Content-Type'</span>: <span class="string">'text/html'</span>,</span><br><span class="line">      <span class="string">'Set-Cookie'</span>: [<span class="string">'id=123; max-age=2'</span>, <span class="string">'abc=456;HttpOnly'</span>]</span><br><span class="line">    &#125;)</span><br><span class="line">    response.end(html)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">&#125;).listen(<span class="number">8888</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'server listening on 8888'</span>)</span><br></pre></td></tr></table></figure>
+<ul>
+<li>Test.html</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"width=device-width, initial-scale=1.0"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">"X-UA-Compatible"</span> <span class="attr">content</span>=<span class="string">"ie=edge"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">title</span>&gt;</span>Document<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span>&gt;</span>Content<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript">  <span class="built_in">console</span>.log(<span class="built_in">document</span>.cookie)</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="长连接"><a href="#长连接" class="headerlink" title="长连接"></a>长连接</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">connection:<span class="string">"close"</span></span><br><span class="line">connection:<span class="string">"keep-alive"</span></span><br></pre></td></tr></table></figure>
+<h2 id="数据协商"><a href="#数据协商" class="headerlink" title="数据协商"></a>数据协商</h2><ul>
+<li>客户端</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Accept</span><br><span class="line">Accept-Encoding</span><br><span class="line">Accept-Language</span><br><span class="line">User-Agent</span><br></pre></td></tr></table></figure>
+<ul>
+<li>服务端</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Content-Type</span><br><span class="line">Content-Encoding</span><br><span class="line">Content-Language</span><br></pre></td></tr></table></figure>
+<h2 id="跳转"><a href="#跳转" class="headerlink" title="跳转"></a>跳转</h2><ul>
+<li>301 和 302 的区别</li>
+</ul>
+<blockquote>
+<p>302:客户端还是会访问原站</p>
+<p>301:客户端会尽可能的缓存，不访问原站</p>
+</blockquote>
+<h2 id="资源限制"><a href="#资源限制" class="headerlink" title="资源限制"></a>资源限制</h2><p>限制资源获取，制定资源类型</p>
+<p><code>Content-Security-Policy</code></p>
+<p><code>Security-Policy-Report-Only</code></p>
+<h1 id="使用Nginx实战HTTP"><a href="#使用Nginx实战HTTP" class="headerlink" title="使用Nginx实战HTTP"></a>使用Nginx实战HTTP</h1><hr>
+
+        
+            <div class="donate-container">
+    <div class="donate-button">
+        <button id="donate-button">赞赏</button>
+    </div>
+    <div class="donate-img-container hide" id="donate-img-container">
+        <img id="donate-img" src="" data-src="/img/donate.jpg">
+        <p> 感谢鼓励 </p>
+    </div>
+</div>
+        
+        <br />
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+
+        <div id="lv-container">
+        </div>
+
+    </div>
+</div>
+
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        <li>
+            <a target="_blank" href="https://twitter.com/iconie_alloy">
+                            <span class="fa-stack fa-lg">
+                                <i class="iconfont icon-twitter"></i>
+                            </span>
+            </a>
+        </li>
+        
+        
+        <li>
+            <a target="_blank" href="https://www.zhihu.com/people/ai-er-lan-xue-da">
+                            <span class="fa-stack fa-lg">
+                                 <i class="iconfont icon-zhihu"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+        <li>
+            <a target="_blank" href="http://weibo.com/3286578617">
+                            <span class="fa-stack fa-lg">
+                                  <i class="iconfont icon-weibo"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+        <li>
+            <a target="_blank" href="https://www.facebook.com/xiaotao.nie.5">
+                            <span class="fa-stack fa-lg">
+                                <i class="iconfont icon-facebook"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+        <li>
+            <a target="_blank"  href="https://github.com/AirCloud">
+                            <span class="fa-stack fa-lg">
+                                <i class="iconfont icon-github"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+        <li>
+            <a target="_blank"  href="https://www.linkedin.com/in/小涛-聂-80964aba">
+                            <span class="fa-stack fa-lg">
+                                <i class="iconfont icon-linkedin"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+    </ul>
+    
+    <p>
+        <span>/</span>
+        
+        <span><a href="https://www.10000h.top">10000H</a></span>
+        <span>/</span>
+        
+        <span><a href="https://niexiaotao.com">Xiaotao&#39;s Page</a></span>
+        <span>/</span>
+        
+        <span><a href="#">It helps SEO</a></span>
+        <span>/</span>
+        
+    </p>
+    
+    <p>
+        <span id="busuanzi_container_site_pv">
+            <span id="busuanzi_value_site_pv"></span>PV
+        </span>
+        <span id="busuanzi_container_site_uv">
+            <span id="busuanzi_value_site_uv"></span>UV
+        </span>
+        Created By <a href="https://hexo.io/">Hexo</a>  Theme <a href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a></p>
+</footer>
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = "search.json"
+    window.hexo_root = "/"
+    window.isPost = true
+</script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="/js/index.js"></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+    <script>
+        /**
+         *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+         *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+        */
+        if( '' || '')
+        var disqus_config = function () {
+            this.page.url = '';  // Replace PAGE_URL with your page's canonical URL variable
+            this.page.identifier = ''; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+        };
+
+        (function() { // DON'T EDIT BELOW THIS LINE
+            var d = document, s = d.createElement('script');
+            s.src = 'https://airclouds-blog.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+        })();
+    </script>
+
+
+
+</html>

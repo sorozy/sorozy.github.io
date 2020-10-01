@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="聂小涛的博客">
+    <meta name="keyword" content="腾讯">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+        《MySQL 8.0详解与实战》study notes - AirCloud的博客 | AirCloud&#39;s Blog
+        
+    </title>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/aircloud.css">
+    <link rel="stylesheet" href="/css/gitment.css">
+    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
+    <link href="//at.alicdn.com/t/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i> sometimes code， sometimes design </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar ">
+            <img src="/img/avatar.jpg" />
+        </div>
+        <div class="name">
+            <i>Xiaotao Nie</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li >
+                <a href="/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>主页</span>
+                </a>
+            </li>
+            <li >
+                <a href="/tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>标签</span>
+                </a>
+            </li>
+            <li >
+                <a href="/archive">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>存档</span>
+                </a>
+            </li>
+            <li >
+                <a href="/about/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>关于</span>
+                </a>
+            </li>
+            
+            <li>
+                <a id="search">
+                    <i class="iconfont icon-sousuo1"></i>
+                    <span>搜索</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#数据库选型"><span class="toc-text">数据库选型</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#SQL（关系型数据库）"><span class="toc-text">SQL（关系型数据库）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#特点"><span class="toc-text">特点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#适用场景"><span class="toc-text">适用场景</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#NOSQL（非关系型数据库）"><span class="toc-text">NOSQL（非关系型数据库）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#特点-1"><span class="toc-text">特点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#适用场景-1"><span class="toc-text">适用场景</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#关系型数据库选型原则"><span class="toc-text">关系型数据库选型原则</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#选择MYSQL数据库"><span class="toc-text">选择MYSQL数据库</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#MySQL实验环境搭建"><span class="toc-text">MySQL实验环境搭建</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#环境准备"><span class="toc-text">环境准备</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#虚拟机环境搭建"><span class="toc-text">虚拟机环境搭建</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#下载、安装与配置MySQL8-0-15"><span class="toc-text">下载、安装与配置MySQL8.0.15</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#初始化与启动MySQL"><span class="toc-text">初始化与启动MySQL</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#数据库设计实战"><span class="toc-text">数据库设计实战</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#数据库设计三范式"><span class="toc-text">数据库设计三范式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#常用MySQL存储引擎"><span class="toc-text">常用MySQL存储引擎</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#数据类型"><span class="toc-text">数据类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#为数据选择合适的数据类型"><span class="toc-text">为数据选择合适的数据类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#为表和列选择合适的名字"><span class="toc-text">为表和列选择合适的名字</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#访问-连接MySQL"><span class="toc-text">访问/连接MySQL</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#SQL"><span class="toc-text">SQL</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#常用的SQL语言种类"><span class="toc-text">常用的SQL语言种类</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#DCL-数据库管理语句"><span class="toc-text">DCL 数据库管理语句</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#DDL-数据定义"><span class="toc-text">DDL 数据定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#DML-表操作"><span class="toc-text">DML 表操作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#TCL"><span class="toc-text">TCL</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#SQL优化"><span class="toc-text">SQL优化</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#步骤"><span class="toc-text">步骤</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#发现有性能问题的SQL"><span class="toc-text">发现有性能问题的SQL</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#配置慢查询日志"><span class="toc-text">配置慢查询日志</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#分析MySQL慢查询日志的工具"><span class="toc-text">分析MySQL慢查询日志的工具</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#启用慢查询日志"><span class="toc-text">启用慢查询日志</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#分析慢查询日志"><span class="toc-text">分析慢查询日志</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#实时监控sql"><span class="toc-text">实时监控sql</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#分析SQL执行计划"><span class="toc-text">分析SQL执行计划</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#获取SQL执行计划"><span class="toc-text">获取SQL执行计划</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#事务与并发控制"><span class="toc-text">事务与并发控制</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#ACID"><span class="toc-text">ACID</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#脏读"><span class="toc-text">脏读</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#不可重复读"><span class="toc-text">不可重复读</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#幻读"><span class="toc-text">幻读</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#INNODB的事务隔离级别"><span class="toc-text">INNODB的事务隔离级别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#she"><span class="toc-text">she</span></a></li></ol></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input"/>
+            <span id="begin-search">搜索</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+
+        <div class="index-about-mobile">
+            <i> sometimes code， sometimes design </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        《MySQL 8.0详解与实战》study notes
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">发布于：<span>2020-07-02 14:13:06</span></span>
+        
+        <span class="attr">标签：/
+        
+        <a class="tag" href="/tags/#mysql" title="mysql">mysql</a>
+        <span>/</span>
+        
+        <a class="tag" href="/tags/#database" title="database">database</a>
+        <span>/</span>
+        
+        
+        </span>
+        <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
+</span>
+</span>
+    </div>
+    <div class="post-content ">
+        <ul>
+<li>学习备注与扩展</li>
+</ul>
+<blockquote>
+<ol>
+<li><p>数据库需求分析，设计这块，后续需要自己跟着老师的设计进行思考，再学习一遍。（第三章前面部分）</p>
+</li>
+<li><p>需要熟悉各个常见MySQL引擎，了解使用场景，优缺点等等。</p>
+</li>
+</ol>
+</blockquote>
+<ul>
+<li>学习环境</li>
+</ul>
+<blockquote>
+<p>MySQL8.0.15、CentOS7、SQLyog</p>
+</blockquote>
+<hr>
+<h1 id="数据库选型"><a href="#数据库选型" class="headerlink" title="数据库选型"></a>数据库选型</h1><h2 id="SQL（关系型数据库）"><a href="#SQL（关系型数据库）" class="headerlink" title="SQL（关系型数据库）"></a>SQL（关系型数据库）</h2><blockquote>
+<p>MySQL、oracle、SQLServer、PostGreSQL</p>
+</blockquote>
+<h3 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h3><blockquote>
+<p>数据结构化存储在二维表中</p>
+<p>支持事物的ACID特性</p>
+<p>支持使用SQL语言对存储在其中的数据进行操作</p>
+</blockquote>
+<h3 id="适用场景"><a href="#适用场景" class="headerlink" title="适用场景"></a>适用场景</h3><blockquote>
+<p>数据之间存在着一定关系，需要关联查询数据的场景</p>
+<p>需要事物支持业务场景</p>
+<p>需要使用SQL语言灵活操作数据的场景</p>
+</blockquote>
+<h2 id="NOSQL（非关系型数据库）"><a href="#NOSQL（非关系型数据库）" class="headerlink" title="NOSQL（非关系型数据库）"></a>NOSQL（非关系型数据库）</h2><blockquote>
+<p>HBase、MOngoDB、Redis、Hadoop</p>
+</blockquote>
+<h3 id="特点-1"><a href="#特点-1" class="headerlink" title="特点"></a>特点</h3><blockquote>
+<p>存储结构灵活，没有固定的结构</p>
+<p>对事物的支持比较弱，但对数据的并发处理性能高</p>
+<p>大多不使用SQL语言操作数据</p>
+</blockquote>
+<h3 id="适用场景-1"><a href="#适用场景-1" class="headerlink" title="适用场景"></a>适用场景</h3><blockquote>
+<p>数据结构不固定的场景</p>
+<p>对事物要求不高，但读写并发比较大的场景</p>
+<p>对数据的处理操作比较简单的场景</p>
+</blockquote>
+<h2 id="关系型数据库选型原则"><a href="#关系型数据库选型原则" class="headerlink" title="关系型数据库选型原则"></a>关系型数据库选型原则</h2><blockquote>
+<p>广泛性、可扩展性、安全性和稳定性、数据库所支持的系统、使用成本</p>
+</blockquote>
+<h2 id="选择MYSQL数据库"><a href="#选择MYSQL数据库" class="headerlink" title="选择MYSQL数据库"></a>选择MYSQL数据库</h2><ul>
+<li>可扩展性</li>
+</ul>
+<blockquote>
+<p>支持基于二进制日志的逻辑复制</p>
+<p>存在多种第三方数据库中间层，支持读写分离、分库分表</p>
+</blockquote>
+<ul>
+<li>安全性和稳定性</li>
+</ul>
+<blockquote>
+<p>MySQL主从复置集群可达到99%的可用性</p>
+<p>配合主从复置高可用架构可以达到99%的可用性</p>
+<p>支持对存储在MySQL的数据进行分级安全控制</p>
+</blockquote>
+<ul>
+<li>支持的系统</li>
+</ul>
+<blockquote>
+<p>支持Windows、linux系统</p>
+</blockquote>
+<ul>
+<li>使用成本</li>
+</ul>
+<blockquote>
+<p>社区版本免费</p>
+<p>使用人员众多，方便获取技术支持</p>
+</blockquote>
+<h1 id="MySQL实验环境搭建"><a href="#MySQL实验环境搭建" class="headerlink" title="MySQL实验环境搭建"></a>MySQL实验环境搭建</h1><h2 id="环境准备"><a href="#环境准备" class="headerlink" title="环境准备"></a>环境准备</h2><blockquote>
+<p>VirtualBox、CentOS-7-x86_64-DVD-1611.iso、MySQL8.0.15、</p>
+</blockquote>
+<h2 id="虚拟机环境搭建"><a href="#虚拟机环境搭建" class="headerlink" title="虚拟机环境搭建"></a>虚拟机环境搭建</h2><p>（1）安装 VirtualBox</p>
+<p>（2）在 VirtualBox 中安装 CentOS（CentOS-7-x86_64-DVD-1611）</p>
+<blockquote>
+<p>设置网络为桥接网卡</p>
+</blockquote>
+<p>（3）配置虚拟机环境</p>
+<ul>
+<li>设置静态ip</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">cd /etc/sysconfig/network-scripts</span><br><span class="line"></span><br><span class="line"># 通过ip addr 命令获取网卡名称</span><br><span class="line">ip addr</span><br><span class="line"></span><br><span class="line">vi ifcfg-enp0s3</span><br></pre></td></tr></table></figure>
+<p><br></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">TYPE=Ethernet</span><br><span class="line">BOOTPROTO=none	# 关闭自动获取ip，设置为静态ip</span><br><span class="line">DEFROUTE=yes</span><br><span class="line">PEERDNS=yes</span><br><span class="line">PEERROUTES=yes</span><br><span class="line">IPV4_FAILURE_FATAL=no</span><br><span class="line">IPV6INIT=no	# 关闭ipv6</span><br><span class="line">IPV6_AUTOCONF=yes</span><br><span class="line">IPV6_DEFROUTE=yes</span><br><span class="line">IPV6_PEERDNS=yes</span><br><span class="line">IPV6_PEERROUTES=yes</span><br><span class="line">IPV6_FAILURE_FATAL=no</span><br><span class="line">IPV6_ADDR_GEN_MODE=stable-privacy</span><br><span class="line">NAME=enp0s3</span><br><span class="line">UUID=c43ba353-8a1c-4c0c-9c24-04d308950e1b</span><br><span class="line">DEVICE=enp0s3</span><br><span class="line">ONBOOT=yes	# 开机自动启动网卡</span><br><span class="line">IPADDR=10.2.103.103	# 配置静态ip</span><br><span class="line">NETMASK=255.255.254.0	# 子网掩码</span><br><span class="line">GATEWAY=10.2.103.254	# 网关</span><br><span class="line">DNS1=8.8.8.8</span><br></pre></td></tr></table></figure>
+<ul>
+<li>修改主机名</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">vi /etc/hostname</span><br><span class="line"></span><br><span class="line">sorozy-mysql</span><br></pre></td></tr></table></figure>
+<p><br></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">reboot</span><br></pre></td></tr></table></figure>
+<h2 id="下载、安装与配置MySQL8-0-15"><a href="#下载、安装与配置MySQL8-0-15" class="headerlink" title="下载、安装与配置MySQL8.0.15"></a>下载、安装与配置MySQL8.0.15</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"># 确保wget可以使用</span><br><span class="line">yum install wget -y</span><br><span class="line"></span><br><span class="line"># 一般安装在 /usr/local 目录下</span><br><span class="line">cd /usr/local</span><br><span class="line"></span><br><span class="line"># 下载mysql安装包</span><br><span class="line">wget https://dev.mysql.com/get/Downloads/MySQL-8.0/mysql-8.0.15-linux-glibc2.12-x86_64.tar.xz</span><br><span class="line"></span><br><span class="line"># 或者上传下载好的文件到linux下</span><br><span class="line">scp -P 22 /Users/sorozy/Documents/bak/mysql-8.0.15-linux-glibc2.12-x86_64.tar.xz root@172.20.94.39:/usr/local/</span><br><span class="line"></span><br><span class="line"># 解压缩</span><br><span class="line">xz -d mysql-8.0.15-linux-glibc2.12-x86_64.tar.xz</span><br><span class="line"></span><br><span class="line"># 提取文件</span><br><span class="line">tar xf mysql-8.0.15-linux-glibc2.12-x86_64.tar</span><br><span class="line"># 迁移并更名至 /usr/local/mysql 目录下</span><br><span class="line">mv mysql-8.0.15-linux-glibc2.12-x86_64 mysql</span><br><span class="line"></span><br><span class="line"># 创建mysql用户,专门启动服务</span><br><span class="line">useradd mysql</span><br><span class="line"></span><br><span class="line"># 修改my.cnf</span><br><span class="line">vi /etc/my.cnf</span><br></pre></td></tr></table></figure>
+<ul>
+<li>修改my.cnf</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br></pre></td><td class="code"><pre><span class="line">[client]</span><br><span class="line">port            = 3306</span><br><span class="line">socket          = /usr/local/mysql/data/mysql.sock</span><br><span class="line">[mysqld]</span><br><span class="line"># Skip #</span><br><span class="line">#skip_name_resolve              = 1</span><br><span class="line">#skip_external_locking          = 1 </span><br><span class="line">#skip_symbolic_links     = 1</span><br><span class="line"># GENERAL #</span><br><span class="line">user = mysql</span><br><span class="line">default_storage_engine = InnoDB</span><br><span class="line">character-set-server = utf8</span><br><span class="line">socket  = /usr/local/mysql/data/mysql.sock</span><br><span class="line">pid_file = /usr/local/mysql/data/mysqld.pid</span><br><span class="line">basedir = /usr/local/mysql</span><br><span class="line">port = 3306</span><br><span class="line">bind-address = 0.0.0.0</span><br><span class="line">#explicit_defaults_for_timestamp = off</span><br><span class="line">sql_mode=NO_ENGINE_SUBSTITUTION,STRICT_TRANS_TABLES</span><br><span class="line">#read_only=on</span><br><span class="line"># MyISAM #</span><br><span class="line">key_buffer_size                = 32M</span><br><span class="line">#myisam_recover                 = FORCE,BACKUP</span><br><span class="line"></span><br><span class="line"># undo log #</span><br><span class="line">innodb_undo_directory = /usr/local/mysql/undo</span><br><span class="line">innodb_undo_tablespaces = 8</span><br><span class="line"></span><br><span class="line"># SAFETY #</span><br><span class="line">max_allowed_packet             = 100M</span><br><span class="line">max_connect_errors             = 1000000</span><br><span class="line">sysdate_is_now                 = 1</span><br><span class="line">#innodb = FORCE</span><br><span class="line">#innodb_strict_mode = 1</span><br><span class="line">secure-file-priv=&apos;/tmp&apos;</span><br><span class="line">default_authentication_plugin=&apos;mysql_native_password&apos;</span><br><span class="line"># Replice #</span><br><span class="line"> server-id = 1001</span><br><span class="line"> relay_log = mysqld-relay-bin</span><br><span class="line"> gtid_mode = on</span><br><span class="line"> enforce-gtid-consistency</span><br><span class="line"> log-slave-updates = on</span><br><span class="line"> master_info_repository =TABLE</span><br><span class="line"> relay_log_info_repository =TABLE</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># DATA STORAGE #</span><br><span class="line"> datadir = /usr/local/mysql/data/</span><br><span class="line"> tmpdir = /tmp</span><br><span class="line"> </span><br><span class="line"># BINARY LOGGING #</span><br><span class="line"> log_bin = /usr/local/mysql/sql_log/mysql-bin</span><br><span class="line"> max_binlog_size = 1000M</span><br><span class="line"> binlog_format = row</span><br><span class="line"> binlog_expire_logs_seconds=86400</span><br><span class="line"># sync_binlog = 1</span><br><span class="line"></span><br><span class="line"> # CACHES AND LIMITS #</span><br><span class="line"> tmp_table_size                 = 32M</span><br><span class="line"> max_heap_table_size            = 32M</span><br><span class="line"> max_connections                = 4000</span><br><span class="line"> thread_cache_size              = 2048</span><br><span class="line"> open_files_limit               = 65535</span><br><span class="line"> table_definition_cache         = 4096</span><br><span class="line"> table_open_cache               = 4096</span><br><span class="line"> sort_buffer_size               = 2M</span><br><span class="line"> read_buffer_size               = 2M</span><br><span class="line"> read_rnd_buffer_size           = 2M</span><br><span class="line"># thread_concurrency             = 24</span><br><span class="line"> join_buffer_size = 1M</span><br><span class="line"># table_cache = 32768</span><br><span class="line"> thread_stack = 512k</span><br><span class="line"> max_length_for_sort_data = 16k</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"> # INNODB #</span><br><span class="line"> innodb_flush_method            = O_DIRECT</span><br><span class="line"> innodb_log_buffer_size = 16M</span><br><span class="line"> innodb_flush_log_at_trx_commit = 2</span><br><span class="line"> innodb_file_per_table          = 1</span><br><span class="line"> innodb_buffer_pool_size        = 256M</span><br><span class="line"> #innodb_buffer_pool_instances = 8</span><br><span class="line"> innodb_stats_on_metadata = off</span><br><span class="line"> innodb_open_files = 8192</span><br><span class="line"> innodb_read_io_threads = 16</span><br><span class="line"> innodb_write_io_threads = 16</span><br><span class="line"> innodb_io_capacity = 20000</span><br><span class="line"> innodb_thread_concurrency = 0</span><br><span class="line"> innodb_lock_wait_timeout = 60</span><br><span class="line"> innodb_old_blocks_time=1000</span><br><span class="line"> innodb_use_native_aio = 1</span><br><span class="line"> innodb_purge_threads=1</span><br><span class="line"> innodb_change_buffering=all</span><br><span class="line"> innodb_log_file_size = 64M</span><br><span class="line"> innodb_log_files_in_group = 2</span><br><span class="line"> innodb_data_file_path  = ibdata1:256M:autoextend</span><br><span class="line"> </span><br><span class="line"> innodb_rollback_on_timeout=on</span><br><span class="line"> # LOGGING #</span><br><span class="line"> log_error                      = /usr/local/mysql/sql_log/mysql-error.log</span><br><span class="line"> # log_queries_not_using_indexes  = 1</span><br><span class="line"> # slow_query_log                 = 1</span><br><span class="line">  slow_query_log_file            = /usr/local/mysql/sql_log/slowlog.log</span><br><span class="line"></span><br><span class="line"> # TimeOut #</span><br><span class="line"> #interactive_timeout = 30</span><br><span class="line"> #wait_timeout        = 30</span><br><span class="line"> #net_read_timeout = 60</span><br><span class="line"></span><br><span class="line">[mysqldump]</span><br><span class="line">quick</span><br><span class="line">max_allowed_packet = 100M</span><br><span class="line"></span><br><span class="line">[mysql]</span><br><span class="line">no-auto-rehash</span><br><span class="line"># Remove the next comment character if you are not familiar with SQL</span><br><span class="line">#safe-updates</span><br><span class="line"></span><br><span class="line">[myisamchk]</span><br><span class="line">key_buffer_size = 256M</span><br><span class="line">sort_buffer_size = 256M</span><br><span class="line">read_buffer = 2M</span><br><span class="line">write_buffer = 2M</span><br><span class="line"></span><br><span class="line">[mysqlhotcopy]</span><br><span class="line">interactive-timeout</span><br></pre></td></tr></table></figure>
+<ul>
+<li>新建文件目录</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">cd /usr/local/mysql/</span><br><span class="line"></span><br><span class="line">mkdir data sql_log undo</span><br><span class="line"></span><br><span class="line">chown mysql:mysql -R data/ sql_log/ undo/</span><br></pre></td></tr></table></figure>
+<ul>
+<li>环境变量配置</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">vi /etc/profile</span><br><span class="line"></span><br><span class="line"># 添加下面这行代码</span><br><span class="line">export PATH=$PATH:/usr/local/mysql/bin</span><br><span class="line"></span><br><span class="line">source /etc/profile</span><br></pre></td></tr></table></figure>
+<h2 id="初始化与启动MySQL"><a href="#初始化与启动MySQL" class="headerlink" title="初始化与启动MySQL"></a>初始化与启动MySQL</h2><figure class="highlight vala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta"># 在mysql 5.7之后使用mysqld初始化mysql数据库，以及相关系统表，</span></span><br><span class="line"><span class="meta"># mysqld --initialize 表示初始化</span></span><br><span class="line"><span class="meta"># --user=mysql 启动用户</span></span><br><span class="line"><span class="meta"># --basedir=/usr/local/mysql 安装目录</span></span><br><span class="line"><span class="meta"># 数据目录 --datadir=/usr/local/mysql/data</span></span><br><span class="line"></span><br><span class="line">mysqld --initialize --user=mysql --basedir=/usr/local/mysql --datadir=/usr/local/mysql/data</span><br><span class="line"><span class="meta"># 可能会有报错，根据报错信息修改即可</span></span><br><span class="line"></span><br><span class="line"><span class="meta"># 初始化完成之后可以在data目录看到初始化好后的数据库系统文件/数据</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>start</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"># 进入/usr/local/mysql/support-files</span><br><span class="line">cp mysql.server /etc/init.d/mysqld</span><br><span class="line"></span><br><span class="line">/etc/init.d/mysqld start</span><br><span class="line"></span><br><span class="line"># 查看mysql进程</span><br><span class="line">ps -ef | grep mysql</span><br></pre></td></tr></table></figure>
+<ul>
+<li>修改密码</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">cd sql_log/</span><br><span class="line"></span><br><span class="line"># 得到初始化密码</span><br><span class="line">grep password mysql-error.log </span><br><span class="line"></span><br><span class="line"># 登录进入数据库后修改密码</span><br><span class="line">alter user  user() identified by &apos;111111&apos;;</span><br></pre></td></tr></table></figure>
+<h1 id="数据库设计实战"><a href="#数据库设计实战" class="headerlink" title="数据库设计实战"></a>数据库设计实战</h1><h2 id="数据库设计三范式"><a href="#数据库设计三范式" class="headerlink" title="数据库设计三范式"></a>数据库设计三范式</h2><blockquote>
+<p>第一范式：要求有主键，并且要求每一个字段原子性不可再分</p>
+<p>第二范式：要求所有非主键字段完全依赖主键，不能产生部分依赖</p>
+<p>第三范式：所有非主键字段和主键字段之间不能产生传递依赖</p>
+</blockquote>
+<h2 id="常用MySQL存储引擎"><a href="#常用MySQL存储引擎" class="headerlink" title="常用MySQL存储引擎"></a>常用MySQL存储引擎</h2><p><img width="800px" src="WechatIMG165.png"></p>
+<p><br></p>
+<p><img width="800px" src="WechatIMG167.png"></p>
+<h2 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h2><p><img width="800px" src="WechatIMG168.png"><br></p>
+<p><img width="800px" src="WechatIMG169.png"><br></p>
+<p><img width="800px" src="WechatIMG170.png"><br></p>
+<p><img width="800px" src="WechatIMG171.png"></p>
+<h2 id="为数据选择合适的数据类型"><a href="#为数据选择合适的数据类型" class="headerlink" title="为数据选择合适的数据类型"></a>为数据选择合适的数据类型</h2><p><img width="800px" src="WechatIMG172.png"></p>
+<h2 id="为表和列选择合适的名字"><a href="#为表和列选择合适的名字" class="headerlink" title="为表和列选择合适的名字"></a>为表和列选择合适的名字</h2><p><img width="800px" src="WechatIMG176.png"><br></p>
+<p><img width="800px" src="WechatIMG175.png"></p>
+<h1 id="访问-连接MySQL"><a href="#访问-连接MySQL" class="headerlink" title="访问/连接MySQL"></a>访问/连接MySQL</h1><ul>
+<li>命令行</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql -uroot -p -hlocalhost</span><br></pre></td></tr></table></figure>
+<ul>
+<li>设置mysql可以使用root账户远程登录</li>
+</ul>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">update<span class="built_in"> user </span><span class="builtin-name">set</span> <span class="attribute">host</span>=<span class="string">'%'</span> where <span class="attribute">user</span>=<span class="string">'root'</span>;</span><br><span class="line">flush privileges;</span><br></pre></td></tr></table></figure>
+<h1 id="SQL"><a href="#SQL" class="headerlink" title="SQL"></a>SQL</h1><ul>
+<li>structured query language</li>
+<li>RDBMS（关系型数据库管理系统，全称 Relational Database Management Syste）</li>
+<li></li>
+</ul>
+<h2 id="常用的SQL语言种类"><a href="#常用的SQL语言种类" class="headerlink" title="常用的SQL语言种类"></a>常用的SQL语言种类</h2><h3 id="DCL-数据库管理语句"><a href="#DCL-数据库管理语句" class="headerlink" title="DCL 数据库管理语句"></a>DCL 数据库管理语句</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 创建用户</span></span><br><span class="line"><span class="keyword">create</span> <span class="keyword">user</span> mc_test@<span class="string">'%'</span> <span class="keyword">identified</span> <span class="keyword">by</span> <span class="string">'111111'</span> <span class="keyword">with</span> max_user_connections <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 给账号授权</span></span><br><span class="line"><span class="keyword">grant</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">GRANT</span> <span class="keyword">ALL</span> <span class="keyword">PRIVILEGES</span> <span class="keyword">ON</span> *.* <span class="keyword">TO</span> <span class="string">'root'</span>@<span class="string">'localhost'</span> <span class="keyword">WITH</span> <span class="keyword">GRANT</span> <span class="keyword">OPTION</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 收回用户权限</span></span><br><span class="line"><span class="keyword">revoke</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 展示插件</span></span><br><span class="line"><span class="keyword">show</span> plugins;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看权限</span></span><br><span class="line"><span class="keyword">show</span> <span class="keyword">privileges</span>;</span><br></pre></td></tr></table></figure>
+<h3 id="DDL-数据定义"><a href="#DDL-数据定义" class="headerlink" title="DDL 数据定义"></a>DDL 数据定义</h3><blockquote>
+<p>create/alter/drop database</p>
+<p>create/alter/drop table</p>
+<p>create/drop index</p>
+<p>truncate table</p>
+<p>rename table</p>
+<p>Create/alter/drop view</p>
+</blockquote>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">DATABASE</span> imc_db;</span><br><span class="line"></span><br><span class="line"><span class="keyword">truncate</span> <span class="keyword">table</span> [table_name];</span><br><span class="line"></span><br><span class="line"><span class="keyword">rename</span> <span class="keyword">table</span> [table_name] <span class="keyword">to</span> [table_name2];</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>DCL 数据库管理语句</p>
+<p>DDL 数据定义</p>
+<p>DML 数据操作</p>
+<p>TCL 事物控制</p>
+</blockquote>
+<h3 id="DML-表操作"><a href="#DML-表操作" class="headerlink" title="DML 表操作"></a>DML 表操作</h3><blockquote>
+<p>insert<br>delete</p>
+<p>update</p>
+<p>select</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select &quot;this is mysql course &quot; like &quot;%mysql%&quot;;</span><br></pre></td></tr></table></figure>
+<h3 id="TCL"><a href="#TCL" class="headerlink" title="TCL"></a>TCL</h3><h1 id="SQL优化"><a href="#SQL优化" class="headerlink" title="SQL优化"></a>SQL优化</h1><h2 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h2><blockquote>
+<p>发现问题&gt;分析执行计划&gt;优化索引&gt;改写SQL</p>
+</blockquote>
+<blockquote>
+<p>数据库垂直切分、数据库水平切分</p>
+</blockquote>
+<h2 id="发现有性能问题的SQL"><a href="#发现有性能问题的SQL" class="headerlink" title="发现有性能问题的SQL"></a>发现有性能问题的SQL</h2><ul>
+<li>用户主动上报应用性能问题</li>
+<li>分析慢查询日志，发现存在问题的SQL</li>
+<li>数据库实时监控长时间运行的SQL</li>
+</ul>
+<h2 id="配置慢查询日志"><a href="#配置慢查询日志" class="headerlink" title="配置慢查询日志"></a>配置慢查询日志</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"># 开启慢查询日志（on）</span><br><span class="line">set global slow_query_log = [on|off]</span><br><span class="line"></span><br><span class="line"># 配置慢查询日志目录/文件</span><br><span class="line">set global slow_query_log_file = /sql_log/slowlog.log</span><br><span class="line"></span><br><span class="line"># 超过这个执行时间的sql会被记录在日志中，如果记录所有的查询sql，则 参数设置为0即可</span><br><span class="line">set global long_query_time = xx.xxx 秒</span><br><span class="line"></span><br><span class="line"># 所有使未用到索引（on）的sql都会记录到日志中</span><br><span class="line">set global log_queries_not_using_indexes=[on|off]</span><br></pre></td></tr></table></figure>
+<h2 id="分析MySQL慢查询日志的工具"><a href="#分析MySQL慢查询日志的工具" class="headerlink" title="分析MySQL慢查询日志的工具"></a>分析MySQL慢查询日志的工具</h2><p>mysqldumpslow</p>
+<p>Pt-query-digest</p>
+<ul>
+<li>下载安装工具</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"># 访问 https://www.percona.com/downloads/percona-toolkit/LATEST/</span><br><span class="line"></span><br><span class="line"># 下载 percona-toolkit-3.0.13-1.el7.x86_64.rpm</span><br><span class="line"></span><br><span class="line">wget https://www.percona.com/downloads/percona-toolkit/3.2.0/binary/redhat/7/x86_64/percona-toolkit-3.2.0-1.el7.x86_64.rpm</span><br><span class="line"></span><br><span class="line"># 安装相关依赖包</span><br><span class="line">yum install -y perl-DBD-MySQL.X86_64 perl-DBI.x86 perl-Time-HiRes.x86_64 perl-IO-Socket-SSL.noarch perl-TermReadKey.x86_64 perl-Digest-MD5</span><br><span class="line"></span><br><span class="line">rpm -ivh percona-toolkit-3.0.13-1.el7.x86_64.rpm</span><br></pre></td></tr></table></figure>
+<h2 id="启用慢查询日志"><a href="#启用慢查询日志" class="headerlink" title="启用慢查询日志"></a>启用慢查询日志</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">show variables like &apos;long_query_time&apos;;</span><br><span class="line"></span><br><span class="line">set global long_query_time=0;</span><br><span class="line"></span><br><span class="line">show variables like &apos;slow_query_log&apos;;</span><br><span class="line"></span><br><span class="line">set global slow_query_log=on;</span><br><span class="line"></span><br><span class="line">show variables like &apos;slow_query_log_file&apos;;</span><br></pre></td></tr></table></figure>
+<h2 id="分析慢查询日志"><a href="#分析慢查询日志" class="headerlink" title="分析慢查询日志"></a>分析慢查询日志</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mysqldumpslow slowlog.log</span><br><span class="line"></span><br><span class="line">pt-query-digest slowlog.log</span><br></pre></td></tr></table></figure>
+<h2 id="实时监控sql"><a href="#实时监控sql" class="headerlink" title="实时监控sql"></a>实时监控sql</h2><h2 id="分析SQL执行计划"><a href="#分析SQL执行计划" class="headerlink" title="分析SQL执行计划"></a>分析SQL执行计划</h2><h3 id="获取SQL执行计划"><a href="#获取SQL执行计划" class="headerlink" title="获取SQL执行计划"></a>获取SQL执行计划</h3><h1 id="事务与并发控制"><a href="#事务与并发控制" class="headerlink" title="事务与并发控制"></a>事务与并发控制</h1><ul>
+<li>事务是数据库执行操作的最小逻辑单元</li>
+<li>事务可以由一个sql组成也可以由多个sql组成</li>
+<li>组成事务的sql要么全部成功要么全部失败</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># BEGIN 或 START TRANSACTION 显式地开启一个事务</span><br><span class="line"># COMMIT 也可以使用 COMMIT WORK，不过二者是等价的。COMMIT 会提交事务，并使已对数据库进行的所有修改成为永久性的；</span><br><span class="line"></span><br><span class="line"># ROLLBACK 也可以使用 ROLLBACK WORK，不过二者是等价的。回滚会结束用户的事务，并撤销正在进行的所有未提交的修改；</span><br></pre></td></tr></table></figure>
+<h2 id="ACID"><a href="#ACID" class="headerlink" title="ACID"></a>ACID</h2><ul>
+<li><strong>原子性：</strong>一个事务（transaction）中的所有操作，要么全部完成，要么全部不完成，不会结束在中间某个环节。事务在执行过程中发生错误，会被回滚（Rollback）到事务开始前的状态，就像这个事务从来没有执行过一样。</li>
+<li><strong>一致性：</strong>在事务开始之前和事务结束以后，数据库的完整性没有被破坏。这表示写入的资料必须完全符合所有的预设规则，这包含资料的精确度、串联性以及后续数据库可以自发性地完成预定的工作。</li>
+<li><strong>隔离性：</strong>数据库允许多个并发事务同时对其数据进行读写和修改的能力，隔离性可以防止多个事务并发执行时由于交叉执行而导致数据的不一致。事务隔离分为不同级别，包括读未提交（Read uncommitted）、读提交（read committed）、可重复读（repeatable read）和串行化（Serializable）。</li>
+<li><strong>持久性：</strong>事务处理结束后，对数据的修改就是永久的，即便系统故障也不会丢失。</li>
+</ul>
+<h2 id="脏读"><a href="#脏读" class="headerlink" title="脏读"></a>脏读</h2><p><img width="800px" src="WechatIMG191.png"></p>
+<h2 id="不可重复读"><a href="#不可重复读" class="headerlink" title="不可重复读"></a>不可重复读</h2><p><img width="800px" src="WechatIMG192.png"></p>
+<h2 id="幻读"><a href="#幻读" class="headerlink" title="幻读"></a>幻读</h2><p><img width="800px" src="WechatIMG193.png"></p>
+<h2 id="INNODB的事务隔离级别"><a href="#INNODB的事务隔离级别" class="headerlink" title="INNODB的事务隔离级别"></a>INNODB的事务隔离级别</h2><p><img width="800px" src="WechatIMG194.png"></p>
+<p>默认：可重复读</p>
+<h2 id="she"><a href="#she" class="headerlink" title="she"></a>she</h2>
+        
+            <div class="donate-container">
+    <div class="donate-button">
+        <button id="donate-button">赞赏</button>
+    </div>
+    <div class="donate-img-container hide" id="donate-img-container">
+        <img id="donate-img" src="" data-src="/img/donate.jpg">
+        <p> 感谢鼓励 </p>
+    </div>
+</div>
+        
+        <br />
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+
+        <div id="lv-container">
+        </div>
+
+    </div>
+</div>
+
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        <li>
+            <a target="_blank" href="https://twitter.com/iconie_alloy">
+                            <span class="fa-stack fa-lg">
+                                <i class="iconfont icon-twitter"></i>
+                            </span>
+            </a>
+        </li>
+        
+        
+        <li>
+            <a target="_blank" href="https://www.zhihu.com/people/ai-er-lan-xue-da">
+                            <span class="fa-stack fa-lg">
+                                 <i class="iconfont icon-zhihu"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+        <li>
+            <a target="_blank" href="http://weibo.com/3286578617">
+                            <span class="fa-stack fa-lg">
+                                  <i class="iconfont icon-weibo"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+        <li>
+            <a target="_blank" href="https://www.facebook.com/xiaotao.nie.5">
+                            <span class="fa-stack fa-lg">
+                                <i class="iconfont icon-facebook"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+        <li>
+            <a target="_blank"  href="https://github.com/AirCloud">
+                            <span class="fa-stack fa-lg">
+                                <i class="iconfont icon-github"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+        <li>
+            <a target="_blank"  href="https://www.linkedin.com/in/小涛-聂-80964aba">
+                            <span class="fa-stack fa-lg">
+                                <i class="iconfont icon-linkedin"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+    </ul>
+    
+    <p>
+        <span>/</span>
+        
+        <span><a href="https://www.10000h.top">10000H</a></span>
+        <span>/</span>
+        
+        <span><a href="https://niexiaotao.com">Xiaotao&#39;s Page</a></span>
+        <span>/</span>
+        
+        <span><a href="#">It helps SEO</a></span>
+        <span>/</span>
+        
+    </p>
+    
+    <p>
+        <span id="busuanzi_container_site_pv">
+            <span id="busuanzi_value_site_pv"></span>PV
+        </span>
+        <span id="busuanzi_container_site_uv">
+            <span id="busuanzi_value_site_uv"></span>UV
+        </span>
+        Created By <a href="https://hexo.io/">Hexo</a>  Theme <a href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a></p>
+</footer>
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = "search.json"
+    window.hexo_root = "/"
+    window.isPost = true
+</script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="/js/index.js"></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+    <script>
+        /**
+         *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+         *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+        */
+        if( '' || '')
+        var disqus_config = function () {
+            this.page.url = '';  // Replace PAGE_URL with your page's canonical URL variable
+            this.page.identifier = ''; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+        };
+
+        (function() { // DON'T EDIT BELOW THIS LINE
+            var d = document, s = d.createElement('script');
+            s.src = 'https://airclouds-blog.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+        })();
+    </script>
+
+
+
+</html>

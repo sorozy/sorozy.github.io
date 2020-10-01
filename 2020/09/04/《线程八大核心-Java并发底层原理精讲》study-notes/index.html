@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="聂小涛的博客">
+    <meta name="keyword" content="腾讯">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+        《线程八大核心+Java并发底层原理精讲》study notes - AirCloud的博客 | AirCloud&#39;s Blog
+        
+    </title>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/aircloud.css">
+    <link rel="stylesheet" href="/css/gitment.css">
+    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
+    <link href="//at.alicdn.com/t/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i> sometimes code， sometimes design </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar ">
+            <img src="/img/avatar.jpg" />
+        </div>
+        <div class="name">
+            <i>Xiaotao Nie</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li >
+                <a href="/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>主页</span>
+                </a>
+            </li>
+            <li >
+                <a href="/tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>标签</span>
+                </a>
+            </li>
+            <li >
+                <a href="/archive">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>存档</span>
+                </a>
+            </li>
+            <li >
+                <a href="/about/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>关于</span>
+                </a>
+            </li>
+            
+            <li>
+                <a id="search">
+                    <i class="iconfont icon-sousuo1"></i>
+                    <span>搜索</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#为什么需要学习并发编程"><span class="toc-text">为什么需要学习并发编程</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#课程学习概述"><span class="toc-text">课程学习概述</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#实现多线程的办法？是一种还是两种？"><span class="toc-text">实现多线程的办法？是一种还是两种？</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#继承Thread与实现Runnable接口方法区别"><span class="toc-text">*继承Thread与实现Runnable接口方法区别</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#彩蛋"><span class="toc-text">彩蛋</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#学习编程知识的优质途径"><span class="toc-text">学习编程知识的优质途径</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#如何了解技术领域的最新动态"><span class="toc-text">如何了解技术领域的最新动态</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#如何在业务开发中成长"><span class="toc-text">如何在业务开发中成长</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#实现多线程-常见面试问题"><span class="toc-text">实现多线程 - 常见面试问题</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#启动线程的正确和错误方式"><span class="toc-text">启动线程的正确和错误方式</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#启动线程-常见面试问题"><span class="toc-text">启动线程 - 常见面试问题</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#线程停止、中断"><span class="toc-text">线程停止、中断</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#如何正确停止线程"><span class="toc-text">如何正确停止线程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#普通情况下停止线程"><span class="toc-text">普通情况下停止线程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#阻塞的情况下停止线程（响应中断的方式：抛出异常）"><span class="toc-text">阻塞的情况下停止线程（响应中断的方式：抛出异常）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#每次迭代后都阻塞"><span class="toc-text">每次迭代后都阻塞</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#while内try-catch问题"><span class="toc-text">while内try/catch问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#两种最佳实践"><span class="toc-text">两种最佳实践</span></a></li></ol></li></ol></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input"/>
+            <span id="begin-search">搜索</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+
+        <div class="index-about-mobile">
+            <i> sometimes code， sometimes design </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        《线程八大核心+Java并发底层原理精讲》study notes
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">发布于：<span>2020-09-04 09:13:02</span></span>
+        
+        <span class="attr">标签：/
+        
+        <a class="tag" href="/tags/#java" title="java">java</a>
+        <span>/</span>
+        
+        <a class="tag" href="/tags/#concurrent" title="concurrent">concurrent</a>
+        <span>/</span>
+        
+        
+        </span>
+        <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
+</span>
+</span>
+    </div>
+    <div class="post-content ">
+        <h1 id="为什么需要学习并发编程"><a href="#为什么需要学习并发编程" class="headerlink" title="为什么需要学习并发编程"></a>为什么需要学习并发编程</h1><ol>
+<li><p>源于JD的硬性要求，尤其是大厂</p>
+</li>
+<li><p>网络上面经高频出现，且水平参差不齐，做归纳整理耗时耗力，难辨真伪</p>
+</li>
+<li><p>是成为高级工程师的必经之路</p>
+<blockquote>
+<p>几乎所有程序或多或少需要并发和多线程<br></p>
+<p>线上服务用户量大，并发量轻松过万，如果不使用并发编程，性能很快成为瓶颈<br></p>
+<p>在职场打怪升级过程中，并发编程是绕不过去的boos<br></p>
+</blockquote>
+</li>
+<li><p>众多框架的原理和基础</p>
+<blockquote>
+<p>spring中对线程池、单例的应用<br></p>
+<p>数据库中的乐观锁思想<br></p>
+<p>log4j2对阻塞队列的应用<br></p>
+</blockquote>
+</li>
+</ol>
+<h1 id="课程学习概述"><a href="#课程学习概述" class="headerlink" title="课程学习概述"></a>课程学习概述</h1><ul>
+<li><p>知识需要成体系，否则很容易忘记</p>
+</li>
+<li><p>课程内容包含：</p>
+<blockquote>
+<p>8大核心基础<br></p>
+<p>java内存模型<br></p>
+<p>死锁<br></p>
+<p>高频面试题+面试加薪技巧<br></p>
+</blockquote>
+</li>
+<li><p>分析本质、深入原理</p>
+<blockquote>
+<p>深入原理：剖析背后设计理念<br></p>
+<p>java内存模型——底层原理，修炼内功<br></p>
+</blockquote>
+</li>
+</ul>
+<h1 id="实现多线程的办法？是一种还是两种？"><a href="#实现多线程的办法？是一种还是两种？" class="headerlink" title="实现多线程的办法？是一种还是两种？"></a>实现多线程的办法？是一种还是两种？</h1><ul>
+<li>正确的说法</li>
+</ul>
+<blockquote>
+<p>oracle官网说法：<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Thread.html" target="_blank" rel="noopener">https://docs.oracle.com/javase/8/docs/api/java/lang/Thread.html</a></p>
+</blockquote>
+<blockquote>
+<p>有两种方法可以创建新的执行线程。一种是将一个类声明为Thread的子类。另一种方法是声明一个实现Runnable接口的类</p>
+</blockquote>
+<ul>
+<li>实现Runnable接口</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RunnableStyle</span> <span class="keyword">implements</span> <span class="title">Runnable</span> </span>&#123;</span><br><span class="line">  </span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"通过实现Runnable接口创建线程"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">new</span> Thread(<span class="keyword">new</span> RunnableStyle()).start();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>继承Thread类</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ThreadStyle</span> <span class="keyword">extends</span> <span class="title">Thread</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"通过继承Thread类 创建线程"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">new</span> ThreadStyle().start();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>准确的讲，创建线程只有一种方式那就是构造Thread类，而实现线程的执行单元有两种方式</p>
+<p>方法一：实现<code>Runnable</code>接口的run方法，并把Runnable实例传给Thread类</p>
+<p>方法二：重写Thread的run方法（继承Thread类）</p>
+</blockquote>
+<h2 id="继承Thread与实现Runnable接口方法区别"><a href="#继承Thread与实现Runnable接口方法区别" class="headerlink" title="*继承Thread与实现Runnable接口方法区别"></a>*继承Thread与实现Runnable接口方法区别</h2><ul>
+<li>实现（Runnable接口）更好</li>
+</ul>
+<blockquote>
+<ol>
+<li>解耦角度（run方法应该和Thread类解耦）</li>
+<li>资源节约（Runnable可以使用线程池，比Thread类节约资源）（线程池只能放入实现Runable或callable类线程，不能直接放入继承Thread的类）</li>
+<li>避免由单继承局限带来的影响</li>
+</ol>
+</blockquote>
+<ul>
+<li>本质对比</li>
+</ul>
+<blockquote>
+<p>实现（Runnable接口）：最终调用target.run();</p>
+<p>继承Thread：run()整个都被重写</p>
+</blockquote>
+<ul>
+<li>思考：同时使用两种方法会怎么样？</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BothRunnableThread</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">new</span> Thread(<span class="keyword">new</span> Runnable() &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">                <span class="comment">//下面折行代码将不会执行</span></span><br><span class="line">                System.out.println(<span class="string">"我来自Runnable"</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;) &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">                System.out.println(<span class="string">"我来自Thread"</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;.start();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//控制台打印：我来自Thread</span></span><br><span class="line"><span class="comment">// 原因: run方法被重写了</span></span><br></pre></td></tr></table></figure>
+<h1 id="彩蛋"><a href="#彩蛋" class="headerlink" title="彩蛋"></a>彩蛋</h1><h2 id="学习编程知识的优质途径"><a href="#学习编程知识的优质途径" class="headerlink" title="学习编程知识的优质途径"></a>学习编程知识的优质途径</h2><ul>
+<li><p>宏观上</p>
+<blockquote>
+<ol>
+<li>并不是靠工作年限增长技术</li>
+<li>要有强大责任心，不放过任何bug，找到原因并去解决，这就是提高</li>
+<li>主动：永远不会觉得自己的时间多余，重构、优化、学习、总结等</li>
+<li>敢于承担：虽然这个技术难题以前没有碰到过，但是在一定的了解调研后，敢于承担技术难题，让工作充满挑战，这一次次攻克难关的过程中，进步是飞速的</li>
+<li>关心产品，关心业务，而不只是写代码</li>
+</ol>
+</blockquote>
+</li>
+<li><p>微观上</p>
+<blockquote>
+<ol>
+<li>看经典书籍（指外国人写的经典的中国译本比如java并发编程实战、自顶向下计算机网络）</li>
+<li>看官方文档</li>
+<li>使用英文搜索，使用google、stackoverflow</li>
+<li>自己动手写，实践写demo，尝试用到项目里</li>
+<li>不理解的参考该领域的多个书本，综合判断</li>
+<li>学习开源项目，分析源码（学习synchronized原理，反编译 看cpp代码）</li>
+</ol>
+</blockquote>
+</li>
+</ul>
+<h2 id="如何了解技术领域的最新动态"><a href="#如何了解技术领域的最新动态" class="headerlink" title="如何了解技术领域的最新动态"></a>如何了解技术领域的最新动态</h2><ul>
+<li>高质量固定途径</li>
+<li>订阅技术论坛</li>
+<li>公众号</li>
+</ul>
+<h2 id="如何在业务开发中成长"><a href="#如何在业务开发中成长" class="headerlink" title="如何在业务开发中成长"></a>如何在业务开发中成长</h2><ul>
+<li>偏业务方向…</li>
+<li>偏技术方向…</li>
+<li>两个25%理论</li>
+</ul>
+<h1 id="实现多线程-常见面试问题"><a href="#实现多线程-常见面试问题" class="headerlink" title="实现多线程 - 常见面试问题"></a>实现多线程 - 常见面试问题</h1><ul>
+<li><p>有多少种实现线程的方法?思路有5点</p>
+<blockquote>
+<ol>
+<li>从不同角度看，会有不同的答案</li>
+<li>典型答案是两种</li>
+<li>我们看原理，两种本质都是一样的</li>
+<li>具体展开说其它方式</li>
+<li>结论</li>
+</ol>
+</blockquote>
+<p>解答：</p>
+<blockquote>
+<p>从不同的角度看这个问题会有不同的答案，（没有说是几种代码实现方法还是本质实现方法）。（典型回答是：）通过继承Thread类和实现Runnable接口两种方式来实现多线程。实现Runnable接口方式更好。有三点优势：</p>
+<ol>
+<li>解耦角度（run方法应该和Thread类解耦）</li>
+<li>资源节约（Runnable可以使用线程池，比Thread类节约资源）（线程池只能放入实现Runable或callable类线程，不能直接放入继承Thread的类）</li>
+<li>避免由单继承局限带来的影响</li>
+</ol>
+<p>看原理两种方法本质一样,Thread类中的run方法代码是</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">       <span class="keyword">if</span> (target != <span class="keyword">null</span>) &#123;</span><br><span class="line">           target.run();</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>其实都是都是利用了Thread类的run方法，另外一种是重写了run方法，一种是传入target再执行run方法。</p>
+<p>（展开说：）除了上面说的两种方法还有很多种方法：线程池、定时器等。但是它们细看源码后，都没有逃脱以上这个本质。</p>
+<p>（总结：）本质上只有一种，新建线程我们必须通过Thread类，但是通常我们把它区分为两种形式：重写Thread的run方法（继承Thread类）、实现<code>Runnable</code>接口的run方法，并把Runnable实例传给Thread类。另外还有更多的外在表现形式：线程池、计时器、lamda、匿名内部类等等</p>
+</blockquote>
+</li>
+</ul>
+<ul>
+<li>实现Runnable接口和继承Thread类那种方式更好？</li>
+</ul>
+<blockquote>
+<ol>
+<li>从代码架构角度</li>
+<li>新建线程的损耗</li>
+<li>java不支持双继承</li>
+</ol>
+</blockquote>
+<p>解答：</p>
+<blockquote>
+</blockquote>
+<h1 id="启动线程的正确和错误方式"><a href="#启动线程的正确和错误方式" class="headerlink" title="启动线程的正确和错误方式"></a>启动线程的正确和错误方式</h1><ul>
+<li>star方法含义：启动新线程</li>
+<li>不能重复执行start方法</li>
+<li>start()方法源码分析</li>
+</ul>
+<blockquote>
+<p>启动过新线程检查线程状态</p>
+<p>加入线程组</p>
+<p>调用start0(); （本地方法）</p>
+</blockquote>
+<h2 id="启动线程-常见面试问题"><a href="#启动线程-常见面试问题" class="headerlink" title="启动线程 - 常见面试问题"></a>启动线程 - 常见面试问题</h2><ul>
+<li>一个线程两次调用start()方法会出现什么情况？为什么？</li>
+</ul>
+<p>解答：</p>
+<blockquote>
+<p>Java中线程是不允许启动两次的，第二次调用会抛出IllegalThreadStateException，这是一种运行时异常，多次调用start被认为是编程错误。</p>
+<p>通过Thread类start方法源码，可以看出start方法是一个同步方法，并且在执行start方法时首先会判断当前线程的运行状态，只有在当前状态为<strong>NEW</strong>的时候才会继续执行，方法执行完毕或改变当前线程的状态。如此设计保证了线程仅可执行一次start。</p>
+<p>（在回答完以上内容后，如果感觉面试官没有让你停下来的意思，可以继续说下自己对于线程生命周期的理解。以下是对于线程生命周期的完整阐述，面试的时候可摘取必要部分进行阐述。）</p>
+<p>关于线程生命周期的不同状态，在Java 5以后，线程状态被明确定义在其公共内部枚举类型java.lang.Thread.State中，分别是：</p>
+<p><strong>新建（NEW）</strong>，表示线程被创建出来还没真正启动的状态，可以认为它是个Java内部状态。</p>
+<p><strong>就绪（RUNNABLE）</strong>，表示该线程已经在JVM中执行，当然由于执行需要计算资源，它可能是正在运行，也可能还在等待系统分配给它CPU片段，在就绪队列里面排队。</p>
+<p>在其他一些分析中，会额外区分一种状态<strong>RUNNING</strong>，但是从Java API的角度，并不能表示出来。</p>
+<p><strong>阻塞（BLOCKED）</strong>，这个状态和我们前面两讲介绍的同步非常相关，阻塞表示线程在等待Monitor lock。比如，线程试图通过synchronized去获取某个锁，但是其他线程已经独占了，那么当前线程就会处于阻塞状态。</p>
+<p><strong>等待（WAITING）</strong>，表示正在等待其他线程采取某些操作。一个常见的场景是类似生产者消费者模式，发现任务条件尚未满足，就让当前消费者线程等待（wait），另外的生产者线程去准备任务数据，然后通过类似notify等动作，通知消费线程可以继续工作了。Thread.join()也会令线程进入等待状态。</p>
+<p><strong>计时等待（TIMED_WAIT）</strong>，其进入条件和等待状态类似，但是调用的是存在超时条件的方法，比如wait或join等方法的指定超时版本，如下面示例：</p>
+<p>public final native void wait(long timeout) throws InterruptedException;</p>
+<p><strong>终止（TERMINATED）</strong>，不管是意外退出还是正常执行结束，线程已经完成使命，终止运行，也有人把这个状态叫作死亡。</p>
+<p>在第二次调用start()方法的时候，线程可能处于终止或者其他（非NEW）状态，但是不论如何，都是不可以再次启动的。</p>
+<ul>
+<li>考点分析</li>
+</ul>
+<p>这个问题可以算是个常见的面试热身题目，不仅阿里，一些有技术积累的团队也会有类似的问法。前面给出的推荐回答，算是对线程基本状态和简单流转的一个简单介绍，如果觉得还不够直观，请参考如下状态图进行演练。</p>
+</blockquote>
+<p><img src="123.jpeg" width="700px"></p>
+<blockquote>
+<p>总的来说，理解线程的内部原理对于我们日常开发或者诊断分析，都是不可或缺的。</p>
+<p>面试官可能会以此为契机，从各种不同角度考察你对线程的掌握：</p>
+<p>\1. 资深一点的面试官可能会问你线程到底是什么以及Java底层实现线程的方式。</p>
+<p>\2. 线程状态的切换、线程安全以及并发工具类等方面的扩展。</p>
+<p>\3. 多线程编程时容易踩的坑与体会等。</p>
+<p>可以看出，仅仅是一个线程，就有非常多的内容需要掌握。我们在面试备战过程中切忌浮躁，脚踏实地地把相关的知识点逐一攻克，还担心没有心仪大厂的offer嘛！</p>
+</blockquote>
+<ul>
+<li>既然start()方法会调用run()方法，为什么我们选择调用start()方法，而不是直接调用run()方法呢？</li>
+</ul>
+<p>解答：</p>
+<blockquote>
+<p>start()用来启动一个线程，当调用start()方法时，系统才会开启一个线程，通过Thead类中start()方法来启动的线程处于就绪状态（可运行状态），此时并没有运行，一旦得到CPU时间片，就自动开始执行run()方法。此时不需要等待run()方法执行完也可以继续执行下面的代码，所以也由此看出run()方法并没有实现多线程。<br>run()方法是在本线程里的，只是线程里的一个函数,而不是多线程的。如果直接调用run(),其实就相当于是调用了一个普通函数而已，直接待用run()方法必须等待run()方法执行完毕才能执行下面的代码，所以执行路径还是只有一条，根本就没有线程的特征，所以在多线程执行时要使用start()方法而不是run()方法。</p>
+</blockquote>
+<h1 id="线程停止、中断"><a href="#线程停止、中断" class="headerlink" title="线程停止、中断"></a>线程停止、中断</h1><h2 id="如何正确停止线程"><a href="#如何正确停止线程" class="headerlink" title="如何正确停止线程"></a>如何正确停止线程</h2><ul>
+<li><p>使用interrupt来通知（停止线程），而不是强制</p>
+</li>
+<li><p>两种情况下线程会停止</p>
+<blockquote>
+<p>run()方法所有代码执行完毕<br></p>
+<p>抛出异常未捕获</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="普通情况下停止线程"><a href="#普通情况下停止线程" class="headerlink" title="普通情况下停止线程"></a>普通情况下停止线程</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> *  run方法内没有sleep或wait方法时，停止线程</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RightWayStopThreadWithoutSleep</span> <span class="keyword">implements</span> <span class="title">Runnable</span></span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> num=<span class="number">0</span>;</span><br><span class="line">        <span class="comment">//Thread.currentThread().isInterrupted() 线程是否被中断</span></span><br><span class="line">        <span class="keyword">while</span> (!Thread.currentThread().isInterrupted() &amp;&amp; num &lt;= Integer.MAX_VALUE / <span class="number">2</span>) &#123;</span><br><span class="line">            <span class="keyword">if</span> (num % <span class="number">10000</span> == <span class="number">0</span> ) &#123;</span><br><span class="line">                System.out.println(num+<span class="string">"是10000的倍数"</span>);</span><br><span class="line">            &#125;</span><br><span class="line">            num++;</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(<span class="string">"任务运行结束了"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> InterruptedException </span>&#123;</span><br><span class="line">        Thread thread = <span class="keyword">new</span> Thread(<span class="keyword">new</span> RightWayStopThreadWithoutSleep());</span><br><span class="line">        thread.start();</span><br><span class="line">        Thread.sleep(<span class="number">2000</span>);</span><br><span class="line">        thread.interrupt();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="阻塞的情况下停止线程（响应中断的方式：抛出异常）"><a href="#阻塞的情况下停止线程（响应中断的方式：抛出异常）" class="headerlink" title="阻塞的情况下停止线程（响应中断的方式：抛出异常）"></a>阻塞的情况下停止线程（响应中断的方式：抛出异常）</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * run方法内有sleep或wait时停止线程</span></span><br><span class="line"><span class="comment"> </span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RightWayStopThreadWithSleep</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> InterruptedException </span>&#123;</span><br><span class="line">        Runnable runnable = () -&gt; &#123;</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                <span class="keyword">int</span> num = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">                <span class="keyword">while</span> (!Thread.currentThread().isInterrupted() &amp;&amp; num &lt;= <span class="number">300</span> ) &#123;</span><br><span class="line">                    <span class="keyword">if</span> (num % <span class="number">100</span> == <span class="number">0</span> ) &#123;</span><br><span class="line">                        System.out.println(num + <span class="string">"是100的倍数"</span>);</span><br><span class="line">                    &#125;</span><br><span class="line">                    num++;</span><br><span class="line">                &#125;</span><br><span class="line">                Thread.sleep(<span class="number">1000</span>);</span><br><span class="line">            &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;;</span><br><span class="line">        Thread thread = <span class="keyword">new</span> Thread(runnable);</span><br><span class="line">        thread.start();</span><br><span class="line">        Thread.sleep(<span class="number">500</span>);</span><br><span class="line">        thread.interrupt();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="每次迭代后都阻塞"><a href="#每次迭代后都阻塞" class="headerlink" title="每次迭代后都阻塞"></a>每次迭代后都阻塞</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 如果在执行过程中，每次循环都会调用sleep或wait方法，那么不需要每次迭代都检查是否被中断，</span></span><br><span class="line"><span class="comment"> * 因为在sleep过程中会响应这个中断</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RightWayStopThreadWithSleepEveryLoop</span> </span>&#123;</span><br><span class="line">  </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> InterruptedException </span>&#123;</span><br><span class="line">        Runnable runnable = () -&gt; &#123;</span><br><span class="line">            <span class="keyword">int</span> num=<span class="number">0</span>;</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                <span class="comment">// 在这里检测是否被打断是多余的</span></span><br><span class="line">                <span class="keyword">while</span> (num &lt;= <span class="number">10000</span>) &#123;</span><br><span class="line">                    <span class="keyword">if</span> (num % <span class="number">100</span> == <span class="number">0</span> ) &#123;</span><br><span class="line">                        System.out.println(num+<span class="string">"是100的倍数"</span>);</span><br><span class="line">                    &#125;</span><br><span class="line">                    num++;</span><br><span class="line">                    Thread.sleep(<span class="number">10</span>);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;;</span><br><span class="line"></span><br><span class="line">        Thread thread = <span class="keyword">new</span> Thread(runnable);</span><br><span class="line">        thread.start();</span><br><span class="line">        Thread.sleep(<span class="number">2000</span>);</span><br><span class="line">        thread.interrupt();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="while内try-catch问题"><a href="#while内try-catch问题" class="headerlink" title="while内try/catch问题"></a>while内try/catch问题</h3><p><em>响应中断后会把interrupt标记位清除</em></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 描述：如果while里面放try catch 会导致中断失效</span></span><br><span class="line"><span class="comment"> 响应中断后会把interrupt标记位清除</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CantInterrupt</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> InterruptedException </span>&#123;</span><br><span class="line">        Runnable runnable = () -&gt; &#123;</span><br><span class="line">          <span class="keyword">int</span> num=<span class="number">0</span>;</span><br><span class="line">              <span class="keyword">while</span> (!Thread.currentThread().isInterrupted() &amp;&amp;  num &lt;= <span class="number">10000</span> ) &#123;</span><br><span class="line">                  <span class="keyword">if</span> (num % <span class="number">100</span> == <span class="number">0</span> ) &#123;</span><br><span class="line">                      System.out.println(num + <span class="string">"是100的倍数"</span>);</span><br><span class="line">                  &#125;</span><br><span class="line">                  num++;</span><br><span class="line"></span><br><span class="line">                  <span class="keyword">try</span> &#123;</span><br><span class="line">                    Thread.sleep(<span class="number">10</span>);</span><br><span class="line">                  &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">                      e.printStackTrace();</span><br><span class="line">                  &#125;</span><br><span class="line">              &#125;</span><br><span class="line">        &#125;;</span><br><span class="line"></span><br><span class="line">        Thread thread = <span class="keyword">new</span> Thread(runnable);</span><br><span class="line">        thread.start();</span><br><span class="line">        Thread.sleep(<span class="number">2000</span>);</span><br><span class="line">        thread.interrupt();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="两种最佳实践"><a href="#两种最佳实践" class="headerlink" title="两种最佳实践"></a>两种最佳实践</h3><p>优先选择：传递中断</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> 李国栋</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@create</span> 2020-09-09 3:51 下午</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RightWayStopThreadInProd</span> <span class="keyword">implements</span> <span class="title">Runnable</span></span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">while</span> (!Thread.currentThread().isInterrupted() &amp;&amp; <span class="keyword">true</span>) &#123;</span><br><span class="line">            System.out.println(<span class="string">"go"</span>);</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                throwInMethod();</span><br><span class="line">            &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">                <span class="comment">//保存日志 或停止程序</span></span><br><span class="line">                e.printStackTrace();</span><br><span class="line">                System.out.println(<span class="string">"保存日志 或停止程序"</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 把中断吞了（错误做法）</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line"><span class="comment">//    private void throwInMethod() &#123;</span></span><br><span class="line"><span class="comment">//        try &#123;</span></span><br><span class="line"><span class="comment">//            Thread.sleep(1000);</span></span><br><span class="line"><span class="comment">//        &#125; catch (InterruptedException e) &#123;</span></span><br><span class="line"><span class="comment">//            e.printStackTrace();</span></span><br><span class="line"><span class="comment">//        &#125;</span></span><br><span class="line"><span class="comment">//    &#125;</span></span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">  应该传递（正确做法）</span></span><br><span class="line"><span class="comment">  */</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">throwInMethod</span><span class="params">()</span> <span class="keyword">throws</span> InterruptedException </span>&#123;</span><br><span class="line">      Thread.sleep(<span class="number">1000</span>);</span><br><span class="line">    &#125;</span><br><span class="line">        </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> InterruptedException </span>&#123;</span><br><span class="line">        Thread thread = <span class="keyword">new</span> Thread(<span class="keyword">new</span> RightWayStopThreadInProd());</span><br><span class="line">        thread.start();</span><br><span class="line">        Thread.sleep(<span class="number">1000</span>);</span><br><span class="line">        thread.interrupt();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>不想或无法传递：恢复中断</p>
+<p>不应屏蔽中断</p>
+<hr>
+
+        
+            <div class="donate-container">
+    <div class="donate-button">
+        <button id="donate-button">赞赏</button>
+    </div>
+    <div class="donate-img-container hide" id="donate-img-container">
+        <img id="donate-img" src="" data-src="/img/donate.jpg">
+        <p> 感谢鼓励 </p>
+    </div>
+</div>
+        
+        <br />
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+
+        <div id="lv-container">
+        </div>
+
+    </div>
+</div>
+
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        <li>
+            <a target="_blank" href="https://twitter.com/iconie_alloy">
+                            <span class="fa-stack fa-lg">
+                                <i class="iconfont icon-twitter"></i>
+                            </span>
+            </a>
+        </li>
+        
+        
+        <li>
+            <a target="_blank" href="https://www.zhihu.com/people/ai-er-lan-xue-da">
+                            <span class="fa-stack fa-lg">
+                                 <i class="iconfont icon-zhihu"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+        <li>
+            <a target="_blank" href="http://weibo.com/3286578617">
+                            <span class="fa-stack fa-lg">
+                                  <i class="iconfont icon-weibo"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+        <li>
+            <a target="_blank" href="https://www.facebook.com/xiaotao.nie.5">
+                            <span class="fa-stack fa-lg">
+                                <i class="iconfont icon-facebook"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+        <li>
+            <a target="_blank"  href="https://github.com/AirCloud">
+                            <span class="fa-stack fa-lg">
+                                <i class="iconfont icon-github"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+        <li>
+            <a target="_blank"  href="https://www.linkedin.com/in/小涛-聂-80964aba">
+                            <span class="fa-stack fa-lg">
+                                <i class="iconfont icon-linkedin"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+    </ul>
+    
+    <p>
+        <span>/</span>
+        
+        <span><a href="https://www.10000h.top">10000H</a></span>
+        <span>/</span>
+        
+        <span><a href="https://niexiaotao.com">Xiaotao&#39;s Page</a></span>
+        <span>/</span>
+        
+        <span><a href="#">It helps SEO</a></span>
+        <span>/</span>
+        
+    </p>
+    
+    <p>
+        <span id="busuanzi_container_site_pv">
+            <span id="busuanzi_value_site_pv"></span>PV
+        </span>
+        <span id="busuanzi_container_site_uv">
+            <span id="busuanzi_value_site_uv"></span>UV
+        </span>
+        Created By <a href="https://hexo.io/">Hexo</a>  Theme <a href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a></p>
+</footer>
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = "search.json"
+    window.hexo_root = "/"
+    window.isPost = true
+</script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="/js/index.js"></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+    <script>
+        /**
+         *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+         *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+        */
+        if( '' || '')
+        var disqus_config = function () {
+            this.page.url = '';  // Replace PAGE_URL with your page's canonical URL variable
+            this.page.identifier = ''; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+        };
+
+        (function() { // DON'T EDIT BELOW THIS LINE
+            var d = document, s = d.createElement('script');
+            s.src = 'https://airclouds-blog.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+        })();
+    </script>
+
+
+
+</html>

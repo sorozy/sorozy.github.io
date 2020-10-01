@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="聂小涛的博客">
+    <meta name="keyword" content="腾讯">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+        《图解HTTP》read notes - AirCloud的博客 | AirCloud&#39;s Blog
+        
+    </title>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/aircloud.css">
+    <link rel="stylesheet" href="/css/gitment.css">
+    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
+    <link href="//at.alicdn.com/t/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i> sometimes code， sometimes design </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar ">
+            <img src="/img/avatar.jpg" />
+        </div>
+        <div class="name">
+            <i>Xiaotao Nie</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li >
+                <a href="/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>主页</span>
+                </a>
+            </li>
+            <li >
+                <a href="/tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>标签</span>
+                </a>
+            </li>
+            <li >
+                <a href="/archive">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>存档</span>
+                </a>
+            </li>
+            <li >
+                <a href="/about/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>关于</span>
+                </a>
+            </li>
+            
+            <li>
+                <a id="search">
+                    <i class="iconfont icon-sousuo1"></i>
+                    <span>搜索</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#了解web及网络基础"><span class="toc-text">了解web及网络基础</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#HTTP"><span class="toc-text">HTTP</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#TCP-IP协议分层"><span class="toc-text">TCP/IP协议分层</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#IP（Internet-Protocol）"><span class="toc-text">IP（Internet Protocol）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ARP协议"><span class="toc-text">ARP协议</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#TCP协议"><span class="toc-text">TCP协议</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#DNS（Domain-Name-System）"><span class="toc-text">DNS（Domain Name System）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#URI（统一资源标识符）"><span class="toc-text">URI（统一资源标识符）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#URI格式"><span class="toc-text">URI格式</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#URL"><span class="toc-text">URL</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#简单的HTTP协议"><span class="toc-text">简单的HTTP协议</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#请求报文构成"><span class="toc-text">请求报文构成</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#响应报文构成"><span class="toc-text">响应报文构成</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HTTP是无状态协议"><span class="toc-text">HTTP是无状态协议</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HTTP方法"><span class="toc-text">HTTP方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#持久连接（HTTP-keep-alive）"><span class="toc-text">持久连接（HTTP keep-alive）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#使用cookie的状态管理"><span class="toc-text">使用cookie的状态管理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#cookie交互场景下，请求报文与响应报文"><span class="toc-text">cookie交互场景下，请求报文与响应报文</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#编码提升传输速率"><span class="toc-text">编码提升传输速率</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#获取部分内容的范围请求"><span class="toc-text">获取部分内容的范围请求</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#内容协商返回最合适的内容"><span class="toc-text">内容协商返回最合适的内容</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#返回结果的HTTP状态码"><span class="toc-text">返回结果的HTTP状态码</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#状态码分类"><span class="toc-text">状态码分类</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2xx"><span class="toc-text">2xx</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3xx"><span class="toc-text">3xx</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4xx"><span class="toc-text">4xx</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5xx"><span class="toc-text">5xx</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#HTTP-协作的web服务器"><span class="toc-text">HTTP 协作的web服务器</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#代理"><span class="toc-text">代理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#网关"><span class="toc-text">网关</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#隧道"><span class="toc-text">隧道</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#HTTP首部"><span class="toc-text">HTTP首部</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#确保安全的HTTPS"><span class="toc-text">确保安全的HTTPS</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#HTTP的缺点和不足"><span class="toc-text">HTTP的缺点和不足</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#防窃听保护信息的几种对策"><span class="toc-text">防窃听保护信息的几种对策</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#HTTP安全通信机制"><span class="toc-text">HTTP安全通信机制</span></a></li></ol></li></ol></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input"/>
+            <span id="begin-search">搜索</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+
+        <div class="index-about-mobile">
+            <i> sometimes code， sometimes design </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        《图解HTTP》read notes
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">发布于：<span>2020-05-22 10:48:46</span></span>
+        
+        <span class="attr">标签：/
+        
+        <a class="tag" href="/tags/#http" title="http">http</a>
+        <span>/</span>
+        
+        <a class="tag" href="/tags/#network" title="network">network</a>
+        <span>/</span>
+        
+        <a class="tag" href="/tags/#read-notes" title="read-notes">read-notes</a>
+        <span>/</span>
+        
+        
+        </span>
+        <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
+</span>
+</span>
+    </div>
+    <div class="post-content ">
+        <p>[TOC]</p>
+<h1 id="了解web及网络基础"><a href="#了解web及网络基础" class="headerlink" title="了解web及网络基础"></a>了解web及网络基础</h1><h2 id="HTTP"><a href="#HTTP" class="headerlink" title="HTTP"></a>HTTP</h2><p>（HyperText Transfer Protocol）</p>
+<ul>
+<li>通常使用的网络协议是TCP/IP 协议族上运作的，HTTP是其内部的一个子集</li>
+<li>TCP/IP 分层好处：把各层之间的接口设计好，其内部就可以自由改动</li>
+</ul>
+<h2 id="TCP-IP协议分层"><a href="#TCP-IP协议分层" class="headerlink" title="TCP/IP协议分层"></a>TCP/IP协议分层</h2><table>
+<thead>
+<tr>
+<th style="text-align:center">分层</th>
+<th style="text-align:center">作用</th>
+<th style="text-align:center">备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">应用层</td>
+<td style="text-align:center">决定了向用户提供应用服务时通信的活动</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">传输层</td>
+<td style="text-align:center">对上层应用层，提供处于网络连接中两台计算机的数据传输</td>
+<td style="text-align:center">有两个性质不同的协议TCP、 UDP</td>
+</tr>
+<tr>
+<td style="text-align:center">网络层（网络互联层）</td>
+<td style="text-align:center">处理在网络上流动的数据包<br>（数据包是网络传输的最小单位）<br>规定了通过怎样的路径到达对方计算机，并把数据包传送给对方</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">链路层（数据链路层/网络接口层）</td>
+<td style="text-align:center">处理连接网络的硬件部分</td>
+</tr>
+</tbody>
+</table>
+<h2 id="IP（Internet-Protocol）"><a href="#IP（Internet-Protocol）" class="headerlink" title="IP（Internet Protocol）"></a>IP（Internet Protocol）</h2><ul>
+<li>位于网络层</li>
+<li>作用：把各种数据包传送给对方</li>
+<li>重要条件</li>
+</ul>
+<blockquote>
+<p>IP地址：指明了节点被分配到的地址</p>
+<p>MAC地址：指网卡所属的固定地址</p>
+<p>IP地址可以和MAC地址配对，IP可变换，MAC地址基本不会改变</p>
+</blockquote>
+<h2 id="ARP协议"><a href="#ARP协议" class="headerlink" title="ARP协议"></a>ARP协议</h2><p>IP间的通信依赖MAC地址</p>
+<p>ARP是一种用以解析地址的协议，根据通信方的IP地址就可以反查出对方的MAC地址</p>
+<h2 id="TCP协议"><a href="#TCP协议" class="headerlink" title="TCP协议"></a>TCP协议</h2><ul>
+<li>提供可靠的字节流服务</li>
+</ul>
+<blockquote>
+<p>为了方便传输，将大块数据分割成以报文段（segment）为单位的数据包进行管理</p>
+<p>能够把数据准确可靠的传送给对方</p>
+</blockquote>
+<ul>
+<li>为了更容易传送大数据才把数据分割，而且TCP协议能够确认数据最终是否到达对方</li>
+<li>为了准确无误把数据送达对方，采用了三次握手策略</li>
+</ul>
+<h2 id="DNS（Domain-Name-System）"><a href="#DNS（Domain-Name-System）" class="headerlink" title="DNS（Domain Name System）"></a>DNS（Domain Name System）</h2><p>DNs协议提供从域名查找IP，或逆向从IP反查域名的服务</p>
+<h2 id="URI（统一资源标识符）"><a href="#URI（统一资源标识符）" class="headerlink" title="URI（统一资源标识符）"></a>URI（统一资源标识符）</h2><p>用字符串标识某一互联网资源</p>
+<h3 id="URI格式"><a href="#URI格式" class="headerlink" title="URI格式"></a>URI格式</h3><h2 id="URL"><a href="#URL" class="headerlink" title="URL"></a>URL</h2><blockquote>
+<p>表示资源的地点</p>
+</blockquote>
+<h1 id="简单的HTTP协议"><a href="#简单的HTTP协议" class="headerlink" title="简单的HTTP协议"></a>简单的HTTP协议</h1><h2 id="请求报文构成"><a href="#请求报文构成" class="headerlink" title="请求报文构成"></a>请求报文构成</h2><p><img src="tjhttp-req-bw.png" width="650"></p>
+<h2 id="响应报文构成"><a href="#响应报文构成" class="headerlink" title="响应报文构成"></a>响应报文构成</h2><p><img src="1590118989509-4d5d74da-3a96-4576-8000-18dfc9d51ffd.png" width="650"></p>
+<h2 id="HTTP是无状态协议"><a href="#HTTP是无状态协议" class="headerlink" title="HTTP是无状态协议"></a>HTTP是无状态协议</h2><blockquote>
+<p>对发送过的请求或响应不做持久化处理</p>
+<p>为了期望保持状态功能，引入了cookie技术</p>
+</blockquote>
+<h2 id="HTTP方法"><a href="#HTTP方法" class="headerlink" title="HTTP方法"></a>HTTP方法</h2><p><img src="1590123329116-9aaf96d8-f801-49c4-a844-210cb8f3063d.png" width="650"></p>
+<ul>
+<li>HTTP/1.1的PUT/DELETE方法不带验证机制，任何人都可以上传文件，存在安全问题，一般网站不使用该方法，若配合web应用程序的验证机制，或架构设计采用REST标准的同类web网站，则可能开放使用PUT/DELETE方法</li>
+</ul>
+<h2 id="持久连接（HTTP-keep-alive）"><a href="#持久连接（HTTP-keep-alive）" class="headerlink" title="持久连接（HTTP keep-alive）"></a>持久连接（HTTP keep-alive）</h2><blockquote>
+<p>持久连接的好处在于：减少了tcp连接的重复建立和断开所造成的额外开销，减轻了服务器的负载</p>
+<p>在HTTP/1.1中，默认都是持久连接</p>
+<p>持久连接使得多数请求以管线化方式发送成为可能，不用等待响应亦可发送下一个请求。能够做到同时并行发送多个请求</p>
+</blockquote>
+<h2 id="使用cookie的状态管理"><a href="#使用cookie的状态管理" class="headerlink" title="使用cookie的状态管理"></a>使用cookie的状态管理</h2><p><img src="1590124489186-9d978bd8-67a8-44c0-aec8-a38d00bb277c.png" width="650"></p>
+<h3 id="cookie交互场景下，请求报文与响应报文"><a href="#cookie交互场景下，请求报文与响应报文" class="headerlink" title="cookie交互场景下，请求报文与响应报文"></a>cookie交互场景下，请求报文与响应报文</h3><p><img src="1590124671111-ee605c31-15b1-4eef-9664-656829873298.png" width="650"></p>
+<p><img src="1590124686480-814917fe-0d61-4ae3-8ed2-1618159890cd.png" width="650"></p>
+<h3 id="编码提升传输速率"><a href="#编码提升传输速率" class="headerlink" title="编码提升传输速率"></a>编码提升传输速率</h3><ul>
+<li>常见的编码方式</li>
+</ul>
+<blockquote>
+<ul>
+<li>gzip</li>
+<li>compress</li>
+<li>deflate</li>
+<li>identity（不进行编码）</li>
+</ul>
+</blockquote>
+<h3 id="获取部分内容的范围请求"><a href="#获取部分内容的范围请求" class="headerlink" title="获取部分内容的范围请求"></a>获取部分内容的范围请求</h3><ul>
+<li><p>使用首部字段的Range来指定资源的byte范围</p>
+</li>
+<li><p>5001 ～ 10000 字节</p>
+</li>
+</ul>
+<figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">Range</span>: bytes=5001-10000</span><br></pre></td></tr></table></figure>
+<ul>
+<li>从5001字节之后全部的</li>
+</ul>
+<figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">Range</span>: bytes=5001-</span><br></pre></td></tr></table></figure>
+<ul>
+<li>从一开始3000字节和5000-7000字节的多重范围</li>
+</ul>
+<figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">Range</span>: bytes=-3000,5000-7000</span><br></pre></td></tr></table></figure>
+<h2 id="内容协商返回最合适的内容"><a href="#内容协商返回最合适的内容" class="headerlink" title="内容协商返回最合适的内容"></a>内容协商返回最合适的内容</h2><ul>
+<li><p>内容协商机制是指客户端和服务器端就响应的资源内容进行交涉，然后提供给客户端最为合适的资源</p>
+</li>
+<li><p>内容协商技术类型</p>
+</li>
+</ul>
+<blockquote>
+<p>服务器驱动协商</p>
+<p>客户端驱动协商</p>
+<p>透明协商</p>
+</blockquote>
+<h1 id="返回结果的HTTP状态码"><a href="#返回结果的HTTP状态码" class="headerlink" title="返回结果的HTTP状态码"></a>返回结果的HTTP状态码</h1><h2 id="状态码分类"><a href="#状态码分类" class="headerlink" title="状态码分类"></a>状态码分类</h2><table>
+<thead>
+<tr>
+<th style="text-align:center">状态码</th>
+<th style="text-align:center">类别</th>
+<th style="text-align:center">原因短语</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">1xx</td>
+<td style="text-align:center">Informational（信息性状态码）</td>
+<td style="text-align:center">接收的请求正在处理</td>
+</tr>
+<tr>
+<td style="text-align:center">2xx</td>
+<td style="text-align:center">Success（成功状态码）</td>
+<td style="text-align:center">请求正常处理完毕</td>
+</tr>
+<tr>
+<td style="text-align:center">3xx</td>
+<td style="text-align:center">Redirection（重定向状态码）</td>
+<td style="text-align:center">需要进行附加操作以完成请求</td>
+</tr>
+<tr>
+<td style="text-align:center">4xx</td>
+<td style="text-align:center">Client Error（客户端错误状态码）</td>
+<td style="text-align:center">服务器无法处理请求</td>
+</tr>
+<tr>
+<td style="text-align:center">5xx</td>
+<td style="text-align:center">Server Error（服务器错误状态码）</td>
+<td style="text-align:center">服务器处理请求出错</td>
+</tr>
+</tbody>
+</table>
+<h3 id="2xx"><a href="#2xx" class="headerlink" title="2xx"></a>2xx</h3><table>
+<thead>
+<tr>
+<th style="text-align:center">状态码 原因短语</th>
+<th style="text-align:center">简单说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">200 OK</td>
+<td style="text-align:center">Informational（信息性状态码）</td>
+</tr>
+<tr>
+<td style="text-align:center">204 No Content</td>
+<td style="text-align:center">请求处理成功，但没有资源返回</td>
+</tr>
+<tr>
+<td style="text-align:center">206 Partial Content</td>
+<td style="text-align:center">Redirection（重定向状态码）</td>
+</tr>
+</tbody>
+</table>
+<h3 id="3xx"><a href="#3xx" class="headerlink" title="3xx"></a>3xx</h3><table>
+<thead>
+<tr>
+<th style="text-align:center">状态码 原因短语</th>
+<th style="text-align:center">简单说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">301 Moved Permanently</td>
+<td style="text-align:center">资源URL已经更行</td>
+</tr>
+<tr>
+<td style="text-align:center">302 Found</td>
+<td style="text-align:center">请求处理成功，但没有资源返回</td>
+</tr>
+<tr>
+<td style="text-align:center">303 See Other</td>
+<td style="text-align:center">客户端应当采用GET方法获取资源</td>
+</tr>
+<tr>
+<td style="text-align:center">304 Not Modified</td>
+<td style="text-align:center">资源已找到，但未符合条件请求</td>
+</tr>
+<tr>
+<td style="text-align:center">307 Temporary Redirect</td>
+<td style="text-align:center">临时重定向</td>
+</tr>
+</tbody>
+</table>
+<h3 id="4xx"><a href="#4xx" class="headerlink" title="4xx"></a>4xx</h3><table>
+<thead>
+<tr>
+<th style="text-align:center">状态码 原因短语</th>
+<th style="text-align:center">简单说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">400 Bad Request</td>
+<td style="text-align:center">请求报文中存在语法错误</td>
+</tr>
+<tr>
+<td style="text-align:center">401 Unauthorized</td>
+<td style="text-align:center">请求需要有通过HTTP认证的认证信息</td>
+</tr>
+<tr>
+<td style="text-align:center">403 Forbidden</td>
+<td style="text-align:center">访问被服务器拒绝</td>
+</tr>
+<tr>
+<td style="text-align:center">404 Not Found</td>
+<td style="text-align:center">服务器上未找到资源</td>
+</tr>
+</tbody>
+</table>
+<h3 id="5xx"><a href="#5xx" class="headerlink" title="5xx"></a>5xx</h3><table>
+<thead>
+<tr>
+<th style="text-align:center">状态码 原因短语</th>
+<th style="text-align:center">简单说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">500 Internal Server Error</td>
+<td style="text-align:center">服务器在执行请求时发生了错误</td>
+</tr>
+<tr>
+<td style="text-align:center">503 Service Unavailable</td>
+<td style="text-align:center">服务器处于超负荷或停机维护状态，无法处理请求</td>
+</tr>
+</tbody>
+</table>
+<h1 id="HTTP-协作的web服务器"><a href="#HTTP-协作的web服务器" class="headerlink" title="HTTP 协作的web服务器"></a>HTTP 协作的web服务器</h1><h2 id="代理"><a href="#代理" class="headerlink" title="代理"></a>代理</h2><ul>
+<li>使用代理服务器的理由</li>
+</ul>
+<blockquote>
+<p>利用缓存技术，减少网络带宽的流量</p>
+<p>组织内部对特定网站的访问控制</p>
+<p>以获取访问日志为主要目的</p>
+</blockquote>
+<ul>
+<li><p>代理按两种基准分类：一种是是否使用缓存，另一种是是否会修改报文</p>
+</li>
+<li><p>缓存代理</p>
+</li>
+</ul>
+<blockquote>
+<p>预先将资源缓存在代理服务器上</p>
+</blockquote>
+<ul>
+<li>透明代理</li>
+</ul>
+<blockquote>
+<p>不对报文做任何加工</p>
+</blockquote>
+<h2 id="网关"><a href="#网关" class="headerlink" title="网关"></a>网关</h2><ul>
+<li>使通信线路上的服务器提供非http协议服务</li>
+<li>提高通信安全性，在客户端和网关的通信线路上加密以确保连接安全</li>
+</ul>
+<h2 id="隧道"><a href="#隧道" class="headerlink" title="隧道"></a>隧道</h2><ul>
+<li>建立起与其它服务器的通信线路</li>
+</ul>
+<h1 id="HTTP首部"><a href="#HTTP首部" class="headerlink" title="HTTP首部"></a>HTTP首部</h1><ul>
+<li>首部内容较多</li>
+<li>后续学习会补上相关笔记</li>
+</ul>
+<h1 id="确保安全的HTTPS"><a href="#确保安全的HTTPS" class="headerlink" title="确保安全的HTTPS"></a>确保安全的HTTPS</h1><h2 id="HTTP的缺点和不足"><a href="#HTTP的缺点和不足" class="headerlink" title="HTTP的缺点和不足"></a>HTTP的缺点和不足</h2><blockquote>
+<p>通信使用明文（不加密），内容可能会被窃听</p>
+<p>不验证通信方的身份，因此有可能遭遇伪装</p>
+<p>无法证明报文的完整性，所以有可能已遭篡改</p>
+</blockquote>
+<ul>
+<li>TCP/IP是可能被窃听的网络</li>
+</ul>
+<h2 id="防窃听保护信息的几种对策"><a href="#防窃听保护信息的几种对策" class="headerlink" title="防窃听保护信息的几种对策"></a>防窃听保护信息的几种对策</h2><ul>
+<li><p>通信的加密</p>
+<blockquote>
+<p>通过和SSL或TSL的组合使用（HTTPS），加密HTTP的通信内容</p>
+</blockquote>
+</li>
+<li><p>内容的加密</p>
+</li>
+<li><p>HTTPS是身披SSL外壳的HTTP</p>
+<blockquote>
+<p>HTTPS:只是HTTP通信接口部分用SSL和TSL协议代替而已</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="HTTP安全通信机制"><a href="#HTTP安全通信机制" class="headerlink" title="HTTP安全通信机制"></a>HTTP安全通信机制</h3><ul>
+<li>待整理完成</li>
+</ul>
+<p><br></p>
+<p><br></p>
+
+        
+            <div class="donate-container">
+    <div class="donate-button">
+        <button id="donate-button">赞赏</button>
+    </div>
+    <div class="donate-img-container hide" id="donate-img-container">
+        <img id="donate-img" src="" data-src="/img/donate.jpg">
+        <p> 感谢鼓励 </p>
+    </div>
+</div>
+        
+        <br />
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+
+        <div id="lv-container">
+        </div>
+
+    </div>
+</div>
+
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        <li>
+            <a target="_blank" href="https://twitter.com/iconie_alloy">
+                            <span class="fa-stack fa-lg">
+                                <i class="iconfont icon-twitter"></i>
+                            </span>
+            </a>
+        </li>
+        
+        
+        <li>
+            <a target="_blank" href="https://www.zhihu.com/people/ai-er-lan-xue-da">
+                            <span class="fa-stack fa-lg">
+                                 <i class="iconfont icon-zhihu"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+        <li>
+            <a target="_blank" href="http://weibo.com/3286578617">
+                            <span class="fa-stack fa-lg">
+                                  <i class="iconfont icon-weibo"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+        <li>
+            <a target="_blank" href="https://www.facebook.com/xiaotao.nie.5">
+                            <span class="fa-stack fa-lg">
+                                <i class="iconfont icon-facebook"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+        <li>
+            <a target="_blank"  href="https://github.com/AirCloud">
+                            <span class="fa-stack fa-lg">
+                                <i class="iconfont icon-github"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+        <li>
+            <a target="_blank"  href="https://www.linkedin.com/in/小涛-聂-80964aba">
+                            <span class="fa-stack fa-lg">
+                                <i class="iconfont icon-linkedin"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+    </ul>
+    
+    <p>
+        <span>/</span>
+        
+        <span><a href="https://www.10000h.top">10000H</a></span>
+        <span>/</span>
+        
+        <span><a href="https://niexiaotao.com">Xiaotao&#39;s Page</a></span>
+        <span>/</span>
+        
+        <span><a href="#">It helps SEO</a></span>
+        <span>/</span>
+        
+    </p>
+    
+    <p>
+        <span id="busuanzi_container_site_pv">
+            <span id="busuanzi_value_site_pv"></span>PV
+        </span>
+        <span id="busuanzi_container_site_uv">
+            <span id="busuanzi_value_site_uv"></span>UV
+        </span>
+        Created By <a href="https://hexo.io/">Hexo</a>  Theme <a href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a></p>
+</footer>
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = "search.json"
+    window.hexo_root = "/"
+    window.isPost = true
+</script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="/js/index.js"></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+    <script>
+        /**
+         *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+         *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+        */
+        if( '' || '')
+        var disqus_config = function () {
+            this.page.url = '';  // Replace PAGE_URL with your page's canonical URL variable
+            this.page.identifier = ''; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+        };
+
+        (function() { // DON'T EDIT BELOW THIS LINE
+            var d = document, s = d.createElement('script');
+            s.src = 'https://airclouds-blog.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+        })();
+    </script>
+
+
+
+</html>

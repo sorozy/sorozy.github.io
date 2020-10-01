@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="聂小涛的博客">
+    <meta name="keyword" content="腾讯">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+        《Nginx核心知识100讲》study notes - AirCloud的博客 | AirCloud&#39;s Blog
+        
+    </title>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/aircloud.css">
+    <link rel="stylesheet" href="/css/gitment.css">
+    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
+    <link href="//at.alicdn.com/t/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i> sometimes code， sometimes design </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar ">
+            <img src="/img/avatar.jpg" />
+        </div>
+        <div class="name">
+            <i>Xiaotao Nie</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li >
+                <a href="/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>主页</span>
+                </a>
+            </li>
+            <li >
+                <a href="/tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>标签</span>
+                </a>
+            </li>
+            <li >
+                <a href="/archive">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>存档</span>
+                </a>
+            </li>
+            <li >
+                <a href="/about/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>关于</span>
+                </a>
+            </li>
+            
+            <li>
+                <a id="search">
+                    <i class="iconfont icon-sousuo1"></i>
+                    <span>搜索</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#学习备注"><span class="toc-text">学习备注</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#初识Nginx"><span class="toc-text">初识Nginx</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#主流web服务器"><span class="toc-text">主流web服务器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Nginx优点"><span class="toc-text">Nginx优点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Nginx的三个主要应用场景"><span class="toc-text">Nginx的三个主要应用场景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Nginx为什么会出现"><span class="toc-text">Nginx为什么会出现</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Nginx组成"><span class="toc-text">Nginx组成</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Nginx配置语法"><span class="toc-text">Nginx配置语法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#配置参数-时间单位"><span class="toc-text">配置参数 - 时间单位</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#配置参数-空间单位"><span class="toc-text">配置参数 - 空间单位</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#http配置的指令块"><span class="toc-text">http配置的指令块</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Nginx命令行"><span class="toc-text">Nginx命令行</span></a></li></ol></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input"/>
+            <span id="begin-search">搜索</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+
+        <div class="index-about-mobile">
+            <i> sometimes code， sometimes design </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        《Nginx核心知识100讲》study notes
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">发布于：<span>2020-09-16 10:49:02</span></span>
+        
+        <span class="attr">标签：/
+        
+        <a class="tag" href="/tags/#Nginx" title="Nginx">Nginx</a>
+        <span>/</span>
+        
+        <a class="tag" href="/tags/#web-Server" title="web-Server">web-Server</a>
+        <span>/</span>
+        
+        
+        </span>
+        <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
+</span>
+</span>
+    </div>
+    <div class="post-content ">
+        <h1 id="学习备注"><a href="#学习备注" class="headerlink" title="学习备注"></a>学习备注</h1><blockquote>
+<ol>
+<li>10需要再看看</li>
+</ol>
+</blockquote>
+<h1 id="初识Nginx"><a href="#初识Nginx" class="headerlink" title="初识Nginx"></a>初识Nginx</h1><h2 id="主流web服务器"><a href="#主流web服务器" class="headerlink" title="主流web服务器"></a>主流web服务器</h2><blockquote>
+<p>Nginx</p>
+<p>Apache</p>
+<p>Tomcat</p>
+</blockquote>
+<h2 id="Nginx优点"><a href="#Nginx优点" class="headerlink" title="Nginx优点"></a>Nginx优点</h2><blockquote>
+<p>高并发、高性能</p>
+<p>可扩展性好</p>
+<p>高可靠性</p>
+<p>热部署</p>
+<p>BSD许可</p>
+</blockquote>
+<h2 id="Nginx的三个主要应用场景"><a href="#Nginx的三个主要应用场景" class="headerlink" title="Nginx的三个主要应用场景"></a>Nginx的三个主要应用场景</h2><p><img src="WechatIMG550.png" width="80%"></p>
+<h2 id="Nginx为什么会出现"><a href="#Nginx为什么会出现" class="headerlink" title="Nginx为什么会出现"></a>Nginx为什么会出现</h2><blockquote>
+<ol>
+<li><p>互联网的数据量快速增长：互联网的快速普及、全球化物联网</p>
+</li>
+<li><p>摩尔定律：性能提升</p>
+</li>
+<li><p>低效的Apache：一个连接对应一个进程</p>
+</li>
+</ol>
+</blockquote>
+<h2 id="Nginx组成"><a href="#Nginx组成" class="headerlink" title="Nginx组成"></a>Nginx组成</h2><p><img src="WechatIMG552.png" width="80%"></p>
+<h2 id="Nginx配置语法"><a href="#Nginx配置语法" class="headerlink" title="Nginx配置语法"></a>Nginx配置语法</h2><p><img src="WechatIMG559.png" width="80%"></p>
+<h3 id="配置参数-时间单位"><a href="#配置参数-时间单位" class="headerlink" title="配置参数 - 时间单位"></a>配置参数 - 时间单位</h3><table>
+<thead>
+<tr>
+<th style="text-align:center">简写</th>
+<th style="text-align:center">单位</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">ms</td>
+<td style="text-align:center">millisecond</td>
+</tr>
+<tr>
+<td style="text-align:center">s</td>
+<td style="text-align:center">seconds</td>
+</tr>
+<tr>
+<td style="text-align:center">m</td>
+<td style="text-align:center">minutes</td>
+</tr>
+<tr>
+<td style="text-align:center">h</td>
+<td style="text-align:center">hours</td>
+</tr>
+<tr>
+<td style="text-align:center">d</td>
+<td style="text-align:center">days</td>
+</tr>
+<tr>
+<td style="text-align:center">w</td>
+<td style="text-align:center">weeks</td>
+</tr>
+<tr>
+<td style="text-align:center">m</td>
+<td style="text-align:center">months，30 days</td>
+</tr>
+<tr>
+<td style="text-align:center">y</td>
+<td style="text-align:center">years，365days</td>
+</tr>
+</tbody>
+</table>
+<h3 id="配置参数-空间单位"><a href="#配置参数-空间单位" class="headerlink" title="配置参数 - 空间单位"></a>配置参数 - 空间单位</h3><table>
+<thead>
+<tr>
+<th style="text-align:center">简写</th>
+<th style="text-align:center">单位</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center">bytes</td>
+</tr>
+<tr>
+<td style="text-align:center">k/K</td>
+<td style="text-align:center">kilobytes</td>
+</tr>
+<tr>
+<td style="text-align:center">m/M</td>
+<td style="text-align:center">megabytes</td>
+</tr>
+<tr>
+<td style="text-align:center">g/G</td>
+<td style="text-align:center">gigabytes</td>
+</tr>
+</tbody>
+</table>
+<h3 id="http配置的指令块"><a href="#http配置的指令块" class="headerlink" title="http配置的指令块"></a>http配置的指令块</h3><blockquote>
+<p>http</p>
+<p>server</p>
+<p>upstream</p>
+<p>Location</p>
+</blockquote>
+<h2 id="Nginx命令行"><a href="#Nginx命令行" class="headerlink" title="Nginx命令行"></a>Nginx命令行</h2><p><img src="WechatIMG560.png" width="80%"></p>
+
+        
+            <div class="donate-container">
+    <div class="donate-button">
+        <button id="donate-button">赞赏</button>
+    </div>
+    <div class="donate-img-container hide" id="donate-img-container">
+        <img id="donate-img" src="" data-src="/img/donate.jpg">
+        <p> 感谢鼓励 </p>
+    </div>
+</div>
+        
+        <br />
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+
+        <div id="lv-container">
+        </div>
+
+    </div>
+</div>
+
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        <li>
+            <a target="_blank" href="https://twitter.com/iconie_alloy">
+                            <span class="fa-stack fa-lg">
+                                <i class="iconfont icon-twitter"></i>
+                            </span>
+            </a>
+        </li>
+        
+        
+        <li>
+            <a target="_blank" href="https://www.zhihu.com/people/ai-er-lan-xue-da">
+                            <span class="fa-stack fa-lg">
+                                 <i class="iconfont icon-zhihu"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+        <li>
+            <a target="_blank" href="http://weibo.com/3286578617">
+                            <span class="fa-stack fa-lg">
+                                  <i class="iconfont icon-weibo"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+        <li>
+            <a target="_blank" href="https://www.facebook.com/xiaotao.nie.5">
+                            <span class="fa-stack fa-lg">
+                                <i class="iconfont icon-facebook"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+        <li>
+            <a target="_blank"  href="https://github.com/AirCloud">
+                            <span class="fa-stack fa-lg">
+                                <i class="iconfont icon-github"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+        <li>
+            <a target="_blank"  href="https://www.linkedin.com/in/小涛-聂-80964aba">
+                            <span class="fa-stack fa-lg">
+                                <i class="iconfont icon-linkedin"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+    </ul>
+    
+    <p>
+        <span>/</span>
+        
+        <span><a href="https://www.10000h.top">10000H</a></span>
+        <span>/</span>
+        
+        <span><a href="https://niexiaotao.com">Xiaotao&#39;s Page</a></span>
+        <span>/</span>
+        
+        <span><a href="#">It helps SEO</a></span>
+        <span>/</span>
+        
+    </p>
+    
+    <p>
+        <span id="busuanzi_container_site_pv">
+            <span id="busuanzi_value_site_pv"></span>PV
+        </span>
+        <span id="busuanzi_container_site_uv">
+            <span id="busuanzi_value_site_uv"></span>UV
+        </span>
+        Created By <a href="https://hexo.io/">Hexo</a>  Theme <a href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a></p>
+</footer>
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = "search.json"
+    window.hexo_root = "/"
+    window.isPost = true
+</script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="/js/index.js"></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+    <script>
+        /**
+         *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+         *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+        */
+        if( '' || '')
+        var disqus_config = function () {
+            this.page.url = '';  // Replace PAGE_URL with your page's canonical URL variable
+            this.page.identifier = ''; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+        };
+
+        (function() { // DON'T EDIT BELOW THIS LINE
+            var d = document, s = d.createElement('script');
+            s.src = 'https://airclouds-blog.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+        })();
+    </script>
+
+
+
+</html>

@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="聂小涛的博客">
+    <meta name="keyword" content="腾讯">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+        java - io - AirCloud的博客 | AirCloud&#39;s Blog
+        
+    </title>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/aircloud.css">
+    <link rel="stylesheet" href="/css/gitment.css">
+    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
+    <link href="//at.alicdn.com/t/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i> sometimes code， sometimes design </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar ">
+            <img src="/img/avatar.jpg" />
+        </div>
+        <div class="name">
+            <i>Xiaotao Nie</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li >
+                <a href="/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>主页</span>
+                </a>
+            </li>
+            <li >
+                <a href="/tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>标签</span>
+                </a>
+            </li>
+            <li >
+                <a href="/archive">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>存档</span>
+                </a>
+            </li>
+            <li >
+                <a href="/about/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>关于</span>
+                </a>
+            </li>
+            
+            <li>
+                <a id="search">
+                    <i class="iconfont icon-sousuo1"></i>
+                    <span>搜索</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#学习备注"><span class="toc-text">学习备注</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#File类使用"><span class="toc-text">File类使用</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#简介"><span class="toc-text">简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#construtor"><span class="toc-text">construtor</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#路径分隔符"><span class="toc-text">路径分隔符</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#常用方法"><span class="toc-text">常用方法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#get"><span class="toc-text">get</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#rename"><span class="toc-text">rename</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#judgment"><span class="toc-text">judgment</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#create"><span class="toc-text">create</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#delete"><span class="toc-text">delete</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#IO流原理及流的分类"><span class="toc-text">IO流原理及流的分类</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#java-io原理"><span class="toc-text">java io原理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#流的分类"><span class="toc-text">流的分类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#io流体系"><span class="toc-text">io流体系</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#节点流和处理流"><span class="toc-text">节点流和处理流</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#InputStream-amp-Reader"><span class="toc-text">InputStream &amp; Reader</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#OutputStream-amp-Writer"><span class="toc-text">OutputStream &amp; Writer</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#节点流-或文件流"><span class="toc-text">节点流(或文件流)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#读取文件"><span class="toc-text">读取文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#写入文件"><span class="toc-text">写入文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#节点流-或文件流-注意点"><span class="toc-text">节点流(或文件流):注意点</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#缓冲流"><span class="toc-text">缓冲流</span></a></li></ol></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input"/>
+            <span id="begin-search">搜索</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+
+        <div class="index-about-mobile">
+            <i> sometimes code， sometimes design </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        java - io
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">发布于：<span>2020-09-24 10:30:04</span></span>
+        
+        <span class="attr">标签：/
+        
+        <a class="tag" href="/tags/#java" title="java">java</a>
+        <span>/</span>
+        
+        <a class="tag" href="/tags/#io" title="io">io</a>
+        <span>/</span>
+        
+        
+        </span>
+        <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
+</span>
+</span>
+    </div>
+    <div class="post-content ">
+        <h1 id="学习备注"><a href="#学习备注" class="headerlink" title="学习备注"></a>学习备注</h1><blockquote>
+<p>有空可以研究一下读写方法的内部</p>
+</blockquote>
+<h1 id="File类使用"><a href="#File类使用" class="headerlink" title="File类使用"></a>File类使用</h1><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><ul>
+<li>java.io.File类:文件和文件目录路径的抽象表示形式，与平台无关</li>
+<li>File 能新建、删除、重命名文件和目录，但 File 不能访问文件内容本身。 如果需要访问文件内容本身，则需要使用输入/输出流。</li>
+<li>想要在Java程序中表示一个真实存在的文件或目录，那么必须有一个File对 象，但是Java程序中的一个File对象，可能没有一个真实存在的文件或目录。</li>
+<li>File对象可以作为参数传递给流的构造器</li>
+</ul>
+<h2 id="construtor"><a href="#construtor" class="headerlink" title="construtor"></a>construtor</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 以pathname为路径创建File对象，可以是绝对路径或者相对路径</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">File</span><span class="params">(String pathname)</span></span></span><br><span class="line"><span class="function">  </span></span><br><span class="line"><span class="function"><span class="comment">// 以parent为父路径，child为子路径创建File对象。</span></span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">File</span><span class="params">(String parent,String child)</span></span></span><br><span class="line"><span class="function">  </span></span><br><span class="line"><span class="function"><span class="comment">// 根据一个父File对象和子文件路径创建File对象</span></span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">File</span><span class="params">(File parent,String child)</span></span></span><br></pre></td></tr></table></figure>
+<h2 id="路径分隔符"><a href="#路径分隔符" class="headerlink" title="路径分隔符"></a>路径分隔符</h2><ul>
+<li><p>路径中的每级目录之间用一个路径分隔符隔开</p>
+</li>
+<li><p>路径分隔符和系统有关:</p>
+<ul>
+<li><p>windows和DOS系统默认使用“\”来表示</p>
+</li>
+<li><p>UNIX和URL使用“/”来表示</p>
+</li>
+</ul>
+</li>
+<li><p>根据操作系统，动态的提供分隔符</p>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> String separator</span><br><span class="line"></span><br><span class="line"><span class="comment">// 举例</span></span><br><span class="line">File file = <span class="keyword">new</span> File(<span class="string">"d:"</span> + File.separator + <span class="string">"test"</span> + File.separator + <span class="string">"info.txt"</span>);</span><br></pre></td></tr></table></figure>
+<h2 id="常用方法"><a href="#常用方法" class="headerlink" title="常用方法"></a>常用方法</h2><h3 id="get"><a href="#get" class="headerlink" title="get"></a>get</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">getAbsolutePath</span><span class="params">()</span>	<span class="comment">//获取绝对路径</span></span></span><br><span class="line"><span class="function">  </span></span><br><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">getPath</span><span class="params">()</span> <span class="comment">//获取路径</span></span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span> <span class="comment">//获取名称</span></span></span><br><span class="line"><span class="function">  </span></span><br><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">getParent</span><span class="params">()</span> <span class="comment">//获取上层文件目录路径。若无，返回null</span></span></span><br><span class="line"><span class="function">  </span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">long</span> <span class="title">length</span><span class="params">()</span> <span class="comment">//获取文件长度(即:字节数)。不能获取目录的长度。</span></span></span><br><span class="line"><span class="function">  </span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">long</span> <span class="title">lastModified</span><span class="params">()</span> <span class="comment">//获取最后一次的修改时间，毫秒值</span></span></span><br><span class="line"><span class="function">  </span></span><br><span class="line"><span class="function"><span class="keyword">public</span> String[] <span class="title">list</span><span class="params">()</span> <span class="comment">//获取指定目录下的所有文件或者文件目录的名称数组</span></span></span><br><span class="line"><span class="function">  </span></span><br><span class="line"><span class="function"><span class="keyword">public</span> File[] <span class="title">listFiles</span><span class="params">()</span> <span class="comment">//获取指定目录下的所有文件或者文件目录的File数组</span></span></span><br></pre></td></tr></table></figure>
+<h3 id="rename"><a href="#rename" class="headerlink" title="rename"></a>rename</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">renameTo</span><span class="params">(File dest)</span> <span class="comment">//把文件重命名为指定的文件路径</span></span></span><br></pre></td></tr></table></figure>
+<h3 id="judgment"><a href="#judgment" class="headerlink" title="judgment"></a>judgment</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isDirectory</span><span class="params">()</span> <span class="comment">// 判断是否是文件目录</span></span></span><br><span class="line"><span class="function">  </span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isFile</span><span class="params">()</span> <span class="comment">//判断是否是文件</span></span></span><br><span class="line"><span class="function">  </span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">exists</span><span class="params">()</span> <span class="comment">//判断是否存在</span></span></span><br><span class="line"><span class="function">  </span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">canRead</span><span class="params">()</span> <span class="comment">//判断是否可读</span></span></span><br><span class="line"><span class="function">  </span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">canWrite</span><span class="params">()</span> <span class="comment">//判断是否可写</span></span></span><br><span class="line"><span class="function">  </span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isHidden</span><span class="params">()</span> <span class="comment">//判断是否隐藏</span></span></span><br></pre></td></tr></table></figure>
+<h3 id="create"><a href="#create" class="headerlink" title="create"></a>create</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">createNewFile</span><span class="params">()</span> <span class="comment">//创建文件。若文件存在，则不创建，返回false</span></span></span><br><span class="line"><span class="function">  </span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">mkdir</span><span class="params">()</span> <span class="comment">//创建文件目录。如果此文件目录存在，就不创建了。如果此文件目录的上层目录不存在，也不创建。</span></span></span><br><span class="line"><span class="function">  </span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">mkdirs</span><span class="params">()</span> <span class="comment">//创建文件目录。如果上层文件目录不存在，一并创建</span></span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function"><span class="comment">//注意事项:如果你创建文件或者文件目录没有写盘符路径，那么，默认在项目 路径下。</span></span></span><br></pre></td></tr></table></figure>
+<h3 id="delete"><a href="#delete" class="headerlink" title="delete"></a>delete</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">delete</span><span class="params">()</span> <span class="comment">//删除文件或者文件夹</span></span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function"><span class="comment">// 删除注意事项:</span></span></span><br><span class="line"><span class="function"><span class="comment">// Java中的删除不走回收站。 要删除一个文件目录，请注意该文件目录内不能包含文件或者文件目录</span></span></span><br></pre></td></tr></table></figure>
+<h1 id="IO流原理及流的分类"><a href="#IO流原理及流的分类" class="headerlink" title="IO流原理及流的分类"></a>IO流原理及流的分类</h1><h2 id="java-io原理"><a href="#java-io原理" class="headerlink" title="java io原理"></a>java io原理</h2><ul>
+<li>I/O是Input/Output的缩写， I/O技术是非常实用的技术，用于 处理设备之间的数据传输。如读/写文件，网络通讯等</li>
+<li>Java程序中，对于数据的输入/输出操作以“流<strong>(stream)</strong>” 的 方式进行。</li>
+<li>java.io包下提供了各种“流”类和接口，用以获取不同种类的 数据，并通过标准的方法输入或输出数据。</li>
+</ul>
+<ul>
+<li>输入<strong>input</strong>:读取外部数据(磁 盘、光盘等存储设备的数据)到 程序(内存)中。</li>
+<li>输出<strong>output</strong>:将程序(内存) 数据输出到磁盘、光盘等存储设 备中。</li>
+</ul>
+<h2 id="流的分类"><a href="#流的分类" class="headerlink" title="流的分类"></a>流的分类</h2><ul>
+<li>按操作数据单位不同分为:字节流<strong>(8 bit)</strong>，字符流<strong>(16 bit)</strong></li>
+<li>按数据流的流向不同分为:输入流，输出流</li>
+<li>按流的角色的不同分为:节点流，处理流</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">(抽象基类)</th>
+<th style="text-align:center">字节流</th>
+<th style="text-align:center">字符流</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">输入流</td>
+<td style="text-align:center">InputStream</td>
+<td style="text-align:center">Reader</td>
+</tr>
+<tr>
+<td style="text-align:center">输出流</td>
+<td style="text-align:center">OutputStream</td>
+<td style="text-align:center">Writer</td>
+</tr>
+</tbody>
+</table>
+<h2 id="io流体系"><a href="#io流体系" class="headerlink" title="io流体系"></a>io流体系</h2><p><img src="WechatIMG698.png"></p>
+<h2 id="节点流和处理流"><a href="#节点流和处理流" class="headerlink" title="节点流和处理流"></a>节点流和处理流</h2><ul>
+<li>节点流:直接从数据源或目的地读写数据</li>
+<li>处理流:不直接连接到数据源或目的地，而是“连接”在已存 在的流(节点流或处理流)之上，通过对数据的处理为程序提 供更为强大的读写功能。</li>
+</ul>
+<h2 id="InputStream-amp-Reader"><a href="#InputStream-amp-Reader" class="headerlink" title="InputStream &amp; Reader"></a>InputStream &amp; Reader</h2><ul>
+<li>InputStream 和 Reader 是所有输入流的基类</li>
+<li>程序中打开的文件 IO 资源不属于内存里的资源，垃圾回收机制无法回收该资 源，所以应该显式关闭文件 <strong>IO</strong> 资源。</li>
+<li>FileInputStream 从文件系统中的某个文件中获得输入字节。FileInputStream 用于读取非文本数据之类的原始字节流。要读取字符流，需要使用 FileReader</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//从输入流中读取数据的下一个字节。返回 0 到 255 范围内的 int 字节值。如果因 为已经到达流末尾而没有可用的字节，则返回值 -1。</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">read</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function"><span class="comment">//从此输入流中将最多 b.length 个字节的数据读入一个 byte 数组中。如果因为已 经到达流末尾而没有可用的字节，则返回值 -1。否则以整数形式返回实际读取 的字节数。</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">read</span><span class="params">(<span class="keyword">byte</span>[] b)</span></span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function"><span class="comment">//将输入流中最多 len 个数据字节读入 byte 数组。尝试读取 len 个字节，但读取的字节也可能小于该值。以整数形式返回实际读取的字节数。如果因为流位于 文件末尾而没有可用的字节，则返回值 -1。  </span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">read</span><span class="params">(<span class="keyword">byte</span>[] b, <span class="keyword">int</span> off,<span class="keyword">int</span> len)</span></span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function"><span class="comment">// 关闭此输入流并释放与该流关联的所有系统资源。</span></span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">close</span><span class="params">()</span> <span class="keyword">throws</span> IOException</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 读取单个字符。作为整数读取的字符，范围在 0 到 65535 之间 (0x00-0xffff)(2个 字节的Unicode码)，如果已到达流的末尾，则返回 -1</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">read</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function"><span class="comment">// 将字符读入数组。如果已到达流的末尾，则返回 -1。否则返回本次读取的字符数。</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">read</span><span class="params">(<span class="keyword">char</span>[] cbuf)</span></span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function"><span class="comment">// 将字符读入数组的某一部分。存到数组cbuf中，从off处开始存储，最多读len个字 符。如果已到达流的末尾，则返回 -1。否则返回本次读取的字符数。</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">read</span><span class="params">(<span class="keyword">char</span>[] cbuf,<span class="keyword">int</span> off,<span class="keyword">int</span> len)</span> </span></span><br><span class="line"><span class="function">  </span></span><br><span class="line"><span class="function"><span class="comment">// 关闭此输入流并释放与该流关联的所有系统资源。</span></span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">close</span><span class="params">()</span> <span class="keyword">throws</span> IOException</span></span><br></pre></td></tr></table></figure>
+<h2 id="OutputStream-amp-Writer"><a href="#OutputStream-amp-Writer" class="headerlink" title="OutputStream &amp; Writer"></a>OutputStream &amp; Writer</h2><ul>
+<li>因为字符流直接以字符作为操作单位，所以 Writer 可以用字符串来替换字符数组， 即以 String 对象作为参数</li>
+<li><strong>void write(String str);</strong></li>
+<li><strong>void write(String str, int off, int len);</strong></li>
+<li>FileOutputStream 从文件系统中的某个文件中获得输出字节。FileOutputStream用于写出非文本数据之类的原始字节流。要写出字符流，需要使用 FileWriter</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 将指定的字节写入此输出流。write 的常规协定是:向输出流写入一个字节。要写 入的字节是参数 b 的八个低位。b 的 24 个高位将被忽略。 即写入0~255范围的。</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">write</span><span class="params">(<span class="keyword">int</span> b)</span></span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function"><span class="comment">// 将 b.length 个字节从指定的 byte 数组写入此输出流。write(b) 的常规协定是:应该 与调用 write(b, 0, b.length) 的效果完全相同。</span></span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">write</span><span class="params">(<span class="keyword">byte</span>[] b)</span></span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function"><span class="comment">// 将指定 byte 数组中从偏移量 off 开始的 len 个字节写入此输出流。</span></span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">write</span><span class="params">(<span class="keyword">byte</span>[] b,<span class="keyword">int</span> off,<span class="keyword">int</span> len)</span></span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function"><span class="comment">// 刷新此输出流并强制写出所有缓冲的输出字节，调用此方法指示应将这些字节立即写入它们预期的目标。</span></span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">flush</span><span class="params">()</span><span class="keyword">throws</span> IOException</span></span><br><span class="line"><span class="function">  </span></span><br><span class="line"><span class="function"><span class="comment">// 关闭此输出流并释放与该流关联的所有系统资源。</span></span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">close</span><span class="params">()</span> <span class="keyword">throws</span> IOException</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//写入单个字符。要写入的字符包含在给定整数值的 16 个低位中，16 高位被忽略。 即 写入0 到 65535 之间的Unicode码。</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">write</span><span class="params">(<span class="keyword">int</span> c)</span></span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function"><span class="comment">//写入字符数组。</span></span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">write</span><span class="params">(<span class="keyword">char</span>[] cbuf)</span></span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function"><span class="comment">// 写入字符数组的某一部分。从off开始，写入len个字符</span></span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">write</span><span class="params">(<span class="keyword">char</span>[] cbuf,<span class="keyword">int</span> off,<span class="keyword">int</span> len)</span> </span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function"><span class="comment">// 写入字符串。</span></span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">write</span><span class="params">(String str)</span></span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function"><span class="comment">// 写入字符串的某一部分。</span></span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">write</span><span class="params">(String str,<span class="keyword">int</span> off,<span class="keyword">int</span> len)</span></span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function"><span class="comment">// 刷新该流的缓冲，则立即将它们写入预期目标。</span></span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">flush</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function"><span class="comment">// 关闭此输出流并释放与该流关联的所有系统资源。</span></span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">close</span><span class="params">()</span> <span class="keyword">throws</span> IOException</span></span><br></pre></td></tr></table></figure>
+<h2 id="节点流-或文件流"><a href="#节点流-或文件流" class="headerlink" title="节点流(或文件流)"></a>节点流(或文件流)</h2><h3 id="读取文件"><a href="#读取文件" class="headerlink" title="读取文件"></a>读取文件</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 1.建立一个流对象，将已存在的一个文件加载进流。</span></span><br><span class="line">FileReader fr = <span class="keyword">new</span> FileReader(<span class="keyword">new</span> File(“Test.txt”));</span><br><span class="line"></span><br><span class="line"><span class="comment">// 2.创建一个临时存放数据的数组。</span></span><br><span class="line"><span class="keyword">char</span>[] ch = <span class="keyword">new</span> <span class="keyword">char</span>[<span class="number">1024</span>];</span><br><span class="line"></span><br><span class="line"><span class="comment">// 3.调用流对象的读取方法将流中的数据读入到数组中。</span></span><br><span class="line">fr.read(ch);</span><br><span class="line"></span><br><span class="line"><span class="comment">//4. 关闭资源。</span></span><br><span class="line">fr.close();</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">FileReader fr = <span class="keyword">null</span>; <span class="keyword">try</span> &#123;</span><br><span class="line">    fr = <span class="keyword">new</span> FileReader(<span class="keyword">new</span> File(<span class="string">"c:\\test.txt"</span>)); <span class="keyword">char</span>[] buf = <span class="keyword">new</span> <span class="keyword">char</span>[<span class="number">1024</span>];</span><br><span class="line">    <span class="keyword">int</span> len;</span><br><span class="line">    <span class="keyword">while</span> ((len = fr.read(buf)) != -<span class="number">1</span>) &#123;</span><br><span class="line">        System.out.print(<span class="keyword">new</span> String(buf, <span class="number">0</span>, len)); &#125;</span><br><span class="line">&#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">    System.out.println(<span class="string">"read-Exception :"</span> + e.getMessage());</span><br><span class="line">&#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (fr != <span class="keyword">null</span>) &#123;</span><br><span class="line">        <span class="keyword">try</span> &#123; fr.close();</span><br><span class="line">        &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">            System.out.println(<span class="string">"close-Exception :"</span> + e.getMessage());</span><br><span class="line">        &#125; &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="写入文件"><a href="#写入文件" class="headerlink" title="写入文件"></a>写入文件</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 1.创建流对象，建立数据存放文件</span></span><br><span class="line">FileWriter fw = <span class="keyword">new</span> FileWriter(<span class="keyword">new</span> File(“Test.txt”));</span><br><span class="line"></span><br><span class="line"><span class="comment">// 2.调用流对象的写入方法，将数据写入流</span></span><br><span class="line">fw.write(“hello-word”);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 3.关闭流资源，并将流中的数据清空到文件中。</span></span><br><span class="line">fw.close();</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">FileWriter fw = <span class="keyword">null</span>; <span class="keyword">try</span> &#123;</span><br><span class="line">    fw = <span class="keyword">new</span> FileWriter(<span class="keyword">new</span> File(<span class="string">"Test.txt"</span>));</span><br><span class="line">    fw.write(<span class="string">"hello-word"</span>); </span><br><span class="line">&#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">    e.printStackTrace(); </span><br><span class="line">&#125;<span class="keyword">finally</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (fw != <span class="keyword">null</span>) &#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            fw.close();</span><br><span class="line">        &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="节点流-或文件流-注意点"><a href="#节点流-或文件流-注意点" class="headerlink" title="节点流(或文件流):注意点"></a>节点流<strong>(</strong>或文件流<strong>)</strong>:注意点</h3><blockquote>
+<p>定义文件路径时，注意:可以用“/”或者“\”。</p>
+<p>在写入一个文件时，如果使用构造器FileOutputStream(file)，则目录下有同名文 件将被覆盖。</p>
+<p>如果使用构造器FileOutputStream(file,true)，则目录下的同名文件不会被覆盖， 在文件内容末尾追加内容。</p>
+<p>在读取文件时，必须保证该文件已存在，否则报异常。</p>
+<p>字节流操作字节，比如:.mp3，.avi，.rmvb，mp4，.jpg，.doc，.ppt</p>
+<p>字符流操作字符，只能操作普通文本文件。最常见的文本文 件:.txt，.java，.c，.cpp 等语言的源代码。尤其注意.doc,excel,ppt这些不是文 本文件。</p>
+</blockquote>
+<h2 id="缓冲流"><a href="#缓冲流" class="headerlink" title="缓冲流"></a>缓冲流</h2><hr>
+
+        
+            <div class="donate-container">
+    <div class="donate-button">
+        <button id="donate-button">赞赏</button>
+    </div>
+    <div class="donate-img-container hide" id="donate-img-container">
+        <img id="donate-img" src="" data-src="/img/donate.jpg">
+        <p> 感谢鼓励 </p>
+    </div>
+</div>
+        
+        <br />
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+
+        <div id="lv-container">
+        </div>
+
+    </div>
+</div>
+
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        <li>
+            <a target="_blank" href="https://twitter.com/iconie_alloy">
+                            <span class="fa-stack fa-lg">
+                                <i class="iconfont icon-twitter"></i>
+                            </span>
+            </a>
+        </li>
+        
+        
+        <li>
+            <a target="_blank" href="https://www.zhihu.com/people/ai-er-lan-xue-da">
+                            <span class="fa-stack fa-lg">
+                                 <i class="iconfont icon-zhihu"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+        <li>
+            <a target="_blank" href="http://weibo.com/3286578617">
+                            <span class="fa-stack fa-lg">
+                                  <i class="iconfont icon-weibo"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+        <li>
+            <a target="_blank" href="https://www.facebook.com/xiaotao.nie.5">
+                            <span class="fa-stack fa-lg">
+                                <i class="iconfont icon-facebook"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+        <li>
+            <a target="_blank"  href="https://github.com/AirCloud">
+                            <span class="fa-stack fa-lg">
+                                <i class="iconfont icon-github"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+        <li>
+            <a target="_blank"  href="https://www.linkedin.com/in/小涛-聂-80964aba">
+                            <span class="fa-stack fa-lg">
+                                <i class="iconfont icon-linkedin"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+    </ul>
+    
+    <p>
+        <span>/</span>
+        
+        <span><a href="https://www.10000h.top">10000H</a></span>
+        <span>/</span>
+        
+        <span><a href="https://niexiaotao.com">Xiaotao&#39;s Page</a></span>
+        <span>/</span>
+        
+        <span><a href="#">It helps SEO</a></span>
+        <span>/</span>
+        
+    </p>
+    
+    <p>
+        <span id="busuanzi_container_site_pv">
+            <span id="busuanzi_value_site_pv"></span>PV
+        </span>
+        <span id="busuanzi_container_site_uv">
+            <span id="busuanzi_value_site_uv"></span>UV
+        </span>
+        Created By <a href="https://hexo.io/">Hexo</a>  Theme <a href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a></p>
+</footer>
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = "search.json"
+    window.hexo_root = "/"
+    window.isPost = true
+</script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="/js/index.js"></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+    <script>
+        /**
+         *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+         *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+        */
+        if( '' || '')
+        var disqus_config = function () {
+            this.page.url = '';  // Replace PAGE_URL with your page's canonical URL variable
+            this.page.identifier = ''; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+        };
+
+        (function() { // DON'T EDIT BELOW THIS LINE
+            var d = document, s = d.createElement('script');
+            s.src = 'https://airclouds-blog.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+        })();
+    </script>
+
+
+
+</html>

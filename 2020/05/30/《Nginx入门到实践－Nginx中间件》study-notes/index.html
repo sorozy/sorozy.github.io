@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="聂小涛的博客">
+    <meta name="keyword" content="腾讯">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+        《Nginx入门到实践－Nginx中间件》study notes - AirCloud的博客 | AirCloud&#39;s Blog
+        
+    </title>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/aircloud.css">
+    <link rel="stylesheet" href="/css/gitment.css">
+    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
+    <link href="//at.alicdn.com/t/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i> sometimes code， sometimes design </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar ">
+            <img src="/img/avatar.jpg" />
+        </div>
+        <div class="name">
+            <i>Xiaotao Nie</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li >
+                <a href="/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>主页</span>
+                </a>
+            </li>
+            <li >
+                <a href="/tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>标签</span>
+                </a>
+            </li>
+            <li >
+                <a href="/archive">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>存档</span>
+                </a>
+            </li>
+            <li >
+                <a href="/about/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>关于</span>
+                </a>
+            </li>
+            
+            <li>
+                <a id="search">
+                    <i class="iconfont icon-sousuo1"></i>
+                    <span>搜索</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Nginx简介及起步"><span class="toc-text">Nginx简介及起步</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Nginx简介"><span class="toc-text">Nginx简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#为什么选择Nginx"><span class="toc-text">为什么选择Nginx</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#环境调试准备"><span class="toc-text">环境调试准备</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#四项确认"><span class="toc-text">四项确认</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#两项安装"><span class="toc-text">两项安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#一次初始化目录"><span class="toc-text">一次初始化目录</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Nginx-install"><span class="toc-text">Nginx install</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Nginx目录详解"><span class="toc-text">Nginx目录详解</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Nginx安装编译参数"><span class="toc-text">Nginx安装编译参数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Nginx-start-stop-resart"><span class="toc-text">Nginx start/stop/resart</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Nginx基础"><span class="toc-text">Nginx基础</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Nginx默认配置语法"><span class="toc-text">Nginx默认配置语法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#nginx-conf（分三大块）"><span class="toc-text">nginx.conf（分三大块）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#default-conf"><span class="toc-text">default.conf</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Nginx日志"><span class="toc-text">Nginx日志</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#log-formate"><span class="toc-text">log_formate</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Nginx变量"><span class="toc-text">Nginx变量</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#常用命令"><span class="toc-text">常用命令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Nginx模块"><span class="toc-text">Nginx模块</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#http-stub-status-module"><span class="toc-text">http_stub_status_module</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#random-index-module"><span class="toc-text">random_index_module</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#http-sub-module"><span class="toc-text">http_sub_module</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Nginx请求限制"><span class="toc-text">Nginx请求限制</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#连接频率限制-limit-conn-module"><span class="toc-text">连接频率限制 limit_conn_module</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#请求频率限制-limit-req-module"><span class="toc-text">请求频率限制 limit_req_module</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Nginx的访问控制"><span class="toc-text">Nginx的访问控制</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#基于IP的访问控制-http-access-module"><span class="toc-text">基于IP的访问控制 http_access_module</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#基于用户的信任登录-http-auth-basic-module"><span class="toc-text">基于用户的信任登录 http_auth_basic_module</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#基于Nginx的中间件架构"><span class="toc-text">基于Nginx的中间件架构</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#静态资源web服务"><span class="toc-text">静态资源web服务</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#静态资源"><span class="toc-text">静态资源</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#缓存"><span class="toc-text">缓存</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#跨站"><span class="toc-text">跨站</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#防盗链"><span class="toc-text">防盗链</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#代理服务"><span class="toc-text">代理服务</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#反向实战"><span class="toc-text">反向实战</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#正向代理实战（待完成）"><span class="toc-text">正向代理实战（待完成）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#负载均衡"><span class="toc-text">负载均衡</span></a></li></ol></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input"/>
+            <span id="begin-search">搜索</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+
+        <div class="index-about-mobile">
+            <i> sometimes code， sometimes design </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        《Nginx入门到实践－Nginx中间件》study notes
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">发布于：<span>2020-05-30 10:30:12</span></span>
+        
+        <span class="attr">标签：/
+        
+        <a class="tag" href="/tags/#Nginx" title="Nginx">Nginx</a>
+        <span>/</span>
+        
+        <a class="tag" href="/tags/#web-Server" title="web-Server">web-Server</a>
+        <span>/</span>
+        
+        
+        </span>
+        <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
+</span>
+</span>
+    </div>
+    <div class="post-content ">
+        <blockquote>
+<p>需要了解cdn</p>
+<p>相关模块后续需要深入学习</p>
+<p>深入了解跨站访问</p>
+<p>正向代理 需要动手实现一下</p>
+</blockquote>
+<hr>
+<h1 id="Nginx简介及起步"><a href="#Nginx简介及起步" class="headerlink" title="Nginx简介及起步"></a>Nginx简介及起步</h1><h2 id="Nginx简介"><a href="#Nginx简介" class="headerlink" title="Nginx简介"></a>Nginx简介</h2><ul>
+<li><p>高效、可靠的web服务中间件</p>
+<blockquote>
+<p>高效：支持海量的并发请求<br></p>
+<p>可靠：Nginx的服务是可靠运行的<br></p>
+<p>开源</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="为什么选择Nginx"><a href="#为什么选择Nginx" class="headerlink" title="为什么选择Nginx"></a>为什么选择Nginx</h2><p>（1）IO多路复用epoll</p>
+<p>（2）轻量级：</p>
+<blockquote>
+<p>功能模块少<br></p>
+<p>代码模块化</p>
+</blockquote>
+<p>（3）cpu亲和</p>
+<p>（4）sendfile</p>
+<h2 id="环境调试准备"><a href="#环境调试准备" class="headerlink" title="环境调试准备"></a>环境调试准备</h2><h3 id="四项确认"><a href="#四项确认" class="headerlink" title="四项确认"></a>四项确认</h3><p>（1）确认系统网络（连接到公网）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ping www.baidu.com</span><br></pre></td></tr></table></figure>
+<p>（2）确认yum源可用</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># 列出gcc相关yum源</span><br><span class="line">yum list|grep gcc</span><br></pre></td></tr></table></figure>
+<p>（3）确认关闭iptables规则 （规则会对验证HTTP服务造成影响）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"># 查看是否有iptables规则</span><br><span class="line">iptables -L</span><br><span class="line">iptables -t nat -L</span><br><span class="line"></span><br><span class="line"># 关闭规则</span><br><span class="line">iptables -F</span><br><span class="line">iptables -t nat -L</span><br></pre></td></tr></table></figure>
+<p>（4）确认停用selinux</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"># 查看SELinux状态，如果SELinux status参数为enabled即为开启状态</span><br><span class="line">getenforce</span><br><span class="line"></span><br><span class="line"># 临时关闭（不用重启机器）</span><br><span class="line">setenforce 0</span><br><span class="line"></span><br><span class="line">#设置SELinux 成为permissive模式</span><br><span class="line">#setenforce 1 设置SELinux 成为enforcing模式</span><br><span class="line"></span><br><span class="line"># 修改配置文件需要重启机器</span><br><span class="line"># 修改/etc/selinux/config 文件</span><br><span class="line"># 将SELINUX=enforcing改为SELINUX=disabled</span><br></pre></td></tr></table></figure>
+<h3 id="两项安装"><a href="#两项安装" class="headerlink" title="两项安装"></a>两项安装</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># -y 不需要确认</span><br><span class="line">yum -y install gcc gcc-c++ autoconf pcre pcre-devel make automake</span><br><span class="line"></span><br><span class="line">yum -y install wget httpd-tools vim</span><br></pre></td></tr></table></figure>
+<h3 id="一次初始化目录"><a href="#一次初始化目录" class="headerlink" title="一次初始化目录"></a>一次初始化目录</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"># /opt目录下</span><br><span class="line">mkdir app download logs work backup</span><br><span class="line"></span><br><span class="line">app		# 软件、应用、代码</span><br><span class="line">backup		# 备份文件</span><br><span class="line">download	# 下载内容</span><br><span class="line">logs		# 自定义日志</span><br><span class="line">work		# shell脚本</span><br></pre></td></tr></table></figure>
+<h2 id="Nginx-install"><a href="#Nginx-install" class="headerlink" title="Nginx install"></a>Nginx install</h2><ul>
+<li>基于yum源（这种方式不需要源码一个个编译，加入package参数。这种方式效率高）</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">cd /etc/yum.repos.d</span><br><span class="line"></span><br><span class="line">touch nginx.repo</span><br><span class="line"></span><br><span class="line">vim /etc/yum.repos.d/nginx.repo</span><br><span class="line"></span><br><span class="line">[nginx-stable]</span><br><span class="line">name=nginx stable repo</span><br><span class="line">baseurl=http://nginx.org/packages/centos/$releasever/$basearch/</span><br><span class="line">gpgcheck=1</span><br><span class="line">enabled=1</span><br><span class="line">gpgkey=https://nginx.org/keys/nginx_signing.key</span><br><span class="line">module_hotfixes=true</span><br><span class="line"></span><br><span class="line">yum install nginx</span><br><span class="line"></span><br><span class="line"># 查看版本</span><br><span class="line">nginx -v</span><br><span class="line"></span><br><span class="line">查看编译参数</span><br><span class="line">nginx -V</span><br></pre></td></tr></table></figure>
+<h2 id="Nginx目录详解"><a href="#Nginx目录详解" class="headerlink" title="Nginx目录详解"></a>Nginx目录详解</h2><p> <img src="1.png" width="650"><br></p>
+<p> <img src="2.png" width="650"><br></p>
+<p> <img src="3.png" width="650"><br></p>
+<p> <img src="4.png" width="650"><br></p>
+<p> <img src="5.png" width="650"><br></p>
+<p> <img src="6.png" width="650"><br></p>
+<p> <img src="7.png" width="650"><br></p>
+<p> <img src="8.png" width="650"><br></p>
+<p> <img src="9.png" width="650"><br></p>
+<p> <img src="10.png" width="650"><br></p>
+<p> <img src="11.png" width="650"><br></p>
+<h2 id="Nginx安装编译参数"><a href="#Nginx安装编译参数" class="headerlink" title="Nginx安装编译参数"></a>Nginx安装编译参数</h2><p><img src="WechatIMG84.png" width="650"><br></p>
+<p><img src="WechatIMG85.png" width="650"><br></p>
+<p><img src="WechatIMG86.png" width="650"><br></p>
+<p><img src="WechatIMG87.png" width="650"><br></p>
+<p><img src="WechatIMG88.png" width="650"><br></p>
+<h2 id="Nginx-start-stop-resart"><a href="#Nginx-start-stop-resart" class="headerlink" title="Nginx start/stop/resart"></a>Nginx start/stop/resart</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">systemctl start nginx.service</span><br><span class="line">systemctl stop nginx.service</span><br><span class="line">systemctl restart nginx.service</span><br></pre></td></tr></table></figure>
+<h1 id="Nginx基础"><a href="#Nginx基础" class="headerlink" title="Nginx基础"></a>Nginx基础</h1><h2 id="Nginx默认配置语法"><a href="#Nginx默认配置语法" class="headerlink" title="Nginx默认配置语法"></a>Nginx默认配置语法</h2><h3 id="nginx-conf（分三大块）"><a href="#nginx-conf（分三大块）" class="headerlink" title="nginx.conf（分三大块）"></a>nginx.conf（分三大块）</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">user  nginx;	# 设置nginx服务的系统使用用户</span><br><span class="line">worker_processes  1;	# 工作进程数</span><br><span class="line"></span><br><span class="line">error_log  /var/log/nginx/error.log warn;	# nginx的错误日志</span><br><span class="line">pid        /var/run/nginx.pid;	# nginx服务启动时候pid</span><br><span class="line"># （1）以上是全局、服务模块配置</span><br><span class="line"></span><br><span class="line">events &#123;</span><br><span class="line">    worker_connections  1024;	# 每个进程允许最大连接数</span><br><span class="line">    use  1;	#	工作进程数</span><br><span class="line">&#125;</span><br><span class="line"># （2）以上是事件模块</span><br><span class="line"></span><br><span class="line">http &#123;</span><br><span class="line">    include       /etc/nginx/mime.types;</span><br><span class="line">    default_type  application/octet-stream;</span><br><span class="line"></span><br><span class="line">    log_format  main  &apos;$remote_addr - $remote_user [$time_local] &quot;$request&quot; &apos;</span><br><span class="line">                      &apos;$status $body_bytes_sent &quot;$http_referer&quot; &apos;</span><br><span class="line">                      &apos;&quot;$http_user_agent&quot; &quot;$http_x_forwarded_for&quot;&apos;;</span><br><span class="line"></span><br><span class="line">    access_log  /var/log/nginx/access.log  main;</span><br><span class="line"></span><br><span class="line">    sendfile        on;</span><br><span class="line">    #tcp_nopush     on;</span><br><span class="line"></span><br><span class="line">    keepalive_timeout  65;</span><br><span class="line"></span><br><span class="line">    #gzip  on;</span><br><span class="line">		</span><br><span class="line">		# 包含该文件</span><br><span class="line">    include /etc/nginx/conf.d/*.conf;</span><br><span class="line">&#125;</span><br><span class="line"># （3）以上是http模块</span><br></pre></td></tr></table></figure>
+<h3 id="default-conf"><a href="#default-conf" class="headerlink" title="default.conf"></a>default.conf</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">    listen       80;</span><br><span class="line">    server_name  localhost;</span><br><span class="line"></span><br><span class="line">    #charset koi8-r;</span><br><span class="line">    #access_log     main;</span><br><span class="line"></span><br><span class="line">    location / &#123;</span><br><span class="line">        root   /usr/share/nginx/html;</span><br><span class="line">        index  index.html index.htm;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    #error_page  404              /404.html;</span><br><span class="line"></span><br><span class="line">    # redirect server error pages to the static page /50x.html</span><br><span class="line">    #</span><br><span class="line">    error_page   500 502 503 504  /50x.html;</span><br><span class="line">    location = /50x.html &#123;</span><br><span class="line">        root   /usr/share/nginx/html;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    # proxy the PHP scripts to Apache listening on 127.0.0.1:80</span><br><span class="line">    #</span><br><span class="line">    #location ~ \.php$ &#123;</span><br><span class="line">    #    proxy_pass   http://127.0.0.1;</span><br><span class="line">    #&#125;</span><br><span class="line"></span><br><span class="line">    # pass the PHP scripts to FastCGI server listening on 127.0.0.1:9000</span><br><span class="line">    #</span><br><span class="line">    #location ~ \.php$ &#123;</span><br><span class="line">    #    root           html;</span><br><span class="line">    #    fastcgi_pass   127.0.0.1:9000;</span><br><span class="line">    #    fastcgi_index  index.php;</span><br><span class="line">    #    fastcgi_param  SCRIPT_FILENAME  /scripts$fastcgi_script_name;</span><br><span class="line">    #    include        fastcgi_params;</span><br><span class="line">    #&#125;</span><br><span class="line"></span><br><span class="line">    # deny access to .htaccess files, if Apache&apos;s document root</span><br><span class="line">    # concurs with nginx&apos;s one</span><br><span class="line">    #</span><br><span class="line">    #location ~ /\.ht &#123;</span><br><span class="line">    #    deny  all;</span><br><span class="line">    #&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="Nginx日志"><a href="#Nginx日志" class="headerlink" title="Nginx日志"></a>Nginx日志</h2><ul>
+<li><p>error.log</p>
+<blockquote>
+<p>处理HTTP请求的错误状态</p>
+<p>以及Nginx错误运行的状态 </p>
+</blockquote>
+</li>
+<li><p>access_log</p>
+<blockquote>
+<p>记录每一次请求的访问状态</p>
+<p>分析请求</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="log-formate"><a href="#log-formate" class="headerlink" title="log_formate"></a>log_formate</h3><ul>
+<li>Lof_formate配置语法</li>
+</ul>
+<p><img src="WechatIMG91.png" width="650"><br></p>
+<h2 id="Nginx变量"><a href="#Nginx变量" class="headerlink" title="Nginx变量"></a>Nginx变量</h2><p><img src="WechatIMG92.png" width="650"><br></p>
+<h2 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"># -t 检查配置文件的正确与否</span><br><span class="line"># -c 路径检查</span><br><span class="line">nginx -t -c /etc/nginx/nginx.conf</span><br><span class="line">nginx -tc /etc/nginx/nginx.conf</span><br><span class="line"></span><br><span class="line"># 重载服务</span><br><span class="line">nginx -s reload -c /etc/nginx/nginx.conf</span><br><span class="line"></span><br><span class="line">ps -aux|grep nginx</span><br><span class="line"></span><br><span class="line">systemctl start nginx.service</span><br><span class="line">systemctl stop nginx.service</span><br><span class="line">systemctl restart nginx.service</span><br></pre></td></tr></table></figure>
+<h2 id="Nginx模块"><a href="#Nginx模块" class="headerlink" title="Nginx模块"></a>Nginx模块</h2><ul>
+<li>Nginx官方模块</li>
+<li>Nginx第三方模块</li>
+</ul>
+<hr>
+<h3 id="http-stub-status-module"><a href="#http-stub-status-module" class="headerlink" title="http_stub_status_module"></a>http_stub_status_module</h3><p><img src="WechatIMG93.png" width="650"><br></p>
+<p><img src="WechatIMG94.png" width="650"><br></p>
+<ul>
+<li>实战</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"># vim /etc/nginx/conf.d/default.conf 增加如下内容</span><br><span class="line">location /mystatus &#123;</span><br><span class="line">   stub_status;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"># 访问 http://192.168.2.243/mystatus</span><br><span class="line"></span><br><span class="line">Active connections: 3 	# nginx当前活跃的连接数</span><br><span class="line">server accepts handled requests</span><br><span class="line"> 10 10 9 	# nginx处理的握手次数 连接数 总的请求数</span><br><span class="line">Reading: 0 Writing: 1 Waiting: 2 	# 当前正在读的数量 正在写的数量 等待总数量（开启长连接时）</span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="random-index-module"><a href="#random-index-module" class="headerlink" title="random_index_module"></a>random_index_module</h3><p><img src="WechatIMG95.png" width="650"><br></p>
+<p><img src="WechatIMG96.png" width="650"><br></p>
+<ul>
+<li>实战</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"># /opt/app/code 新建 1.html 2.html 3.html</span><br><span class="line"></span><br><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span> <span class="attr">style</span>=<span class="string">"background-color: red;"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span> <span class="attr">style</span>=<span class="string">"background-color: blue;"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span> <span class="attr">style</span>=<span class="string">"background-color: pink;"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p><br></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"># vim /etc/nginx/conf.d/default.conf 修改增加如下内容</span><br><span class="line"></span><br><span class="line">location / &#123;</span><br><span class="line">        root   /opt/app/code;	# 不会展示隐藏文件</span><br><span class="line">        random_index on;</span><br><span class="line">       	#index  index.html index.htm;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"># 重载nginx服务</span><br><span class="line">systemctl reload nginx.service</span><br><span class="line"></span><br><span class="line">访问 http://192.168.2.243 即可看到效果</span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="http-sub-module"><a href="#http-sub-module" class="headerlink" title="http_sub_module"></a>http_sub_module</h3><p><img src="WechatIMG97.png" width="650"><br></p>
+<p><img src="WechatIMG98.png" width="650"><br></p>
+<p><img src="WechatIMG99.png" width="650"><br></p>
+<p><img src="WechatIMG100.png" width="650"><br></p>
+<ul>
+<li>实战</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">location / &#123;</span><br><span class="line">        root   /opt/app/code;</span><br><span class="line">        index  index.html index.htm;</span><br><span class="line">				sub_filter &apos;sorozy&apos; &apos;isShelter&apos;;	# 用后面的字符串替换前面的字符串</span><br><span class="line">				sub_filter_once off;	# 全局匹配，默认是 on 则只替换第一个匹配项目</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="Nginx请求限制"><a href="#Nginx请求限制" class="headerlink" title="Nginx请求限制"></a>Nginx请求限制</h2><h3 id="连接频率限制-limit-conn-module"><a href="#连接频率限制-limit-conn-module" class="headerlink" title="连接频率限制 limit_conn_module"></a>连接频率限制 limit_conn_module</h3><p><img src="WechatIMG161.png" width="650"><br></p>
+<h3 id="请求频率限制-limit-req-module"><a href="#请求频率限制-limit-req-module" class="headerlink" title="请求频率限制 limit_req_module"></a>请求频率限制 limit_req_module</h3><p><img src="WechatIMG162.png" width="650"><br></p>
+<h2 id="Nginx的访问控制"><a href="#Nginx的访问控制" class="headerlink" title="Nginx的访问控制"></a>Nginx的访问控制</h2><h3 id="基于IP的访问控制-http-access-module"><a href="#基于IP的访问控制-http-access-module" class="headerlink" title="基于IP的访问控制 http_access_module"></a>基于IP的访问控制 http_access_module</h3><p><img src="WechatIMG166.png" width="650"><br></p>
+<ul>
+<li>实战</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">mv default.conf access_module.conf</span><br><span class="line"></span><br><span class="line">vim access_module.conf</span><br><span class="line"></span><br><span class="line"># 不允许本机ip访问</span><br><span class="line">location ~ ^/admin.html &#123;</span><br><span class="line">  root   /opt/app/code;</span><br><span class="line">  deny 192.168.200;</span><br><span class="line">  allow all;</span><br><span class="line">  index  index.html index.htm;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"># 只允许本机ip访问</span><br><span class="line">location ~ ^/admin.html &#123;</span><br><span class="line">  root   /opt/app/code;</span><br><span class="line">  allow 192.168.2.200; # 这里也可以写成ip段</span><br><span class="line">  deny all;</span><br><span class="line">  index  index.html index.htm;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>http_acces_module 局限性（后续再深入理解）</li>
+</ul>
+<h3 id="基于用户的信任登录-http-auth-basic-module"><a href="#基于用户的信任登录-http-auth-basic-module" class="headerlink" title="基于用户的信任登录 http_auth_basic_module"></a>基于用户的信任登录 http_auth_basic_module</h3><p><img src="WechatIMG169.png" width="650"><br></p>
+<ul>
+<li>实战</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"># 需要安装 htpasswd</span><br><span class="line">[root@localhost nginx]# htpasswd -c ./auth_conf admin1</span><br><span class="line"></span><br><span class="line">location ~ ^/admin.html &#123;</span><br><span class="line">  root   /opt/app/code;</span><br><span class="line">  auth_basic &quot;auth access test ! input your password&quot;;</span><br><span class="line">  auth_basic_user_file /etc/nginx/auth_conf;</span><br><span class="line">  index  index.html index.htm;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>http_auth_basic_module局限性（后续再深入了解）</li>
+</ul>
+<blockquote>
+<p>用户信息依赖文件方式</p>
+<p>操作管理机械，效率低下</p>
+</blockquote>
+<p>解决方案</p>
+<p><img src="WechatIMG170.png" width="650"><br></p>
+<h1 id="基于Nginx的中间件架构"><a href="#基于Nginx的中间件架构" class="headerlink" title="基于Nginx的中间件架构"></a>基于Nginx的中间件架构</h1><blockquote>
+<ol>
+<li>静态资源WEB服务</li>
+<li>代理服务</li>
+<li>负载均衡调度器SLB</li>
+<li>动态缓存 </li>
+</ol>
+</blockquote>
+<h2 id="静态资源web服务"><a href="#静态资源web服务" class="headerlink" title="静态资源web服务"></a>静态资源web服务</h2><ul>
+<li>静态资源类型</li>
+</ul>
+<p><img src="WechatIMG171.png" width="650"><br></p>
+<blockquote>
+<p>需要了解cdn</p>
+</blockquote>
+<h3 id="静态资源"><a href="#静态资源" class="headerlink" title="静态资源"></a>静态资源</h3><p><img src="WechatIMG173.png" width="650"><br></p>
+<p><img src="WechatIMG174.png" width="650"><br></p>
+<p><img src="WechatIMG175.png" width="650"><br></p>
+<p><img src="WechatIMG176.png" width="650"><br></p>
+<p><img src="WechatIMG177.png" width="650"><br></p>
+<p><img src="WechatIMG178.png" width="650"><br></p>
+<p><img src="WechatIMG179.png" width="650"><br></p>
+<ul>
+<li>实战</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">    listen       80;</span><br><span class="line">    # server_name  116.62.103.228  ;</span><br><span class="line">    server_name 192.168.2.243 jeson.imooc.com;</span><br><span class="line">    sendfile on;</span><br><span class="line">    #charset koi8-r;</span><br><span class="line">    access_log  /var/log/nginx/log/static_access.log  main;</span><br><span class="line"></span><br><span class="line">    </span><br><span class="line">    location ~ .*\.(jpg|gif|png)$ &#123;</span><br><span class="line">        gzip on;</span><br><span class="line">        gzip_http_version 1.1;</span><br><span class="line">        gzip_comp_level 2;</span><br><span class="line">        gzip_types text/plain application/javascript application/x-javascript text/css application/xml text/javascript application/x-httpd-php image/jpeg image/gif image/png;</span><br><span class="line">        root  /opt/app/code/images;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    location ~ .*\.(txt|xml)$ &#123;</span><br><span class="line">        gzip on;</span><br><span class="line">        gzip_http_version 1.1;</span><br><span class="line">        gzip_comp_level 1;</span><br><span class="line">        gzip_types text/plain application/javascript application/x-javascript text/css application/xml text/javascript application/x-httpd-php image/jpeg image/gif image/png;</span><br><span class="line">        root  /opt/app/code/doc;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    location ~ ^/download &#123;</span><br><span class="line">        gzip_static on;</span><br><span class="line">        tcp_nopush on;</span><br><span class="line">        root /opt/app/code;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    #error_page  404              /404.html;</span><br><span class="line"></span><br><span class="line">    # redirect server error pages to the static page /50x.html</span><br><span class="line">    #</span><br><span class="line">    error_page   500 502 503 504 404  /50x.html;</span><br><span class="line">    location = /50x.html &#123;</span><br><span class="line">        root   /usr/share/nginx/html;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    # proxy the PHP scripts to Apache listening on 127.0.0.1:80</span><br><span class="line">    #</span><br><span class="line">    #location ~ \.php$ &#123;</span><br><span class="line">    #    proxy_pass   http://127.0.0.1;</span><br><span class="line">    #&#125;</span><br><span class="line"></span><br><span class="line">    # pass the PHP scripts to FastCGI server listening on 127.0.0.1:9000</span><br><span class="line">    #</span><br><span class="line">    #location ~ \.php$ &#123;</span><br><span class="line">    #    root           html;</span><br><span class="line">    #    fastcgi_pass   127.0.0.1:9000;</span><br><span class="line">    #    fastcgi_index  index.php;</span><br><span class="line">    #    fastcgi_param  SCRIPT_FILENAME  /scripts$fastcgi_script_name;</span><br><span class="line">    #    include        fastcgi_params;</span><br><span class="line">    #&#125;</span><br><span class="line"></span><br><span class="line">    # deny access to .htaccess files, if Apache&apos;s document root</span><br><span class="line">    # concurs with nginx&apos;s one</span><br><span class="line">    #</span><br><span class="line">    #location ~ /\.ht &#123;</span><br><span class="line">    #    deny  all;</span><br><span class="line">    #&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="缓存"><a href="#缓存" class="headerlink" title="缓存"></a>缓存</h3><p><img src="WechatIMG180.png" width="650"><br></p>
+<p><img src="WechatIMG181.png" width="650"><br></p>
+<p><img src="WechatIMG182.png" width="650"><br></p>
+<p><img src="WechatIMG183.png" width="650"><br></p>
+<p><img src="WechatIMG184.png" width="650"><br></p>
+<p><img src="WechatIMG185.png" width="650"><br></p>
+<h3 id="跨站"><a href="#跨站" class="headerlink" title="跨站"></a>跨站</h3><p><img src="WechatIMG191.png" width="650"><br></p>
+<p><img src="WechatIMG192.png" width="650"><br></p>
+<ul>
+<li>允许跨站</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">location ~ .*\.(htm|html)$ &#123;</span><br><span class="line">        add_header Access-Control-Allow-Origin *; </span><br><span class="line">        add_header Access-Control-Allow-Methods GET,POST,PUT,DELETE,OPTIONS;</span><br><span class="line">        #expires 24h;</span><br><span class="line">        root  /opt/app/code;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="防盗链"><a href="#防盗链" class="headerlink" title="防盗链"></a>防盗链</h3><p><img src="WechatIMG193.png" width="650"><br></p>
+<h2 id="代理服务"><a href="#代理服务" class="headerlink" title="代理服务"></a>代理服务</h2><p><img src="WechatIMG108.png" width="650"><br></p>
+<p><img src="WechatIMG109.png" width="650"><br></p>
+<p><img src="WechatIMG110.png" width="650"><br></p>
+<p><img src="WechatIMG111.png" width="650"><br></p>
+<p><img src="WechatIMG113.png" width="650"><br></p>
+<h3 id="反向实战"><a href="#反向实战" class="headerlink" title="反向实战"></a>反向实战</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br></pre></td><td class="code"><pre><span class="line"># 环境准备</span><br><span class="line"># linux开启防火墙，关闭8080端口（8080端口不放行）开启80端口，80端口放行</span><br><span class="line"></span><br><span class="line"># /etc/nginx/conf.d 目录下 添加两个配置文件 fx_proxy.conf realserver.conf</span><br><span class="line"></span><br><span class="line"># fx_proxy.conf 配置</span><br><span class="line">server &#123;</span><br><span class="line">    listen       80;</span><br><span class="line">    server_name  localhost jeson.t.imooc.io;</span><br><span class="line"></span><br><span class="line">    #charset koi8-r;</span><br><span class="line">    access_log  /var/log/nginx/test_proxy.access.log  main;</span><br><span class="line"></span><br><span class="line">    location / &#123;</span><br><span class="line">        root   /usr/share/nginx/html;</span><br><span class="line">        index  index.html index.htm;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    # 反向代理核心配置</span><br><span class="line">    location ~ /test_proxy.html$ &#123;</span><br><span class="line">        proxy_pass http://127.0.0.1:8080;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    #error_page  404              /404.html;</span><br><span class="line"></span><br><span class="line">    # redirect server error pages to the static page /50x.html</span><br><span class="line">    #</span><br><span class="line">    error_page   500 502 503 504  /50x.html;</span><br><span class="line">    location = /50x.html &#123;</span><br><span class="line">        root   /usr/share/nginx/html;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    # proxy the PHP scripts to Apache listening on 127.0.0.1:80</span><br><span class="line">    #</span><br><span class="line">    #location ~ \.php$ &#123;</span><br><span class="line">    #    proxy_pass   http://127.0.0.1;</span><br><span class="line">    #&#125;</span><br><span class="line"></span><br><span class="line">    # pass the PHP scripts to FastCGI server listening on 127.0.0.1:9000</span><br><span class="line">    #</span><br><span class="line">    #location ~ \.php$ &#123;</span><br><span class="line">    #    root           html;</span><br><span class="line">    #    fastcgi_pass   127.0.0.1:9000;</span><br><span class="line">    #    fastcgi_index  index.php;</span><br><span class="line">    #    fastcgi_param  SCRIPT_FILENAME  /scripts$fastcgi_script_name;</span><br><span class="line">    #    include        fastcgi_params;</span><br><span class="line">    #&#125;</span><br><span class="line"></span><br><span class="line">    # deny access to .htaccess files, if Apache&apos;s document root</span><br><span class="line">    # concurs with nginx&apos;s one</span><br><span class="line">    #</span><br><span class="line">    #location ~ /\.ht &#123;</span><br><span class="line">    #    deny  all;</span><br><span class="line">    #&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">server &#123;</span><br><span class="line">    listen       8080;</span><br><span class="line">    server_name  localhost jeson.t.imooc.io;</span><br><span class="line"></span><br><span class="line">    #charset koi8-r;</span><br><span class="line">    access_log  /var/log/nginx/server.access.log  main;</span><br><span class="line"></span><br><span class="line">		# 注意在该目录下 /opt/app/code2 放入html文件</span><br><span class="line">    location / &#123;</span><br><span class="line">        root   /opt/app/code2;</span><br><span class="line">        index  index.html index.htm;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    #error_page  404              /404.html;</span><br><span class="line"></span><br><span class="line">    # redirect server error pages to the static page /50x.html</span><br><span class="line">    #</span><br><span class="line">    error_page   500 502 503 504  /50x.html;</span><br><span class="line">    location = /50x.html &#123;</span><br><span class="line">        root   /usr/share/nginx/html;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    # proxy the PHP scripts to Apache listening on 127.0.0.1:80</span><br><span class="line">    #</span><br><span class="line">    #location ~ \.php$ &#123;</span><br><span class="line">    #    proxy_pass   http://127.0.0.1;</span><br><span class="line">    #&#125;</span><br><span class="line"></span><br><span class="line">    # pass the PHP scripts to FastCGI server listening on 127.0.0.1:9000</span><br><span class="line">    #</span><br><span class="line">    #location ~ \.php$ &#123;</span><br><span class="line">    #    root           html;</span><br><span class="line">    #    fastcgi_pass   127.0.0.1:9000;</span><br><span class="line">    #    fastcgi_index  index.php;</span><br><span class="line">    #    fastcgi_param  SCRIPT_FILENAME  /scripts$fastcgi_script_name;</span><br><span class="line">    #    include        fastcgi_params;</span><br><span class="line">    #&#125;</span><br><span class="line"></span><br><span class="line">    # deny access to .htaccess files, if Apache&apos;s document root</span><br><span class="line">    # concurs with nginx&apos;s one</span><br><span class="line">    #</span><br><span class="line">    #location ~ /\.ht &#123;</span><br><span class="line">    #    deny  all;</span><br><span class="line">    #&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"># 结果</span><br><span class="line"># http://172.20.94.55:8080/test_proxy.html 不可访问</span><br><span class="line"># http://172.20.94.55/test_proxy.html 可访问</span><br></pre></td></tr></table></figure>
+<h3 id="正向代理实战（待完成）"><a href="#正向代理实战（待完成）" class="headerlink" title="正向代理实战（待完成）"></a>正向代理实战（待完成）</h3><h2 id="负载均衡"><a href="#负载均衡" class="headerlink" title="负载均衡"></a>负载均衡</h2><hr>
+
+        
+            <div class="donate-container">
+    <div class="donate-button">
+        <button id="donate-button">赞赏</button>
+    </div>
+    <div class="donate-img-container hide" id="donate-img-container">
+        <img id="donate-img" src="" data-src="/img/donate.jpg">
+        <p> 感谢鼓励 </p>
+    </div>
+</div>
+        
+        <br />
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+
+        <div id="lv-container">
+        </div>
+
+    </div>
+</div>
+
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        <li>
+            <a target="_blank" href="https://twitter.com/iconie_alloy">
+                            <span class="fa-stack fa-lg">
+                                <i class="iconfont icon-twitter"></i>
+                            </span>
+            </a>
+        </li>
+        
+        
+        <li>
+            <a target="_blank" href="https://www.zhihu.com/people/ai-er-lan-xue-da">
+                            <span class="fa-stack fa-lg">
+                                 <i class="iconfont icon-zhihu"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+        <li>
+            <a target="_blank" href="http://weibo.com/3286578617">
+                            <span class="fa-stack fa-lg">
+                                  <i class="iconfont icon-weibo"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+        <li>
+            <a target="_blank" href="https://www.facebook.com/xiaotao.nie.5">
+                            <span class="fa-stack fa-lg">
+                                <i class="iconfont icon-facebook"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+        <li>
+            <a target="_blank"  href="https://github.com/AirCloud">
+                            <span class="fa-stack fa-lg">
+                                <i class="iconfont icon-github"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+        <li>
+            <a target="_blank"  href="https://www.linkedin.com/in/小涛-聂-80964aba">
+                            <span class="fa-stack fa-lg">
+                                <i class="iconfont icon-linkedin"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+    </ul>
+    
+    <p>
+        <span>/</span>
+        
+        <span><a href="https://www.10000h.top">10000H</a></span>
+        <span>/</span>
+        
+        <span><a href="https://niexiaotao.com">Xiaotao&#39;s Page</a></span>
+        <span>/</span>
+        
+        <span><a href="#">It helps SEO</a></span>
+        <span>/</span>
+        
+    </p>
+    
+    <p>
+        <span id="busuanzi_container_site_pv">
+            <span id="busuanzi_value_site_pv"></span>PV
+        </span>
+        <span id="busuanzi_container_site_uv">
+            <span id="busuanzi_value_site_uv"></span>UV
+        </span>
+        Created By <a href="https://hexo.io/">Hexo</a>  Theme <a href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a></p>
+</footer>
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = "search.json"
+    window.hexo_root = "/"
+    window.isPost = true
+</script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="/js/index.js"></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+    <script>
+        /**
+         *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+         *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+        */
+        if( '' || '')
+        var disqus_config = function () {
+            this.page.url = '';  // Replace PAGE_URL with your page's canonical URL variable
+            this.page.identifier = ''; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+        };
+
+        (function() { // DON'T EDIT BELOW THIS LINE
+            var d = document, s = d.createElement('script');
+            s.src = 'https://airclouds-blog.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+        })();
+    </script>
+
+
+
+</html>

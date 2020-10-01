@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="聂小涛的博客">
+    <meta name="keyword" content="腾讯">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+        《MySQL必知必会》read notes - AirCloud的博客 | AirCloud&#39;s Blog
+        
+    </title>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/aircloud.css">
+    <link rel="stylesheet" href="/css/gitment.css">
+    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
+    <link href="//at.alicdn.com/t/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i> sometimes code， sometimes design </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar ">
+            <img src="/img/avatar.jpg" />
+        </div>
+        <div class="name">
+            <i>Xiaotao Nie</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li >
+                <a href="/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>主页</span>
+                </a>
+            </li>
+            <li >
+                <a href="/tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>标签</span>
+                </a>
+            </li>
+            <li >
+                <a href="/archive">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>存档</span>
+                </a>
+            </li>
+            <li >
+                <a href="/about/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>关于</span>
+                </a>
+            </li>
+            
+            <li>
+                <a id="search">
+                    <i class="iconfont icon-sousuo1"></i>
+                    <span>搜索</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#数据库基础知识"><span class="toc-text">数据库基础知识</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#使用MySQL"><span class="toc-text">使用MySQL</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#SELECT"><span class="toc-text">SELECT</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#WHERE"><span class="toc-text">WHERE</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#计算字段"><span class="toc-text">计算字段</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#INSERT"><span class="toc-text">INSERT</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#UPDATE"><span class="toc-text">UPDATE</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#DELETE"><span class="toc-text">DELETE</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#CREATE"><span class="toc-text">CREATE</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#ALTER"><span class="toc-text">ALTER</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#VIEW"><span class="toc-text">VIEW</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#存储过程"><span class="toc-text">存储过程</span></a></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input"/>
+            <span id="begin-search">搜索</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+
+        <div class="index-about-mobile">
+            <i> sometimes code， sometimes design </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        《MySQL必知必会》read notes
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">发布于：<span>2020-07-22 09:33:23</span></span>
+        
+        <span class="attr">标签：/
+        
+        <a class="tag" href="/tags/#mysql" title="mysql">mysql</a>
+        <span>/</span>
+        
+        <a class="tag" href="/tags/#database" title="database">database</a>
+        <span>/</span>
+        
+        <a class="tag" href="/tags/#read-notes" title="read-notes">read-notes</a>
+        <span>/</span>
+        
+        
+        </span>
+        <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
+</span>
+</span>
+    </div>
+    <div class="post-content ">
+        <ul>
+<li><p>学习备注</p>
+<blockquote>
+<p>mysql 正则这块不是很熟悉</p>
+</blockquote>
+</li>
+</ul>
+<hr>
+<h1 id="数据库基础知识"><a href="#数据库基础知识" class="headerlink" title="数据库基础知识"></a>数据库基础知识</h1><ul>
+<li>数据库(database) </li>
+</ul>
+<blockquote>
+<p>保存有组织的数据的容器(通常是一个文 件或一组文件)。</p>
+<p>数据库软件应称为DBMS(数据库管理系统)。数据库 是通过DBMS创建和操纵的容器。</p>
+</blockquote>
+<ul>
+<li>表(table)： 某种特定类型数据的结构化清单</li>
+<li>列(column) ：表中的一个字段</li>
+<li>数据类型(datatype) ：所容许的数据的类型。每个表列都有相 应的数据类型，它限制(或容许)该列中存储的数据</li>
+<li>行(row)： 表中的一个记录</li>
+<li>主键(primary key)：一列(或一组列)，其值能够唯一区分表 中每个行</li>
+<li>SQL(Structured Query Language)：SQL是一种专门用来与数据库通信的语言</li>
+</ul>
+<h1 id="使用MySQL"><a href="#使用MySQL" class="headerlink" title="使用MySQL"></a>使用MySQL</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">USE [database_name]</span><br><span class="line"></span><br><span class="line">SHOW DATABASES;</span><br><span class="line"></span><br><span class="line">SHOW TABLES;</span><br><span class="line"></span><br><span class="line">SHOW COLUMNS FROM customers;</span><br><span class="line"></span><br><span class="line">SHOW STATUS # 用于显示广泛的服务器状态信息;</span><br><span class="line"></span><br><span class="line">SHOW CREATE DATABASE</span><br><span class="line"></span><br><span class="line">SHOW CREATE TABLE</span><br><span class="line"></span><br><span class="line">SHOW GRANTS</span><br><span class="line"></span><br><span class="line">SHOW ERRORS;</span><br><span class="line">SHOW WARNINGS;</span><br><span class="line"># 用来显示服务器错误或警告消息</span><br></pre></td></tr></table></figure>
+<h1 id="SELECT"><a href="#SELECT" class="headerlink" title="SELECT"></a>SELECT</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">select * from [table_name];</span><br><span class="line"></span><br><span class="line">select distinct id,name from [table_name]; # 作用于所有列</span><br><span class="line"></span><br><span class="line">select id from [table_name] limit 5;</span><br><span class="line"></span><br><span class="line">select id from [table_name] limit 5; # 返回从第5行开始的5行</span><br><span class="line"></span><br><span class="line"># 检索出来的第一行为行0而不是行1。因此，LIMIT1,1 将检索出第二行而不是第一行</span><br><span class="line"></span><br><span class="line">select name,id from [table_name] order by name,id;</span><br><span class="line"></span><br><span class="line"># order by ,默认升序，ASC 升序，DESC 降序</span><br></pre></td></tr></table></figure>
+<h1 id="WHERE"><a href="#WHERE" class="headerlink" title="WHERE"></a>WHERE</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"># where 子句操作符</span><br><span class="line">=</span><br><span class="line">&lt;&gt;</span><br><span class="line">!=</span><br><span class="line">&lt;</span><br><span class="line">&lt;=</span><br><span class="line">&gt;</span><br><span class="line">&gt;=</span><br><span class="line">BETWEEN</span><br><span class="line"></span><br><span class="line"># BETWEEN匹配范围中所有的值，包括指定的开始值和结束值。</span><br><span class="line">select prod_price from [table_name] where prod_price between 5 and 10;</span><br><span class="line"></span><br><span class="line">IS NULL</span><br><span class="line"></span><br><span class="line">AND 的计算次序高于 OR</span><br><span class="line"></span><br><span class="line">IN</span><br><span class="line">NOT IN</span><br><span class="line"></span><br><span class="line"># 通配符 % _</span><br><span class="line"></span><br><span class="line">like &apos;1000&apos;</span><br><span class="line">regexp &apos;1000&apos;</span><br><span class="line"></span><br><span class="line"># LIKE匹配整个列。如果被匹配的文本在列值 中出现，LIKE将不会找到它，相应的行也不被返回(除非使用 通配符)。而REGEXP在列值内进行匹配，如果被匹配的文本在 列值中出现，REGEXP将会找到它，相应的行将被返回。</span><br><span class="line"></span><br><span class="line"># |为正则表达式的OR操作 符。它表示匹配其中之一</span><br></pre></td></tr></table></figure>
+<h1 id="计算字段"><a href="#计算字段" class="headerlink" title="计算字段"></a>计算字段</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">concat()</span><br><span class="line"></span><br><span class="line">Left() 返回串左边的字符</span><br><span class="line">Length() 返回串的长度</span><br><span class="line">Locate() 找出串的一个子串</span><br><span class="line">Lower() 将串转换为小写</span><br><span class="line">LTrim() 去掉串左边的空格</span><br><span class="line">Right() 返回串右边的字符</span><br><span class="line">RTrim() 去掉串右边的空格</span><br><span class="line">Soundex() 返回串的SOUNDEX值</span><br><span class="line">SubString() 返回子串的字符</span><br><span class="line">Upper() 将串转换为大写</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># 数值处理</span><br><span class="line">Abs() 返回一个数的绝对值</span><br><span class="line">Rand() 返回一个随机数</span><br><span class="line">Sqrt() 返回一个数的平方根</span><br><span class="line"></span><br><span class="line">AVG() 返回某列的平均值</span><br><span class="line">COUNT() 返回某列的行数</span><br><span class="line">MAX() 返回某列的最大值</span><br><span class="line">MIN() 返回某列的最小值</span><br><span class="line">SUM() 返回某列值之和</span><br><span class="line"></span><br><span class="line"># 使用COUNT(column)对特定列中具有值的行进行计数，忽略 NULL值</span><br></pre></td></tr></table></figure>
+<p><br></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">HAVING 和 WHERE 的差别:</span><br><span class="line">这里有另一种理解方法，WHERE在数据 分组前进行过滤，HAVING在数据分组后进行过滤。这是一个重 要的区别，WHERE排除的行不包括在分组中。</span><br></pre></td></tr></table></figure>
+<ul>
+<li>Select 子句顺序</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">select</span><br><span class="line">from</span><br><span class="line">where</span><br><span class="line">group by</span><br><span class="line">having</span><br><span class="line">order by</span><br><span class="line">limit</span><br></pre></td></tr></table></figure>
+<p><br></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">UNION</span><br><span class="line">UNION ALL</span><br><span class="line"></span><br><span class="line">math() against()</span><br></pre></td></tr></table></figure>
+<h1 id="INSERT"><a href="#INSERT" class="headerlink" title="INSERT"></a>INSERT</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">insert into values (),();</span><br><span class="line">insert into values select * from [table_name]</span><br></pre></td></tr></table></figure>
+<h1 id="UPDATE"><a href="#UPDATE" class="headerlink" title="UPDATE"></a>UPDATE</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">update [table_name] set name=&apos;&apos;,age=18 where id=&apos;1&apos;;</span><br><span class="line"></span><br><span class="line">update ignore [table_name] ... # 如果某条语句出错，则 取消所有更新</span><br></pre></td></tr></table></figure>
+<h1 id="DELETE"><a href="#DELETE" class="headerlink" title="DELETE"></a>DELETE</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">delete from [table_name] where id=&apos;1&apos;;</span><br><span class="line"></span><br><span class="line">delete from [table_name];</span><br><span class="line">truncate from [table_name];</span><br></pre></td></tr></table></figure>
+<h1 id="CREATE"><a href="#CREATE" class="headerlink" title="CREATE"></a>CREATE</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">create table [table_name] &#123;</span><br><span class="line">	id int auto_increment,</span><br><span class="line">	name char(50),</span><br><span class="line">	primary key(id)</span><br><span class="line">	</span><br><span class="line">&#125; engine =InnoDB</span><br></pre></td></tr></table></figure>
+<h1 id="ALTER"><a href="#ALTER" class="headerlink" title="ALTER"></a>ALTER</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">alter table [table_name] add tel char(20);</span><br><span class="line"></span><br><span class="line">alter table [table_name] drop column [age];</span><br><span class="line"></span><br><span class="line">drop table [table_name]</span><br><span class="line"></span><br><span class="line">rename table [table_name] to [table_name1]</span><br></pre></td></tr></table></figure>
+<h1 id="VIEW"><a href="#VIEW" class="headerlink" title="VIEW"></a>VIEW</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">create view [view_name] as select * from [table_name]</span><br><span class="line"></span><br><span class="line">show create view [view_name];</span><br><span class="line"></span><br><span class="line">drop view [view_name];</span><br></pre></td></tr></table></figure>
+<h1 id="存储过程"><a href="#存储过程" class="headerlink" title="存储过程"></a>存储过程</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">create procedure getDate()</span><br><span class="line">  begin</span><br><span class="line">    select now();</span><br><span class="line">  end;</span><br><span class="line">  </span><br><span class="line"> </span><br><span class="line">call getDate();</span><br><span class="line"></span><br><span class="line">drop procedure getDate;</span><br><span class="line"></span><br><span class="line">show create procedure getDate;</span><br></pre></td></tr></table></figure>
+
+        
+            <div class="donate-container">
+    <div class="donate-button">
+        <button id="donate-button">赞赏</button>
+    </div>
+    <div class="donate-img-container hide" id="donate-img-container">
+        <img id="donate-img" src="" data-src="/img/donate.jpg">
+        <p> 感谢鼓励 </p>
+    </div>
+</div>
+        
+        <br />
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+
+        <div id="lv-container">
+        </div>
+
+    </div>
+</div>
+
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        <li>
+            <a target="_blank" href="https://twitter.com/iconie_alloy">
+                            <span class="fa-stack fa-lg">
+                                <i class="iconfont icon-twitter"></i>
+                            </span>
+            </a>
+        </li>
+        
+        
+        <li>
+            <a target="_blank" href="https://www.zhihu.com/people/ai-er-lan-xue-da">
+                            <span class="fa-stack fa-lg">
+                                 <i class="iconfont icon-zhihu"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+        <li>
+            <a target="_blank" href="http://weibo.com/3286578617">
+                            <span class="fa-stack fa-lg">
+                                  <i class="iconfont icon-weibo"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+        <li>
+            <a target="_blank" href="https://www.facebook.com/xiaotao.nie.5">
+                            <span class="fa-stack fa-lg">
+                                <i class="iconfont icon-facebook"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+        <li>
+            <a target="_blank"  href="https://github.com/AirCloud">
+                            <span class="fa-stack fa-lg">
+                                <i class="iconfont icon-github"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+        <li>
+            <a target="_blank"  href="https://www.linkedin.com/in/小涛-聂-80964aba">
+                            <span class="fa-stack fa-lg">
+                                <i class="iconfont icon-linkedin"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+    </ul>
+    
+    <p>
+        <span>/</span>
+        
+        <span><a href="https://www.10000h.top">10000H</a></span>
+        <span>/</span>
+        
+        <span><a href="https://niexiaotao.com">Xiaotao&#39;s Page</a></span>
+        <span>/</span>
+        
+        <span><a href="#">It helps SEO</a></span>
+        <span>/</span>
+        
+    </p>
+    
+    <p>
+        <span id="busuanzi_container_site_pv">
+            <span id="busuanzi_value_site_pv"></span>PV
+        </span>
+        <span id="busuanzi_container_site_uv">
+            <span id="busuanzi_value_site_uv"></span>UV
+        </span>
+        Created By <a href="https://hexo.io/">Hexo</a>  Theme <a href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a></p>
+</footer>
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = "search.json"
+    window.hexo_root = "/"
+    window.isPost = true
+</script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="/js/index.js"></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+    <script>
+        /**
+         *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+         *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+        */
+        if( '' || '')
+        var disqus_config = function () {
+            this.page.url = '';  // Replace PAGE_URL with your page's canonical URL variable
+            this.page.identifier = ''; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+        };
+
+        (function() { // DON'T EDIT BELOW THIS LINE
+            var d = document, s = d.createElement('script');
+            s.src = 'https://airclouds-blog.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+        })();
+    </script>
+
+
+
+</html>
