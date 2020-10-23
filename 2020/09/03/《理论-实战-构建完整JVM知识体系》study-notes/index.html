@@ -89,7 +89,7 @@
     </div>
     
         <div id="toc" class="toc-article">
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#JVM概述"><span class="toc-text">JVM概述</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#jvm主要功能"><span class="toc-text">jvm主要功能</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#jvm规范作用"><span class="toc-text">jvm规范作用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#jvm规范定义的主要内容"><span class="toc-text">jvm规范定义的主要内容</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#class文件格式概述"><span class="toc-text">class文件格式概述</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#类加载"><span class="toc-text">类加载</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#概述"><span class="toc-text">概述</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#类加载要完成的功能"><span class="toc-text">类加载要完成的功能</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#加载类的方式"><span class="toc-text">加载类的方式</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#类加载器"><span class="toc-text">类加载器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#类加载器说明"><span class="toc-text">类加载器说明</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#双亲委派模型"><span class="toc-text">双亲委派模型</span></a></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#备注"><span class="toc-text">备注</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#JVM概述"><span class="toc-text">JVM概述</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#jvm主要功能"><span class="toc-text">jvm主要功能</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#jvm规范作用"><span class="toc-text">jvm规范作用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#jvm规范定义的主要内容"><span class="toc-text">jvm规范定义的主要内容</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#class文件格式概述"><span class="toc-text">class文件格式概述</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#类加载"><span class="toc-text">类加载</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#概述"><span class="toc-text">概述</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#类加载要完成的功能"><span class="toc-text">类加载要完成的功能</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#加载类的方式"><span class="toc-text">加载类的方式</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#类加载器"><span class="toc-text">类加载器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#类加载器说明"><span class="toc-text">类加载器说明</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#双亲委派模型"><span class="toc-text">双亲委派模型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#破坏双亲委派模型"><span class="toc-text">破坏双亲委派模型</span></a></li></ol></li></ol></li></ol>
 </div>
     
 </div>
@@ -138,7 +138,10 @@
 </span>
     </div>
     <div class="post-content ">
-        <h1 id="JVM概述"><a href="#JVM概述" class="headerlink" title="JVM概述"></a>JVM概述</h1><ul>
+        <h1 id="备注"><a href="#备注" class="headerlink" title="备注"></a>备注</h1><blockquote>
+<p>Java9模块系统开发需要抽空了解一下</p>
+</blockquote>
+<h1 id="JVM概述"><a href="#JVM概述" class="headerlink" title="JVM概述"></a>JVM概述</h1><ul>
 <li>JVM：Java Virtual Machine（java虚拟机）</li>
 <li>虚拟机：通过软件模拟的具有完整硬件系统功能的、运行在一个完全隔离环境中的计算机系统</li>
 <li>jvm是通过软件来模拟java的字节码指令集，是java程序的运行环境</li>
@@ -172,7 +175,7 @@
 <li>异常</li>
 <li>虚拟机的启动、加载、链接和初始化</li>
 </ul>
-<h2 id="class文件格式概述"><a href="#class文件格式概述" class="headerlink" title="class文件格式概述"></a>class文件格式概述</h2><p>class文件是jvm的输入，java虚拟机规范中定义了，class文件的结构，class问价是jvm实现平台无关、技术无关的基础</p>
+<h1 id="class文件格式概述"><a href="#class文件格式概述" class="headerlink" title="class文件格式概述"></a>class文件格式概述</h1><p>class文件是jvm的输入，java虚拟机规范中定义了，class文件的结构，class问价是jvm实现平台无关、技术无关的基础</p>
 <p>1:class文件是一组以8字节为单位的字节流，各个数据项目按顺序紧凑排列</p>
 <p>2:对于占用空间大于8字节的的数据项，按照高位在前的方式分割成多个8字节进行存储</p>
 <p>3:class文件格式里面只有两种数据类型：无符号数、表</p>
@@ -205,14 +208,27 @@
 </ul>
 <h2 id="类加载器"><a href="#类加载器" class="headerlink" title="类加载器"></a>类加载器</h2><p><img width="500px" src="WechatIMG409.png"></p>
 <ul>
+<li>为什么要废除jdk1.8的扩展类加载器</li>
+</ul>
+<blockquote>
+<ol>
+<li>jdk1.8的扩展类加载器主要加载<code>jre/lib/ext</code> 下面的jar包，当我们想扩展功能的时候就把jar包放在下面。其实并不安全</li>
+<li>jdk9想要扩展功能的时候，因为jdk9有了模块化开发，这种扩展机制就被模块化的天然扩展能力取代了</li>
+</ol>
+</blockquote>
+<ul>
 <li>类加载器的关系</li>
 </ul>
 <p><img width="500px" src="WechatIMG411.png"></p>
 <h2 id="类加载器说明"><a href="#类加载器说明" class="headerlink" title="类加载器说明"></a>类加载器说明</h2><p><img width="500px" src="WechatIMG413.png"><br></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 各种类加载器</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ClassLoaderStudy</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> ClassNotFoundException </span>&#123;</span><br><span class="line">		String str = <span class="string">"Hello ClassLoader"</span>;</span><br><span class="line">		System.out.println(<span class="string">"str ClassLoader == "</span> + str.getClass().getClassLoader());</span><br><span class="line">		</span><br><span class="line">		System.out.println(<span class="string">"\n"</span>);</span><br><span class="line">		</span><br><span class="line">		Class driver = Class.forName(<span class="string">"java.sql.Driver"</span>);</span><br><span class="line">		System.out.println(<span class="string">"driver ClassLoader == "</span> + driver.getClassLoader());</span><br><span class="line">		System.out.println(<span class="string">"driver parent ClassLoader == "</span> + driver.getClassLoader().getParent());</span><br><span class="line">		</span><br><span class="line">		System.out.println(<span class="string">"\n"</span>);</span><br><span class="line">		</span><br><span class="line">		ClassLoaderStudy clt = <span class="keyword">new</span> ClassLoaderStudy();</span><br><span class="line">		System.out.println(<span class="string">"clt ClassLoader == "</span> + clt.getClass().getClassLoader());</span><br><span class="line">		System.out.println(<span class="string">"clt parent  ClassLoader == "</span> + clt.getClass().getClassLoader().getParent());</span><br><span class="line">		System.out.println(<span class="string">"clt parent parent ClassLoader == "</span> + clt.getClass().getClassLoader().getParent().getParent());</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 运行输出结果</span></span><br><span class="line">str ClassLoader == <span class="keyword">null</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">driver ClassLoader == jdk.internal.loader.ClassLoaders$PlatformClassLoader@<span class="number">27</span>c170f0</span><br><span class="line">driver parent ClassLoader == <span class="keyword">null</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">clt ClassLoader == jdk.internal.loader.ClassLoaders$AppClassLoader@<span class="number">55054057</span></span><br><span class="line">clt parent  ClassLoader == jdk.internal.loader.ClassLoaders$PlatformClassLoader@<span class="number">27</span>c170f0</span><br><span class="line">clt parent parent ClassLoader == <span class="keyword">null</span></span><br></pre></td></tr></table></figure>
 <p><img width="500px" src="WechatIMG414.png"><br></p>
 <p><img width="500px" src="WechatIMG415.png"></p>
 <h2 id="双亲委派模型"><a href="#双亲委派模型" class="headerlink" title="双亲委派模型"></a>双亲委派模型</h2><p><img width="500px" src="WechatIMG416.png"><br></p>
-<p><img width="500px" src="WechatIMG417.png"><br><img width="500px" src="WechatIMG418.png"><br></p>
+<p><img width="500px" src="WechatIMG417.png"><br><img width="500px" src="WechatIMG30.png"><br></p>
+<p><img width="500px" src="WechatIMG31.png"><br></p>
+<h3 id="破坏双亲委派模型"><a href="#破坏双亲委派模型" class="headerlink" title="破坏双亲委派模型"></a>破坏双亲委派模型</h3><p><img width="500px" src="WechatIMG32.png"><br></p>
 
         
         <br />
