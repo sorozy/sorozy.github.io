@@ -134,8 +134,10 @@
     <div class="post-content ">
         <h1 id="学习备注"><a href="#学习备注" class="headerlink" title="学习备注"></a>学习备注</h1><blockquote>
 <p>学习java io中的装饰器模式</p>
-<p>学习 同步 异步 阻塞 非阻塞</p>
 <p>学习线程池相关的知识</p>
+<p>学习socket等相关的知识</p>
+<p>多线程并发这块是先导知识，后序要深入理解</p>
+<p>Ok-学习 同步 异步 阻塞 非阻塞</p>
 </blockquote>
 <h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><blockquote>
 <p>BIO: Java 1.4以前</p>
@@ -155,7 +157,20 @@
 </li>
 </ul>
 <p><img src="WechatIMG706.png"></p>
-<h1 id="同步-异步-阻塞-非阻塞"><a href="#同步-异步-阻塞-非阻塞" class="headerlink" title="同步 异步 阻塞 非阻塞"></a>同步 异步 阻塞 非阻塞</h1><h1 id="线程池"><a href="#线程池" class="headerlink" title="线程池"></a>线程池</h1><p><img src="WechatIMG708.png"></p>
+<h1 id="同步-异步-阻塞-非阻塞"><a href="#同步-异步-阻塞-非阻塞" class="headerlink" title="同步 异步 阻塞 非阻塞"></a>同步 异步 阻塞 非阻塞</h1><ul>
+<li>同步和异步关注的是<strong>消息通信机制</strong></li>
+</ul>
+<blockquote>
+<p>同步：就是在发出一个<strong>调用</strong>时，在没有得到结果之前，该<strong>调用</strong>就不返回</p>
+<p>异步：<strong>调用</strong>在发出之后，这个<strong>调用</strong>就直接返回了，所以没有返回结果</p>
+</blockquote>
+<ul>
+<li>阻塞和非阻塞关注的是程序在等待调用结果（消息，返回值）时的状态</li>
+</ul>
+<blockquote>
+<p>阻塞调用：是指调用结果返回之前，当前线程会被挂起。调用线程只有在得到结果之后才会返回<br>非阻塞调用：指在不能立刻得到结果之前，该调用不会阻塞当前线程</p>
+</blockquote>
+<h1 id="线程池"><a href="#线程池" class="headerlink" title="线程池"></a>线程池</h1><p><img src="WechatIMG708.png"></p>
 <ul>
 <li>创建线程池的方法</li>
 </ul>
