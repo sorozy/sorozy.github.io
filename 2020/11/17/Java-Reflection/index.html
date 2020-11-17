@@ -11,7 +11,7 @@
 
     <title>
         
-        java - annotation - sorozy | sorozy&#39;s Blog
+        Java - Reflection - sorozy | sorozy&#39;s Blog
         
     </title>
 
@@ -89,7 +89,7 @@
     </div>
     
         <div id="toc" class="toc-article">
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#概述"><span class="toc-text">概述</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#基本注解"><span class="toc-text">基本注解</span></a></li></ol>
+    
 </div>
     
 </div>
@@ -120,20 +120,11 @@
 
 <div class="post-container">
     <div class="post-title">
-        java - annotation
+        Java - Reflection
     </div>
 
     <div class="post-meta">
-        <span class="attr">发布于：<span>2020-11-17 09:59:48</span></span>
-        
-        <span class="attr">标签：/
-        
-        <a class="tag" href="/tags/#java" title="java">java</a>
-        <span>/</span>
-        
-        <a class="tag" href="/tags/#annotation" title="annotation">annotation</a>
-        <span>/</span>
-        
+        <span class="attr">发布于：<span>2020-11-17 11:23:11</span></span>
         
         </span>
         <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
@@ -141,15 +132,7 @@
 </span>
     </div>
     <div class="post-content ">
-        <h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><ul>
-<li><p>从 JDK 5.0 开始, Java 增加了对元数据(MetaData) 的支持, 也就是Annotation(注解)</p>
-</li>
-<li><p>Annotation 其实就是代码里的特殊标记, 这些标记可以在编译, 类加 载, 运行时被读取, 并执行相应的处理。通过使用 Annotation, 程序员 可以在不改变原有逻辑的情况下, 在源文件中嵌入一些补充信息。代码分析工具、开发工具和部署工具可以通过这些补充信息进行验证 或者进行部署</p>
-</li>
-<li>Annotation 可以像修饰符一样被使用, 可用于修饰包,类, 构造器, 方法, 成员变量, 参数, 局部变量的声明, 这些信息被保存在 Annotation 的 “name=value” 对中</li>
-</ul>
-<h1 id="基本注解"><a href="#基本注解" class="headerlink" title="基本注解"></a>基本注解</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 作用：告诉编译器检查这个方法，保证父类包含一个被该方法重写的方法，否则就会编译出错。可以帮助程序员避免一些低级错误*/</span></span><br><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="comment">/** java9 为<span class="doctag">@Deprecated</span>增加了两个属性，</span></span><br><span class="line"><span class="comment">		forRemoveal：该boolean类型的属性指定该api在将来是否会被删除</span></span><br><span class="line"><span class="comment">		since：该String类型的属性指定该api从哪个版本标记为过时</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="meta">@Deprecated</span></span><br><span class="line"><span class="meta">@Deprecated</span>(since=<span class="string">"7"</span>,forRemoval=<span class="keyword">true</span>)</span><br><span class="line"></span><br><span class="line"><span class="meta">@SuppressWarnings</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* java7新增</span></span><br><span class="line"><span class="comment">		抑制“堆污染”警告	</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="meta">@SafeVarargs</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* java8新增*/</span></span><br><span class="line"><span class="meta">@FunctionalInterface</span></span><br></pre></td></tr></table></figure>
-
+        
         
         <br />
         <div id="comment-container">
