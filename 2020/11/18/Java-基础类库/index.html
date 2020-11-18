@@ -11,7 +11,7 @@
 
     <title>
         
-        Java training camp study notes - jvm - sorozy | sorozy&#39;s Blog
+        Java - 基础类库 - sorozy | sorozy&#39;s Blog
         
     </title>
 
@@ -89,7 +89,7 @@
     </div>
     
         <div id="toc" class="toc-article">
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#概述"><span class="toc-text">概述</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#目录"><span class="toc-text">目录</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#编程语言"><span class="toc-text">编程语言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#字节码、类加载器、虚拟"><span class="toc-text">字节码、类加载器、虚拟</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Java字节码技术"><span class="toc-text">Java字节码技术</span></a></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Scanner"><span class="toc-text">Scanner</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#System"><span class="toc-text">System</span></a></li></ol>
 </div>
     
 </div>
@@ -120,18 +120,18 @@
 
 <div class="post-container">
     <div class="post-title">
-        Java training camp study notes - jvm
+        Java - 基础类库
     </div>
 
     <div class="post-meta">
-        <span class="attr">发布于：<span>2020-10-15 20:19:29</span></span>
+        <span class="attr">发布于：<span>2020-11-18 10:51:15</span></span>
         
         <span class="attr">标签：/
         
         <a class="tag" href="/tags/#java" title="java">java</a>
         <span>/</span>
         
-        <a class="tag" href="/tags/#jvm" title="jvm">jvm</a>
+        <a class="tag" href="/tags/#api" title="api">api</a>
         <span>/</span>
         
         
@@ -141,27 +141,8 @@
 </span>
     </div>
     <div class="post-content ">
-        <h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><h2 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h2><blockquote>
-<ol>
-<li>JVM基础知识:不积跬步，无以至千里</li>
-<li>Java字节码技术:不积细流，无以成江河 </li>
-<li>JVM类加载器:山不辞土，故能成其高</li>
-<li>JVM内存模型:海不辞水，故能成其深</li>
-<li>JVM启动参数:博观而约取、厚积而薄发</li>
-<li>第一节课总结回顾与作业实践</li>
-</ol>
-</blockquote>
-<h2 id="编程语言"><a href="#编程语言" class="headerlink" title="编程语言"></a>编程语言</h2><ul>
-<li>机器语言 -&gt; 汇编语言 -&gt; 高级语言</li>
-</ul>
-<blockquote>
-<p>面向过程、面向对象、面向函数</p>
-<p>静态类型、动态类型</p>
-</blockquote>
-<h2 id="字节码、类加载器、虚拟"><a href="#字节码、类加载器、虚拟" class="headerlink" title="字节码、类加载器、虚拟"></a>字节码、类加载器、虚拟</h2><h1 id="Java字节码技术"><a href="#Java字节码技术" class="headerlink" title="Java字节码技术"></a>Java字节码技术</h1><ul>
-<li>Java bytecode 由单字节(byte)的指令组成，理论上最多支持 256 个操作码(opcode)。实 际上Java只使用了200左右的操作码， 还有一些操作码则保留给调试操作</li>
-</ul>
-
+        <h1 id="Scanner"><a href="#Scanner" class="headerlink" title="Scanner"></a>Scanner</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//标准输入</span></span><br><span class="line">System.in</span><br><span class="line"></span><br><span class="line">Scanner sc = <span class="keyword">new</span> Scanner(System.in);</span><br><span class="line">sc.hasNext();</span><br><span class="line">sc.next();</span><br><span class="line">sc.nextLong();</span><br></pre></td></tr></table></figure>
+<h1 id="System"><a href="#System" class="headerlink" title="System"></a>System</h1>
         
         <br />
         <div id="comment-container">
