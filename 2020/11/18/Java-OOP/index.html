@@ -11,7 +11,7 @@
 
     <title>
         
-        Java - 基础类库 - sorozy | sorozy&#39;s Blog
+        Java - OOP - sorozy | sorozy&#39;s Blog
         
     </title>
 
@@ -89,7 +89,7 @@
     </div>
     
         <div id="toc" class="toc-article">
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Scanner"><span class="toc-text">Scanner</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#System"><span class="toc-text">System</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Object"><span class="toc-text">Object</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#String、StringBuffer、StringBuilder"><span class="toc-text">String、StringBuffer、StringBuilder</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Java-7-的ThreadLocalRandom与Random"><span class="toc-text">Java 7 的ThreadLocalRandom与Random</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#BigDecimal"><span class="toc-text">BigDecimal</span></a></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#java类成员"><span class="toc-text">java类成员</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#属性（成员变量）-vs-局部变量"><span class="toc-text">属性（成员变量） vs 局部变量</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#不同点"><span class="toc-text">不同点</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#方法"><span class="toc-text">方法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#return"><span class="toc-text">return</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#overload"><span class="toc-text">overload</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#可变个数的形参"><span class="toc-text">可变个数的形参</span></a></li></ol></li></ol>
 </div>
     
 </div>
@@ -120,18 +120,18 @@
 
 <div class="post-container">
     <div class="post-title">
-        Java - 基础类库
+        Java - OOP
     </div>
 
     <div class="post-meta">
-        <span class="attr">发布于：<span>2020-11-18 10:51:15</span></span>
+        <span class="attr">发布于：<span>2020-11-18 15:17:58</span></span>
         
         <span class="attr">标签：/
         
         <a class="tag" href="/tags/#java" title="java">java</a>
         <span>/</span>
         
-        <a class="tag" href="/tags/#api" title="api">api</a>
+        <a class="tag" href="/tags/#oop" title="oop">oop</a>
         <span>/</span>
         
         
@@ -141,19 +141,50 @@
 </span>
     </div>
     <div class="post-content ">
-        <h1 id="Scanner"><a href="#Scanner" class="headerlink" title="Scanner"></a>Scanner</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">  Scanner sc = <span class="keyword">new</span> Scanner(System.in);</span><br><span class="line">sc.hasNext();</span><br><span class="line">sc.next();</span><br><span class="line">sc.nextLong();</span><br></pre></td></tr></table></figure>
-<h1 id="System"><a href="#System" class="headerlink" title="System"></a>System</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//标准输入</span></span><br><span class="line">System.in</span><br><span class="line">System.nanoTime();</span><br></pre></td></tr></table></figure>
-<h1 id="Object"><a href="#Object" class="headerlink" title="Object"></a>Object</h1><p><br></p>
-<h1 id="String、StringBuffer、StringBuilder"><a href="#String、StringBuffer、StringBuilder" class="headerlink" title="String、StringBuffer、StringBuilder"></a>String、StringBuffer、StringBuilder</h1><ul>
-<li>String类是不可变类</li>
-<li>StringBuffer是线程安全的。StringBuilder是线程不安全的，但高效</li>
-<li><code>Java9</code> 改进了字符串（包括 <code>String、StringBuffer、StringBuilder</code>）的实现，在<code>Java9</code>以前字符串采用<code>char []</code> 数组来保存字符，因此字符串的每个字符占2字节；而<code>Java9</code>的字符串采用<code>byte []</code>数组再加一个 encoding-flag字段来保存字符，因此字符串的每个字符只占1字节。所以<code>Java9</code>的字符串更加节省空间，但字符串的功能方法没有受到任何影响</li>
+        <h1 id="java类成员"><a href="#java类成员" class="headerlink" title="java类成员"></a>java类成员</h1><h2 id="属性（成员变量）-vs-局部变量"><a href="#属性（成员变量）-vs-局部变量" class="headerlink" title="属性（成员变量） vs 局部变量"></a>属性（成员变量） vs 局部变量</h2><h3 id="不同点"><a href="#不同点" class="headerlink" title="不同点"></a>不同点</h3><p>（1）声明位置</p>
+<p>​        成员变量：声明在类的一对{}中</p>
+<p>​        局部变量：声明在方法内、方法形参、代码块内、构造器内、构造器形参</p>
+<p>（2）权限修饰符</p>
+<p>​        成员变量：可以在声明属性时，使用权限修饰符（<code>private protect default public</code>）</p>
+<p>​        局部变量：不可以使用权限修饰符。（仅可以使用final修饰）</p>
+<p>（3）默认初始化值的情况</p>
+<p>成员变量：都有默认初始化值</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">整型（<span class="keyword">byte</span>、<span class="keyword">short</span>、<span class="keyword">int</span>、<span class="keyword">long</span>）：<span class="number">0</span></span><br><span class="line">浮点型（<span class="keyword">float</span>、<span class="keyword">double</span>）：<span class="number">0.0</span></span><br><span class="line">字符型（<span class="keyword">char</span>）：<span class="number">0</span>  （或<span class="string">'\u0000'</span>）</span><br><span class="line">布尔型（<span class="keyword">boolean</span>）：<span class="keyword">false</span></span><br><span class="line">引用数据类型（类、数组、接口）：<span class="keyword">null</span></span><br></pre></td></tr></table></figure>
+<p>局部变量：<strong>没有默认初始化值。意味着我们在使用局部变量前一定要显示初始化（赋值）</strong>。特别的，形参，我们在调用时赋值即可。</p>
+<p>（4）在内存中加载的位置</p>
+<p>成员变量：加载到堆空间（非static）</p>
+<p>局部变量：加载到栈空间</p>
+<h2 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h2><h3 id="return"><a href="#return" class="headerlink" title="return"></a>return</h3><ul>
+<li>终止方法</li>
+<li>返回数据</li>
 </ul>
-<h1 id="Java-7-的ThreadLocalRandom与Random"><a href="#Java-7-的ThreadLocalRandom与Random" class="headerlink" title="Java 7 的ThreadLocalRandom与Random"></a>Java 7 的ThreadLocalRandom与Random</h1><ul>
-<li>ThreadLocalRandom是Java 7 新增的一个类，是Random的增强版，在并发访问的环境下，使用ThreadLocalRandom来代替Random可以减少多线程竞争，最终保证系统具有更好的线程安全性</li>
+<h2 id="overload"><a href="#overload" class="headerlink" title="overload"></a>overload</h2><ul>
+<li><code>两同一不同</code></li>
 </ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Random random = <span class="keyword">new</span> Random(System.currentTimeMillis());</span><br><span class="line">ThreadLocalRandom threadLocalRandom = ThreadLocalRandom.current();</span><br></pre></td></tr></table></figure>
-<h1 id="BigDecimal"><a href="#BigDecimal" class="headerlink" title="BigDecimal"></a>BigDecimal</h1>
+<blockquote>
+<p>同一个类、相同的方法名。不同的形参列表</p>
+</blockquote>
+<ul>
+<li>判断是否重载</li>
+</ul>
+<blockquote>
+<p>跟方法的权限修饰、返回值、形参变量名、方法体都没关系</p>
+</blockquote>
+<h2 id="可变个数的形参"><a href="#可变个数的形参" class="headerlink" title="可变个数的形参"></a>可变个数的形参</h2><ol>
+<li><p>jdk 5.0新增的内容</p>
+</li>
+<li><p>具体使用：</p>
+<blockquote>
+<p>2.1 可变个数形参的格式：数据类型 … 变量名<br></p>
+<p>2.2 当调用可变个数形参的方法时，传入的参数个数可以是：0个，1个,2个，…<br></p>
+<p>2.3 可变个数形参的方法与本类中方法名相同，形参不同的方法之间构成重载<br></p>
+<p>2.4 可变个数形参的方法与本类中方法名相同，形参类型也相同的数组之间不构成重载。换句话说，二者不能共存。<br></p>
+<p> 2.5 可变个数形参在方法的形参中，必须声明在末尾<br></p>
+<p> 2.6  可变个数形参在方法的形参中,最多只能声明一个可变形参<br></p>
+</blockquote>
+</li>
+</ol>
+
         
         <br />
         <div id="comment-container">
