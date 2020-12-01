@@ -11,7 +11,7 @@
 
     <title>
         
-        Java training camp study notes - jvm - sorozy | sorozy&#39;s Blog
+        《MySQL实战45讲》study notes - sorozy | sorozy&#39;s Blog
         
     </title>
 
@@ -89,7 +89,7 @@
     </div>
     
         <div id="toc" class="toc-article">
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#概述"><span class="toc-text">概述</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#目录"><span class="toc-text">目录</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#编程语言"><span class="toc-text">编程语言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#字节码、类加载器、虚拟"><span class="toc-text">字节码、类加载器、虚拟</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Java字节码技术"><span class="toc-text">Java字节码技术</span></a></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#MySQL整体架构"><span class="toc-text">MySQL整体架构</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Server层"><span class="toc-text">Server层</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#连接器"><span class="toc-text">连接器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#查询缓存"><span class="toc-text">查询缓存</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#分析器"><span class="toc-text">分析器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#优化器"><span class="toc-text">优化器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#执行器"><span class="toc-text">执行器</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#存储引擎层"><span class="toc-text">存储引擎层</span></a></li></ol></li></ol>
 </div>
     
 </div>
@@ -120,18 +120,18 @@
 
 <div class="post-container">
     <div class="post-title">
-        Java training camp study notes - jvm
+        《MySQL实战45讲》study notes
     </div>
 
     <div class="post-meta">
-        <span class="attr">发布于：<span>2020-10-15 20:19:29</span></span>
+        <span class="attr">发布于：<span>2020-11-30 21:00:45</span></span>
         
         <span class="attr">标签：/
         
-        <a class="tag" href="/tags/#java" title="java">java</a>
+        <a class="tag" href="/tags/#mysql" title="mysql">mysql</a>
         <span>/</span>
         
-        <a class="tag" href="/tags/#jvm" title="jvm">jvm</a>
+        <a class="tag" href="/tags/#database" title="database">database</a>
         <span>/</span>
         
         
@@ -141,25 +141,41 @@
 </span>
     </div>
     <div class="post-content ">
-        <h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><h2 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h2><blockquote>
+        <h1 id="MySQL整体架构"><a href="#MySQL整体架构" class="headerlink" title="MySQL整体架构"></a>MySQL整体架构</h1><p><img width="800px" src="0d2070e8f84c4801adbfa03bda1f98d9.png"></p>
+<h2 id="Server层"><a href="#Server层" class="headerlink" title="Server层"></a>Server层</h2><ul>
+<li>Server层包括连接器、查询缓存、分析器、优化器、执行器等，涵盖MySQL的大多数核心服务功能，以及所有的内置函数（如日期、时间、数学和加密函数等），所有跨存储引擎的功能都在这一层实现，比如存储过程、触发器、视图等</li>
+</ul>
+<h3 id="连接器"><a href="#连接器" class="headerlink" title="连接器"></a>连接器</h3><ul>
+<li><p>连接器负责跟客户端建立连接、获取权限、维持和管理连接</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql -h$ip -P$port -u$user -p</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>如果用户名密码认证通过，连接器会到权限表里面查出你拥有的权限。之后，这个连接里面的权限判断逻辑，都将依赖于此时读到的权限</p>
+</li>
+<li><p>长连接占用资源和内存比较大，如何解决？</p>
+<blockquote>
 <ol>
-<li>JVM基础知识:不积跬步，无以至千里</li>
-<li>Java字节码技术:不积细流，无以成江河 </li>
-<li>JVM类加载器:山不辞土，故能成其高</li>
-<li>JVM内存模型:海不辞水，故能成其深</li>
-<li>JVM启动参数:博观而约取、厚积而薄发</li>
-<li>第一节课总结回顾与作业实践</li>
+<li>定期断开长连接。使用一段时间，或者程序里面判断执行过一个占用内存的大查询后，断开连接，之后要查询再重连。</li>
+<li>如果你用的是MySQL 5.7或更新版本，可以在每次执行一个比较大的操作后，通过执行 mysql_reset_connection来重新初始化连接资源。这个过程不需要重连和重新做权限验证，但是会将连接恢复到刚刚创建完时的状态。</li>
 </ol>
 </blockquote>
-<h2 id="编程语言"><a href="#编程语言" class="headerlink" title="编程语言"></a>编程语言</h2><ul>
-<li>机器语言 -&gt; 汇编语言 -&gt; 高级语言</li>
+</li>
 </ul>
-<blockquote>
-<p>面向过程、面向对象、面向函数</p>
-<p>静态类型、动态类型</p>
-</blockquote>
-<h2 id="字节码、类加载器、虚拟"><a href="#字节码、类加载器、虚拟" class="headerlink" title="字节码、类加载器、虚拟"></a>字节码、类加载器、虚拟</h2><h1 id="Java字节码技术"><a href="#Java字节码技术" class="headerlink" title="Java字节码技术"></a>Java字节码技术</h1><ul>
-<li>Java bytecode 由单字节(byte)的指令组成，理论上最多支持 256 个操作码(opcode)。实 际上Java只使用了200左右的操作码， 还有一些操作码则保留给调试操作</li>
+<h3 id="查询缓存"><a href="#查询缓存" class="headerlink" title="查询缓存"></a>查询缓存</h3><ul>
+<li>MySQL拿到一个查询请求后，会先到查询缓存看看，之前是不是执行过这条语句。之前执行过的语句及其结果可能会以key-value对的形式，被直接缓存在内存中。key是查询的语句，value是查询的结果。如果你的查询能够直接在这个缓存中找到key，那么这个value就会被直接返回给客户端。</li>
+<li><strong>但是大多数情况下我会建议你不要使用查询缓存，为什么呢？因为查询缓存往往弊大于利。</strong></li>
+<li>查询缓存的失效非常频繁，只要有对一个表的更新，这个表上所有的查询缓存都会被清空。</li>
+<li>MySQL 8.0版本直接将查询缓存的整块功能删掉了，也就是说8.0开始彻底没有这个功能了。</li>
+</ul>
+<h3 id="分析器"><a href="#分析器" class="headerlink" title="分析器"></a>分析器</h3><p>词法分析 -&gt; 语法分析</p>
+<h3 id="优化器"><a href="#优化器" class="headerlink" title="优化器"></a>优化器</h3><ul>
+<li>优化器是在表里面有多个索引的时候，决定使用哪个索引；或者在一个语句有多表关联（join）的时候，决定各个表的连接顺序。</li>
+</ul>
+<h3 id="执行器"><a href="#执行器" class="headerlink" title="执行器"></a>执行器</h3><ul>
+<li>开始执行的时候，要先判断一下你对这个表T有没有执行查询的权限，如果没有，就会返回没有权限的错误</li>
+<li></li>
+</ul>
+<h2 id="存储引擎层"><a href="#存储引擎层" class="headerlink" title="存储引擎层"></a>存储引擎层</h2><ul>
+<li>存储引擎层负责数据的存储和提取</li>
 </ul>
 
         

@@ -89,7 +89,7 @@
     </div>
     
         <div id="toc" class="toc-article">
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#备注"><span class="toc-text">备注</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#前置知识与环境准备"><span class="toc-text">前置知识与环境准备</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#安装配置MySQL"><span class="toc-text">安装配置MySQL</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#yum源安装mysql"><span class="toc-text">yum源安装mysql</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#本地安装MySQL数据库"><span class="toc-text">本地安装MySQL数据库</span></a></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#备注"><span class="toc-text">备注</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#前置知识与环境准备"><span class="toc-text">前置知识与环境准备</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#安装配置MySQL"><span class="toc-text">安装配置MySQL</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#yum源安装mysql"><span class="toc-text">yum源安装mysql</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#本地安装MySQL数据库"><span class="toc-text">本地安装MySQL数据库</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#ER图"><span class="toc-text">ER图</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#业务数据库设计流程"><span class="toc-text">业务数据库设计流程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#E-R图概念"><span class="toc-text">E-R图概念</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#CRUD"><span class="toc-text">CRUD</span></a></li></ol>
 </div>
     
 </div>
@@ -144,6 +144,7 @@
         <h1 id="备注"><a href="#备注" class="headerlink" title="备注"></a>备注</h1><blockquote>
 <p>linux的目录结构需要了解一下</p>
 <p>linux常用命令</p>
+<p>理解常用的mysql引擎</p>
 </blockquote>
 <h1 id="前置知识与环境准备"><a href="#前置知识与环境准备" class="headerlink" title="前置知识与环境准备"></a>前置知识与环境准备</h1><ul>
 <li><p>常用命令</p>
@@ -166,8 +167,11 @@
 </li>
 </ul>
 <h2 id="本地安装MySQL数据库"><a href="#本地安装MySQL数据库" class="headerlink" title="本地安装MySQL数据库"></a>本地安装MySQL数据库</h2><ul>
-<li><p>MySQL本地安装文件上传到Linux主机的/root/mysql目录</p>
+<li><p><a href="https://downloads.mysql.com/archives/community/" target="_blank" rel="noopener">官网下载MySQL的tar包</a> 然后上传到Linux主机的/root/mysql目录</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scp -r 22 /Users/sorozy/Documents/study/database/阿里新零售数据库设计与实战/document/MySQL本地安装包/mysql-8.0.11-1.el7.x86_64.rpm-bundle.tar root@192.168.0.113:/root/mysql/</span><br></pre></td></tr></table></figure>
 </li>
+</ul>
+<ul>
 <li><p>执行解压缩</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar xvf mysql-8.0.11-1.el7.x86_64.rpm-bundle.tar</span><br></pre></td></tr></table></figure>
 </li>
@@ -175,10 +179,10 @@
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">yum install perl -y</span><br><span class="line">yum install net-tools -y</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>卸载mariadb程序包</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">rpm -qa|grep mariadb</span><br><span class="line">rpm -e mariadb-libs-5.5.60-1.el7_5.x86_64 --nodeps</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">rpm -qa|grep mariadb</span><br><span class="line">rpm -e mariadb-libs-5.5.56-2.el7.x86_64 --nodeps</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>安装MySQL程序包</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">rpm -ivh mysql-community-common-8.0.11-1.el7.x86_64.rpm </span><br><span class="line">rpm -ivh mysql-community-libs-8.0.11-1.el7.x86_64.rpm </span><br><span class="line">rpm -ivh mysql-community-client-8.0.11-1.el7.x86_64.rpm </span><br><span class="line">rpm -ivh mysql-community-server-8.0.11-1.el7.x86_64.rpm</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">rpm -ivh mysql-community-common-8.0.11-1.el7.x86_64.rpm</span><br><span class="line">rpm -ivh mysql-community-libs-8.0.11-1.el7.x86_64.rpm</span><br><span class="line">rpm -ivh mysql-community-client-8.0.11-1.el7.x86_64.rpm</span><br><span class="line">rpm -ivh mysql-community-server-8.0.11-1.el7.x86_64.rpm</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>修改MySQL目录权限</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chmod -R 777 /var/lib/mysql/</span><br></pre></td></tr></table></figure>
@@ -195,7 +199,7 @@
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">grep 'temporary password' /var/log/mysqld.log</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>登陆数据库之后，修改默认密码</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alter user user() identified by &quot;abc123456&quot;;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alter user user() identified by &quot;111111&quot;;</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>允许远程使用root帐户</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">UPDATE user SET host = &apos;%&apos; WHERE user =&apos;root&apos;;</span><br><span class="line">FLUSH PRIVILEGES;</span><br></pre></td></tr></table></figure>
@@ -207,6 +211,16 @@
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">firewall-cmd --zone=public --add-port=3306/tcp --permanent</span><br><span class="line">firewall-cmd --reload</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
+<h1 id="ER图"><a href="#ER图" class="headerlink" title="ER图"></a>ER图</h1><h2 id="业务数据库设计流程"><a href="#业务数据库设计流程" class="headerlink" title="业务数据库设计流程"></a>业务数据库设计流程</h2><p><img width="800px" src="WechatIMG225.png"></p>
+<h2 id="E-R图概念"><a href="#E-R图概念" class="headerlink" title="E-R图概念"></a>E-R图概念</h2><ul>
+<li><p>E-R图也称实体-联系图(Entity Relationship Diagram)，提供了表示实体类型、属性和联系的方法，用来描述<a href="https://baike.baidu.com/item/现实世界/688877" target="_blank" rel="noopener">现实世界</a>的<a href="https://baike.baidu.com/item/概念模型/3187025" target="_blank" rel="noopener">概念模型</a>。</p>
+</li>
+<li><p>它是描述现实世界关系概念模型的有效方法。是表示概念关系模型的一种方式。用“矩形框”表示<a href="https://baike.baidu.com/item/实体型/3187353" target="_blank" rel="noopener">实体型</a>，矩形框内写明实体名称；用“椭圆图框”或圆角矩形表示实体的属性，并用“实心线段”将其与相应关系的“实体型”连接起来；</p>
+</li>
+<li>瀑布模型</li>
+<li>螺旋模型</li>
+</ul>
+<h1 id="CRUD"><a href="#CRUD" class="headerlink" title="CRUD"></a>CRUD</h1><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">insert</span> <span class="keyword">ignore</span> <span class="keyword">into</span></span><br></pre></td></tr></table></figure>
 
         
         <br />
