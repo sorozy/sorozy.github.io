@@ -89,7 +89,7 @@
     </div>
     
         <div id="toc" class="toc-article">
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#implement-dynamic-array"><span class="toc-text">implement dynamic array</span></a></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Array介绍"><span class="toc-text">Array介绍</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#implement-dynamic-array"><span class="toc-text">implement dynamic array</span></a></li></ol>
 </div>
     
 </div>
@@ -141,56 +141,55 @@
 </span>
     </div>
     <div class="post-content ">
-        <ul>
-<li><font color="red">数组（Array）是一种<strong>线性表</strong>数据结构。它用一组连续的内存空间，来存储一组具有相同类型的数据</font>
-</li>
-<li><p>数组存储的内存模型上来看，“下标”最确切的定义应该是“偏移（offset）”</p>
-</li>
+        <h1 id="Array介绍"><a href="#Array介绍" class="headerlink" title="Array介绍"></a>Array介绍</h1><ul>
+<li><font color="red">数组（Array）是一种<strong>线性表</strong>数据结构。它用一组连续的内存空间，来存储一组具有相同类型的数据</font></li>
+<li>数组存储的内存模型上来看，“下标”最确切的定义应该是“偏移（offset）”</li>
 </ul>
 <ul>
-<li><p>线性表（Linear List）</p>
+<li>连续的内存空间和相同类型的数据</li>
+</ul>
 <blockquote>
-<p>数据排成像一条线一样的结构。每个线性表上的数据最多只有前和后两个方向。<br></p>
-<p>线性表数据结构：数组，链表、队列、栈等<br></p>
-</blockquote>
-</li>
-<li><p>非线性表</p>
-<blockquote>
-<p>二叉树、堆、图等<br></p>
-<p>在非线性表中，数据之间并不是简单的前后关系<br></p>
-</blockquote>
-</li>
-<li><p>连续的内存空间和相同类型的数据</p>
-<blockquote>
-<p>根据下标随机访问的时间复杂度为 O(1)<br></p>
+<p><strong>根据下标随机访问的时间复杂度为 O(1)</strong></p>
 <p>要想在数组中删除、插入一个数据，为了保证连续性，就需要做大量的数据搬移工作</p>
 </blockquote>
-</li>
-<li><p>低效的“插入”和“删除”</p>
+<ul>
+<li>低效的“插入”和“删除”</li>
+</ul>
 <blockquote>
-<p>O(n)<br></p>
-<p>插入改进：直接将第 k 位的数据搬移到数组元素的最后，把新的元素直接放入第 k 个位置<br></p>
-<p>删除改进：记录数据已经被删除。当数组没有更多空间存储数据时，我们再触发执行一次真正的删除操作，这样就大大减少了删除操作导致的数据搬移。</p>
+<p>O(n)</p>
+<p>插入改进：直接将第 k 位的数据搬移到数组元素的最后，把新的元素直接放入第 k 个位置</p>
+<p>删除改进：记录数据已经被删除。当数组没有更多空间存储数据时，我们再触发执行一次真正的删除操作，这样就大大减少了删除操作导致的数据搬移</p>
 </blockquote>
-</li>
-<li><p>警惕数组的访问越界问题</p>
-</li>
-<li><p>ArrayList</p>
+<ul>
+<li>ArrayList</li>
+</ul>
+<p>（1）最大的优势就是可以将很多数组操作的细节封装起来，支持动态扩容</p>
+<p>（2）完全不需要关心底层的扩容逻辑</p>
+<p>（3）扩容操作涉及内存申请和数据搬移，比较耗时，最好在创建 ArrayList 的时候事先指定数据大小</p>
+<p>（4）Java ArrayList 无法存储基本类型</p>
+<ul>
+<li>为何数组从0开始编号</li>
+</ul>
 <blockquote>
-<p>最大的优势就是可以将很多数组操作的细节封装起来，支持动态扩容<br></p>
-<p>完全不需要关心底层的扩容逻辑<br></p>
-<p>扩容操作涉及内存申请和数据搬移，比较耗时，最好在创建 ArrayList 的时候事先指定数据大小<br></p>
-<p>Java ArrayList 无法存储基本类型</p>
-</blockquote>
-</li>
-<li><p>为何数组从0开始编号</p>
-<blockquote>
-<p>“下标”最确切的定义应该是“偏移（offset）”<br></p>
-<p>a[0]就是偏移为 0 的位置，也就是首地址<br></p>
+<p>“下标”最确切的定义应该是“偏移（offset）”</p>
+<p>a[0]就是偏移为 0 的位置，也就是首地址</p>
 <p>原因：减少一次减法指令</p>
 </blockquote>
-</li>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">a[i]_address = base_address + i * data_type_size</span><br></pre></td></tr></table></figure>
+<ul>
+<li>线性表（Linear List）</li>
 </ul>
+<blockquote>
+<p>数据排成像一条线一样的结构。每个线性表上的数据最多只有前和后两个方向</p>
+<p>线性表数据结构：数组，链表、队列、栈等</p>
+</blockquote>
+<ul>
+<li>非线性表</li>
+</ul>
+<blockquote>
+<p>二叉树、堆、图等</p>
+<p>在非线性表中，数据之间并不是简单的前后关系</p>
+</blockquote>
 <h1 id="implement-dynamic-array"><a href="#implement-dynamic-array" class="headerlink" title="implement dynamic array"></a>implement dynamic array</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
         
