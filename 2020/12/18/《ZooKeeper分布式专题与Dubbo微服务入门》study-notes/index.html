@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content>
+    <meta name="keyword" content="undefined">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+        《ZooKeeper分布式专题与Dubbo微服务入门》study notes - sorozy | sorozy&#39;s Blog
+        
+    </title>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/aircloud.css">
+    <link rel="stylesheet" href="/css/gitment.css">
+    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
+    <link href="//at.alicdn.com/t/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i> 起风了，唯有努力生存 </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar ">
+            <img src="/img/avatar.jpg" />
+        </div>
+        <div class="name">
+            <i>sorozy</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li >
+                <a href="/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>主页</span>
+                </a>
+            </li>
+            <li >
+                <a href="/tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>标签</span>
+                </a>
+            </li>
+            <li >
+                <a href="/archive">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>存档</span>
+                </a>
+            </li>
+            <li >
+                <a href="/about/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>关于</span>
+                </a>
+            </li>
+            
+            <li>
+                <a id="search">
+                    <i class="iconfont icon-sousuo1"></i>
+                    <span>搜索</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#学习备注"><span class="toc-text">学习备注</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#ZooKeeper简介"><span class="toc-text">ZooKeeper简介</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#什么是分布式系统"><span class="toc-text">什么是分布式系统</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ZooKeeper特性"><span class="toc-text">ZooKeeper特性</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#安装-配置-启动"><span class="toc-text">安装/配置/启动</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#jdk安装"><span class="toc-text">jdk安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ZooKeeper安装"><span class="toc-text">ZooKeeper安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ZooKeeper主要目录结构"><span class="toc-text">ZooKeeper主要目录结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#zoo-cfg配置"><span class="toc-text">zoo.cfg配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#启动"><span class="toc-text">启动</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#基本数据模型"><span class="toc-text">基本数据模型</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#数据模型介绍"><span class="toc-text">数据模型介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#作用体现"><span class="toc-text">作用体现</span></a></li></ol></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input"/>
+            <span id="begin-search">搜索</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+
+        <div class="index-about-mobile">
+            <i> 起风了，唯有努力生存 </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        《ZooKeeper分布式专题与Dubbo微服务入门》study notes
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">发布于：<span>2020-12-18 03:54:16</span></span>
+        
+        <span class="attr">标签：/
+        
+        <a class="tag" href="/tags/#zookeeper" title="zookeeper">zookeeper</a>
+        <span>/</span>
+        
+        <a class="tag" href="/tags/#dubbo" title="dubbo">dubbo</a>
+        <span>/</span>
+        
+        
+        </span>
+        <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
+</span>
+</span>
+    </div>
+    <div class="post-content ">
+        <h1 id="学习备注"><a href="#学习备注" class="headerlink" title="学习备注"></a>学习备注</h1><blockquote>
+<ol>
+<li></li>
+</ol>
+</blockquote>
+<h1 id="ZooKeeper简介"><a href="#ZooKeeper简介" class="headerlink" title="ZooKeeper简介"></a>ZooKeeper简介</h1><ul>
+<li>中间件，提供协调服务</li>
+<li>作用于分布式系统，发挥其优势，可以为大数据服务</li>
+<li>支持Java，提供Java和C语言的客户端api</li>
+</ul>
+<h2 id="什么是分布式系统"><a href="#什么是分布式系统" class="headerlink" title="什么是分布式系统"></a>什么是分布式系统</h2><ul>
+<li>很多台计算机组成一个整体，一个整体一致对外并且处理同一请求</li>
+<li>内部的每台计算机都可以相互通信（rest/rpc）</li>
+<li>客户端到服务端的一次请求到响应结束会经历很多台计算机</li>
+</ul>
+<h2 id="ZooKeeper特性"><a href="#ZooKeeper特性" class="headerlink" title="ZooKeeper特性"></a>ZooKeeper特性</h2><ul>
+<li>一致性：数据一致性，数据按照顺序分批入库</li>
+<li>原子性：事物要么成功要么失败，不会局部化</li>
+<li>单一视图：客户端连接集群中任意一zk节点，数据都是一致的</li>
+<li>可靠性：每次对zk的操作状态都会保存在服务端</li>
+<li>实时性：客户端可以读取到zk服务端的最新数据</li>
+</ul>
+<h1 id="安装-配置-启动"><a href="#安装-配置-启动" class="headerlink" title="安装/配置/启动"></a>安装/配置/启动</h1><h2 id="jdk安装"><a href="#jdk安装" class="headerlink" title="jdk安装"></a>jdk安装</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 上传 jdk-8u271-linux-x64.tar.gz 到 /home</span></span><br><span class="line">tar -zxvf jdk-8u271-linux-x64.tar.gz</span><br><span class="line"></span><br><span class="line">mv jdk1.8.0_271 jdk8</span><br><span class="line"></span><br><span class="line">mv jdk8 /usr</span><br><span class="line"></span><br><span class="line">vim /etc/profile</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 添加如下配置</span></span><br><span class="line">export JAVA_HOME=/usr/jdk8</span><br><span class="line">export CLASSPATH=.:$&#123;JAVA_HOME&#125;/jre/lib/rt.jar:$&#123;JAVA_HOME&#125;/lib/dt.jar:$&#123;JAVA_HOME&#125;/lib/tools.jar</span><br><span class="line">export PATH=$PATH:$&#123;JAVA_HOME&#125;/bin</span><br><span class="line"></span><br><span class="line">source /etc/profile</span><br><span class="line"></span><br><span class="line">java -version</span><br></pre></td></tr></table></figure>
+<h2 id="ZooKeeper安装"><a href="#ZooKeeper安装" class="headerlink" title="ZooKeeper安装"></a>ZooKeeper安装</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">cd /home</span><br><span class="line"></span><br><span class="line">wget http://archive.apache.org/dist/zookeeper/zookeeper-3.4.11/zookeeper-3.4.11.tar.gz</span><br><span class="line"></span><br><span class="line">tar -zxvf zookeeper-3.4.11.tar.gz</span><br><span class="line"></span><br><span class="line">mv zookeeper-3.4.11 zookeeper</span><br><span class="line"></span><br><span class="line">mv zookeeper /usr/local/</span><br><span class="line"></span><br><span class="line">vim /etc/profile</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 添加如下配置</span></span><br><span class="line">export ZOOKEEPER_HOME=/usr/local/zookeeper</span><br><span class="line">export PATH=$PATH:$ZOOKEEPER_HOME/bin</span><br><span class="line"></span><br><span class="line">source /etc/profile</span><br></pre></td></tr></table></figure>
+<h2 id="ZooKeeper主要目录结构"><a href="#ZooKeeper主要目录结构" class="headerlink" title="ZooKeeper主要目录结构"></a>ZooKeeper主要目录结构</h2><ul>
+<li>bin：主要的一些运行命令</li>
+<li>conf：存放配置文件，其中我们需要修改zk.cfg</li>
+<li>contrib：附加的一些功能</li>
+<li>dist-maven：mvn编译后的目录</li>
+<li>dos：文档</li>
+<li>lib：需要依赖的jar包</li>
+<li>recipes：案例demo代码</li>
+<li>src：源码</li>
+</ul>
+<h2 id="zoo-cfg配置"><a href="#zoo-cfg配置" class="headerlink" title="zoo.cfg配置"></a>zoo.cfg配置</h2><p><img width="800px" src="1.png"></p>
+<p><img width="800px" src="2.png"></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">cd conf</span><br><span class="line"></span><br><span class="line">cp zoo_sample.cfg zoo.cfg</span><br><span class="line"></span><br><span class="line">vim zoo.cfg</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> The number of milliseconds of each tick</span></span><br><span class="line">tickTime=2000</span><br><span class="line"><span class="meta">#</span><span class="bash"> The number of ticks that the initial</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> synchronization phase can take</span></span><br><span class="line">initLimit=10</span><br><span class="line"><span class="meta">#</span><span class="bash"> The number of ticks that can pass between</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> sending a request and getting an acknowledgement</span></span><br><span class="line">syncLimit=5</span><br><span class="line"><span class="meta">#</span><span class="bash"> the directory <span class="built_in">where</span> the snapshot is stored.</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> <span class="keyword">do</span> not use /tmp <span class="keyword">for</span> storage, /tmp here is just</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> example sakes.</span></span><br><span class="line">dataDir=/usr/local/zookeeper/dataDir</span><br><span class="line">dataLogDir=/usr/local/zookeeper/dataLogDir</span><br><span class="line"><span class="meta">#</span><span class="bash"> the port at <span class="built_in">which</span> the clients will connect</span></span><br><span class="line">clientPort=2181</span><br><span class="line"><span class="meta">#</span><span class="bash"> the maximum number of client connections.</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> increase this <span class="keyword">if</span> you need to handle more clients</span></span><br><span class="line"><span class="meta">#</span><span class="bash">maxClientCnxns=60</span></span><br><span class="line"><span class="meta">#</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> Be sure to <span class="built_in">read</span> the maintenance section of the</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> administrator guide before turning on autopurge.</span></span><br><span class="line"><span class="meta">#</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> http://zookeeper.apache.org/doc/current/zookeeperAdmin.html<span class="comment">#sc_maintenance</span></span></span><br><span class="line"><span class="meta">#</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> The number of snapshots to retain <span class="keyword">in</span> dataDir</span></span><br><span class="line"><span class="meta">#</span><span class="bash">autopurge.snapRetainCount=3</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> Purge task interval <span class="keyword">in</span> hours</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> Set to <span class="string">"0"</span> to <span class="built_in">disable</span> auto purge feature</span></span><br><span class="line"><span class="meta">#</span><span class="bash">autopurge.purgeInterval=1</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cd zookeeper</span><br><span class="line"></span><br><span class="line">mkdir dataDir dataLogDir</span><br></pre></td></tr></table></figure>
+<h2 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">cd /bin</span><br><span class="line"></span><br><span class="line">zkServer.sh start</span><br><span class="line"></span><br><span class="line">zkServer.sh restart</span><br><span class="line"></span><br><span class="line">zkServer.sh stop</span><br></pre></td></tr></table></figure>
+<h1 id="基本数据模型"><a href="#基本数据模型" class="headerlink" title="基本数据模型"></a>基本数据模型</h1><h2 id="数据模型介绍"><a href="#数据模型介绍" class="headerlink" title="数据模型介绍"></a>数据模型介绍</h2><p><img width="800px" src="WechatIMG294.png"><br></p>
+<p><img width="800px" src="WechatIMG295.png"><br></p>
+<p><img width="800px" src="WechatIMG296.png"><br></p>
+<p><img width="800px" src="WechatIMG297.png"><br></p>
+<h2 id="作用体现"><a href="#作用体现" class="headerlink" title="作用体现"></a>作用体现</h2><p><img width="800px" src="WechatIMG298.png"><br></p>
+<p><img width="800px" src="WechatIMG299.png"><br></p>
+<p><img width="800px" src="WechatIMG300.png"><br></p>
+<p><img width="800px" src="WechatIMG301.png"><br></p>
+<p><img width="800px" src="WechatIMG302.png"></p>
+
+        
+        <br />
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+
+        <div id="lv-container">
+        </div>
+
+    </div>
+</div>
+
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+
+        
+
+        
+
+        
+        <li>
+            <a target="_blank"  href="https://github.com/sorozy">
+                            <span class="fa-stack fa-lg">
+                                <i class="iconfont icon-github"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+
+    </ul>
+    
+    <p>
+        <span id="busuanzi_container_site_pv">
+            <span id="busuanzi_value_site_pv"></span>PV
+        </span>
+        <span id="busuanzi_container_site_uv">
+            <span id="busuanzi_value_site_uv"></span>UV
+        </span>
+        Created By <a href="https://hexo.io/">Hexo</a>  Theme <a href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a></p>
+</footer>
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = "search.json"
+    window.hexo_root = "/"
+    window.isPost = true
+</script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="/js/index.js"></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+</html>

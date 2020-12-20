@@ -89,7 +89,7 @@
     </div>
     
         <div id="toc" class="toc-article">
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#学习备注"><span class="toc-text">学习备注</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#概述"><span class="toc-text">概述</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#java-io"><span class="toc-text">java io</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#字符流"><span class="toc-text">字符流</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#字节流"><span class="toc-text">字节流</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Socket"><span class="toc-text">Socket</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#同步-异步-阻塞-非阻塞"><span class="toc-text">同步 异步 阻塞 非阻塞</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#线程池"><span class="toc-text">线程池</span></a></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#学习备注"><span class="toc-text">学习备注</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#基础网络层的解析与协议"><span class="toc-text">基础网络层的解析与协议</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#概述"><span class="toc-text">概述</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#java-io"><span class="toc-text">java io</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#字符流"><span class="toc-text">字符流</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#字节流"><span class="toc-text">字节流</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Socket"><span class="toc-text">Socket</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#同步-异步-阻塞-非阻塞"><span class="toc-text">同步 异步 阻塞 非阻塞</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#线程池"><span class="toc-text">线程池</span></a></li></ol>
 </div>
     
 </div>
@@ -126,6 +126,15 @@
     <div class="post-meta">
         <span class="attr">发布于：<span>2020-09-01 11:51:03</span></span>
         
+        <span class="attr">标签：/
+        
+        <a class="tag" href="/tags/#io" title="io">io</a>
+        <span>/</span>
+        
+        <a class="tag" href="/tags/#network" title="network">network</a>
+        <span>/</span>
+        
+        
         </span>
         <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
 </span>
@@ -139,13 +148,13 @@
 <p>多线程并发这块是先导知识，后序要深入理解</p>
 <p>Ok-学习 同步 异步 阻塞 非阻塞</p>
 </blockquote>
-<h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><blockquote>
-<p>BIO: Java 1.4以前</p>
-<p>NIO: java 1.4</p>
-<p>AIO: java 1.7</p>
-</blockquote>
+<h1 id="基础网络层的解析与协议"><a href="#基础网络层的解析与协议" class="headerlink" title="基础网络层的解析与协议"></a>基础网络层的解析与协议</h1><p>##### </p>
+<h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><p>BIO：Java 1.4以前</p>
+<p>NIO： java 1.4</p>
+<p>AIO： java 1.7</p>
 <ul>
 <li>网络编程的本质：进程间的通信</li>
+<li>通信的基础：IO模型</li>
 </ul>
 <h2 id="java-io"><a href="#java-io" class="headerlink" title="java io"></a>java io</h2><h2 id="字符流"><a href="#字符流" class="headerlink" title="字符流"></a>字符流</h2><p><img src="WechatIMG702.png"></p>
 <h2 id="字节流"><a href="#字节流" class="headerlink" title="字节流"></a>字节流</h2><p><img src="WechatIMG703.png"></p>
