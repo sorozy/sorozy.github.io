@@ -89,7 +89,7 @@
     </div>
     
         <div id="toc" class="toc-article">
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#备注"><span class="toc-text">备注</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#前置知识与环境准备"><span class="toc-text">前置知识与环境准备</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#安装配置MySQL"><span class="toc-text">安装配置MySQL</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#yum源安装mysql"><span class="toc-text">yum源安装mysql</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#本地安装MySQL数据库"><span class="toc-text">本地安装MySQL数据库</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#ER图"><span class="toc-text">ER图</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#业务数据库设计流程"><span class="toc-text">业务数据库设计流程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#E-R图概念"><span class="toc-text">E-R图概念</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#CRUD"><span class="toc-text">CRUD</span></a></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#学习备注"><span class="toc-text">学习备注</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#前置知识与环境准备"><span class="toc-text">前置知识与环境准备</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#安装配置MySQL"><span class="toc-text">安装配置MySQL</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#yum源安装mysql"><span class="toc-text">yum源安装mysql</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#本地安装MySQL数据库"><span class="toc-text">本地安装MySQL数据库</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#ER图"><span class="toc-text">ER图</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#业务数据库设计流程"><span class="toc-text">业务数据库设计流程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#E-R图概念"><span class="toc-text">E-R图概念</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#CRUD"><span class="toc-text">CRUD</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#事物"><span class="toc-text">事物</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#新零售数据结构设计"><span class="toc-text">新零售数据结构设计</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#常见问题与企业级解决方案"><span class="toc-text">常见问题与企业级解决方案</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#表的主键用数字还是UUID"><span class="toc-text">表的主键用数字还是UUID</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#UUID优点"><span class="toc-text">UUID优点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#UUID主键的缺点"><span class="toc-text">UUID主键的缺点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#主键自动增长的优点"><span class="toc-text">主键自动增长的优点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#分布式环境下的主键自动增长"><span class="toc-text">分布式环境下的主键自动增长</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#如何在线修改表结构"><span class="toc-text">如何在线修改表结构</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#ALTER-TABLE-修改表结构的弊病"><span class="toc-text">ALTER TABLE 修改表结构的弊病</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用Percona-Toolkit工具"><span class="toc-text">使用Percona-Toolkit工具</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#订单号和流水号的关系"><span class="toc-text">订单号和流水号的关系</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#逻辑删除还是物理删除"><span class="toc-text">逻辑删除还是物理删除</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#千万记录，如何快速分页"><span class="toc-text">千万记录，如何快速分页</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#读多写少和读多写多"><span class="toc-text">读多写少和读多写多</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#读多写少的解决方案"><span class="toc-text">读多写少的解决方案</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#写多读少的解决方案"><span class="toc-text">写多读少的解决方案</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#删改数据如何避免锁表"><span class="toc-text">删改数据如何避免锁表</span></a></li></ol></li></ol>
 </div>
     
 </div>
@@ -141,10 +141,13 @@
 </span>
     </div>
     <div class="post-content ">
-        <h1 id="备注"><a href="#备注" class="headerlink" title="备注"></a>备注</h1><blockquote>
+        <h1 id="学习备注"><a href="#学习备注" class="headerlink" title="学习备注"></a>学习备注</h1><blockquote>
 <p>linux的目录结构需要了解一下</p>
 <p>linux常用命令</p>
 <p>理解常用的mysql引擎</p>
+<p>补充的sql需要深入再理解一下</p>
+<p>数据库的事物深入了解</p>
+<p>数据表的设计后序再好好学习一下</p>
 </blockquote>
 <h1 id="前置知识与环境准备"><a href="#前置知识与环境准备" class="headerlink" title="前置知识与环境准备"></a>前置知识与环境准备</h1><ul>
 <li><p>常用命令</p>
@@ -193,7 +196,7 @@
 </ul>
 <ul>
 <li><p>启动MySQL</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">service mysqld start</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 网络安装使用mysql，本地安装使用mysqld</span></span><br><span class="line">service mysql/mysqld start</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>查看初始密码</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">grep 'temporary password' /var/log/mysqld.log</span><br></pre></td></tr></table></figure>
@@ -220,7 +223,96 @@
 <li>瀑布模型</li>
 <li>螺旋模型</li>
 </ul>
-<h1 id="CRUD"><a href="#CRUD" class="headerlink" title="CRUD"></a>CRUD</h1><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">insert</span> <span class="keyword">ignore</span> <span class="keyword">into</span></span><br></pre></td></tr></table></figure>
+<h1 id="CRUD"><a href="#CRUD" class="headerlink" title="CRUD"></a>CRUD</h1><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 忽略错误 */</span></span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">ignore</span> <span class="keyword">into</span> </span><br><span class="line"></span><br><span class="line"><span class="comment">/* 存在就更新，不存在就插入 */</span></span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> <span class="keyword">table</span> (a,b,c) <span class="keyword">VALUES</span> (<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>)  <span class="keyword">ON</span> <span class="keyword">DUPLICATE</span> <span class="keyword">KEY</span> <span class="keyword">UPDATE</span> c=c+<span class="number">1</span>; </span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">	使用from子查询（使用join），替代where子查询 </span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">	删除、更新语句使用表连接（join）</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+<h1 id="事物"><a href="#事物" class="headerlink" title="事物"></a>事物</h1><h1 id="新零售数据结构设计"><a href="#新零售数据结构设计" class="headerlink" title="新零售数据结构设计"></a>新零售数据结构设计</h1><h1 id="常见问题与企业级解决方案"><a href="#常见问题与企业级解决方案" class="headerlink" title="常见问题与企业级解决方案"></a>常见问题与企业级解决方案</h1><h2 id="表的主键用数字还是UUID"><a href="#表的主键用数字还是UUID" class="headerlink" title="表的主键用数字还是UUID"></a>表的主键用数字还是UUID</h2><ul>
+<li>UUID是通用唯一识别码的缩写，其目的是让分布式系统中的所有元素，都能有唯一的辨识信息，而不需要通过中央控制端来做信息的指定</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select uuid();</span><br></pre></td></tr></table></figure>
+<h3 id="UUID优点"><a href="#UUID优点" class="headerlink" title="UUID优点"></a>UUID优点</h3><p>（1）使用UUID分布式生成主键，降低了全局节点的压力。使得主键生成速度更快</p>
+<p>（2）使用UUID生成主键值全局唯一</p>
+<p>（3）跨服务器合并数据很方便</p>
+<h3 id="UUID主键的缺点"><a href="#UUID主键的缺点" class="headerlink" title="UUID主键的缺点"></a>UUID主键的缺点</h3><p>（1）UUID占用16个字节，比4字节的INT类型和8字节的BIGINT类型更加占用存储空间</p>
+<p>（2）UUID是字符串类型，查询速度很慢</p>
+<p>（3）UUID不是顺序增长，作为主键，数据写入IO随机性很大</p>
+<h3 id="主键自动增长的优点"><a href="#主键自动增长的优点" class="headerlink" title="主键自动增长的优点"></a>主键自动增长的优点</h3><p>（1）INT和BIGINT占用存储空间很小</p>
+<p>（2）MySQL检索数字类型速度远快过字符串</p>
+<p>（3）主键值是自动增长的，所以IO写入连续性较好</p>
+<h3 id="分布式环境下的主键自动增长"><a href="#分布式环境下的主键自动增长" class="headerlink" title="分布式环境下的主键自动增长"></a>分布式环境下的主键自动增长</h3><p>（1）在一个项目中不同的模块的数据库里，若使用数据库自带的主键自动增长可能造成主键冲突。解决方案是：<strong>使用数据库中间件（如MyCat）统一生成自动增长的主键（全局唯一）</strong></p>
+<p>（2）<strong>无论什么场合，都不推荐使用UUID作为数据表的主键，而是要利用数据库中间件来生成全局主键</strong></p>
+<h2 id="如何在线修改表结构"><a href="#如何在线修改表结构" class="headerlink" title="如何在线修改表结构"></a>如何在线修改表结构</h2><p>（1）在业务系统运行的过程中随意删改字段，会造成重大事故</p>
+<p>（2）常规的做法是业务停机，维护表结构</p>
+<p>（3）但是不影响正常业务的表结构是允许在线修改的</p>
+<h3 id="ALTER-TABLE-修改表结构的弊病"><a href="#ALTER-TABLE-修改表结构的弊病" class="headerlink" title="ALTER TABLE 修改表结构的弊病"></a>ALTER TABLE 修改表结构的弊病</h3><p>（1）由于修改表结构是表级锁，因此在修改表结构时，影响表写入操作</p>
+<p>（2）如果修改表结构失败，必须还原表结构，所以耗时更长</p>
+<p>（3）大数据表记录多，修改表结构锁表时间很久</p>
+<h3 id="使用Percona-Toolkit工具"><a href="#使用Percona-Toolkit工具" class="headerlink" title="使用Percona-Toolkit工具"></a>使用Percona-Toolkit工具</h3><ul>
+<li><p>安装第三方依赖包</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">yum install  -y perl-DBI</span><br><span class="line">yum install  -y perl-DBD-mysql</span><br><span class="line">yum install  -y perl-IO-Socket-SSL</span><br><span class="line">yum install  -y perl-Digest-MD5</span><br><span class="line">yum install  -y perl-TermReadKey</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>安装Percona-Toolkit</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">进入到Percona-Tookit离线文件所在的目录</span></span><br><span class="line">rpm -ivh *.rpm</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>允许连接</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ALTER USER &apos;root&apos;@&apos;%&apos; IDENTIFIED BY &apos;password&apos; PASSWORD EXPIRE NEVER;</span><br><span class="line">ALTER USER &apos;root&apos;@&apos;%&apos; IDENTIFIED WITH mysql_native_password by &apos;111111&apos;;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<ul>
+<li><p>把客户收货地址表中的name字段改成VARCHAR(20)</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pt-online-schema-change --host=10.2.14.125 --port=3306 --user=root --password=111111 --alter "MODIFY name VARCHAR(20) NOT NULL COMMENT '收货人'" D=neti, t=t_customer_address --print --execute --charset=utf8</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="订单号和流水号的关系"><a href="#订单号和流水号的关系" class="headerlink" title="订单号和流水号的关系"></a>订单号和流水号的关系</h2><ul>
+<li>订单号既是订单的唯一编号，而且经常被用来检索，所以应当是数字类型的主键</li>
+<li>流水号是打印在购物单据上的字符串，便于阅读，但是不用做查询</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.concurrent.ThreadLocalRandom;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">	生产流水号</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Demo1</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">createOrderCode</span><span class="params">(String type,String organizationId,</span></span></span><br><span class="line"><span class="function"><span class="params">			String spgId,String date)</span> </span>&#123;</span><br><span class="line">		StringBuffer buffer=<span class="keyword">new</span> StringBuffer();</span><br><span class="line">		buffer.append(type);</span><br><span class="line">		buffer.append(organizationId);</span><br><span class="line">		buffer.append(spgId);</span><br><span class="line">		buffer.append(date);</span><br><span class="line">		ThreadLocalRandom.current().ints(<span class="number">0</span>,<span class="number">9</span>).limit(<span class="number">10</span>).forEach((one)-&gt;&#123;</span><br><span class="line">			buffer.append(one);</span><br><span class="line">		&#125;);</span><br><span class="line">		<span class="keyword">return</span> buffer.toString();</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		String code=createOrderCode(<span class="string">"S"</span>, <span class="string">"000012"</span>, <span class="string">"11002"</span>, <span class="string">"20180514"</span>);</span><br><span class="line">		System.out.println(code);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="逻辑删除还是物理删除"><a href="#逻辑删除还是物理删除" class="headerlink" title="逻辑删除还是物理删除"></a>逻辑删除还是物理删除</h2><p>物理删除就是用DELETE、TRUNCATE、DROP语句删除数据。物理删除是把数据从硬盘中删除，可以释放存储空间，缩小数据表的体积，对性能提升有帮助</p>
+<p>（1）由于物理删除是真删除，所以数据恢复起来难度大</p>
+<p>（2）物理删除会造成主键的不连续，导致分页查询变慢</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT ……  FROM ……  LIMIT 1000, 20;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># 加速查询</span><br><span class="line">SELECT ……  FROM ……  WHERE  id&gt;=1000  AND  id&lt;= 1020;</span><br></pre></td></tr></table></figure>
+<p>（3）核心业务表的数据不建议做物理删除，只做状态变更。比如订单作废、账号禁用、优惠券作废等等。既不删除数据，又能缩小数据表体积，可以把记录转移到历史表。</p>
+<p>（4）逻辑删除就是在数据表添加一个字段（is_deleted），用字段值标记该数据已经逻辑删除，查询的时候跳过这些数据</p>
+<h2 id="千万记录，如何快速分页"><a href="#千万记录，如何快速分页" class="headerlink" title="千万记录，如何快速分页"></a>千万记录，如何快速分页</h2><p>（1）利用主键索引来加速分页查询</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">SELECT * FROM t_test WHERE id&gt;=5000000 LIMIT 100;</span><br><span class="line">SELECT * FROM t_test WHERE id&gt;=5000000 AND id&lt;=5000000+100;</span><br></pre></td></tr></table></figure>
+<p>（2）如果用物理删除，主键不连续，就不能用主键索引来加速分页，所以只能使用折中的方案</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT t.id, t.name FROM t_test t JOIN ( SELECT id FROM t_test LIMIT 5000000, 100) tmp ON t.id = tmp.id;</span><br></pre></td></tr></table></figure>
+<p>（3）业务上限定不能查询太靠后的数据</p>
+<h2 id="读多写少和读多写多"><a href="#读多写少和读多写多" class="headerlink" title="读多写少和读多写多"></a>读多写少和读多写多</h2><h3 id="读多写少的解决方案"><a href="#读多写少的解决方案" class="headerlink" title="读多写少的解决方案"></a>读多写少的解决方案</h3><p>可以把MySQL组建集群，并且设置上读写分离</p>
+<h3 id="写多读少的解决方案"><a href="#写多读少的解决方案" class="headerlink" title="写多读少的解决方案"></a>写多读少的解决方案</h3><p>如果是低价值的数据，可以采用NoSQL数据库来存储这些数据</p>
+<p>如果是高价值的数据，可以用TokuDB来保存</p>
+<h2 id="删改数据如何避免锁表"><a href="#删改数据如何避免锁表" class="headerlink" title="删改数据如何避免锁表"></a>删改数据如何避免锁表</h2><ul>
+<li>什么事锁机制</li>
+</ul>
+<p>InnoDb采用的是行级锁，删改数据的时候，MySQL会锁住记录</p>
+<ul>
+<li>共享锁（S锁）和排它锁（X锁）</li>
+<li><p>排它锁都不允许其它事物执行写操作，但是可以读数据</p>
+</li>
+<li><p>共享锁</p>
+<blockquote>
+<p>添加了共享锁，其它事务只能读取加锁数据，而不能修改和删除</p>
+<p>只有在serializable事物隔离级别，才会给数据读取添加共享锁</p>
+</blockquote>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select ... from .. lock in share mode;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>排它锁</p>
+<blockquote>
+<p>MySQL默认会给删除、添加、修改记录，设置排它锁</p>
+<p>排它锁不允许对数据再另行加锁</p>
+</blockquote>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select ... from ... for update;(添加排它锁)</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>如何减少并发操作的锁冲突</p>
+<blockquote>
+<p>把复杂的sql语句，拆分成简单的sql语句</p>
+</blockquote>
+</li>
+</ul>
 
         
         <br />

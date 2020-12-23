@@ -89,7 +89,7 @@
     </div>
     
         <div id="toc" class="toc-article">
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#学习备注"><span class="toc-text">学习备注</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#初识Nginx"><span class="toc-text">初识Nginx</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#主流web服务器"><span class="toc-text">主流web服务器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Nginx优点"><span class="toc-text">Nginx优点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Nginx的三个主要应用场景"><span class="toc-text">Nginx的三个主要应用场景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Nginx为什么会出现"><span class="toc-text">Nginx为什么会出现</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Nginx组成"><span class="toc-text">Nginx组成</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Nginx配置语法"><span class="toc-text">Nginx配置语法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#配置参数-时间单位"><span class="toc-text">配置参数 - 时间单位</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#配置参数-空间单位"><span class="toc-text">配置参数 - 空间单位</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#http配置的指令块"><span class="toc-text">http配置的指令块</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Nginx命令行"><span class="toc-text">Nginx命令行</span></a></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#学习备注"><span class="toc-text">学习备注</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#初识Nginx"><span class="toc-text">初识Nginx</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#主流web服务器"><span class="toc-text">主流web服务器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Nginx的三个主要应用场景"><span class="toc-text">Nginx的三个主要应用场景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Nginx为什么会出现"><span class="toc-text">Nginx为什么会出现</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Nginx优点"><span class="toc-text">Nginx优点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Nginx组成"><span class="toc-text">Nginx组成</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Nginx配置语法"><span class="toc-text">Nginx配置语法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#配置参数-时间单位"><span class="toc-text">配置参数 - 时间单位</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#配置参数-空间单位"><span class="toc-text">配置参数 - 空间单位</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#http配置的指令块"><span class="toc-text">http配置的指令块</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Nginx命令行"><span class="toc-text">Nginx命令行</span></a></li></ol></li></ol>
 </div>
     
 </div>
@@ -147,22 +147,19 @@
 </ol>
 </blockquote>
 <h1 id="初识Nginx"><a href="#初识Nginx" class="headerlink" title="初识Nginx"></a>初识Nginx</h1><h2 id="主流web服务器"><a href="#主流web服务器" class="headerlink" title="主流web服务器"></a>主流web服务器</h2><p>Nginx、Apache、Tomcat</p>
-<h2 id="Nginx优点"><a href="#Nginx优点" class="headerlink" title="Nginx优点"></a>Nginx优点</h2><p>高并发、高性能</p>
-<p>可扩展性好</p>
-<p>高可靠性</p>
-<p>热部署</p>
-<p>BSD许可</p>
 <h2 id="Nginx的三个主要应用场景"><a href="#Nginx的三个主要应用场景" class="headerlink" title="Nginx的三个主要应用场景"></a>Nginx的三个主要应用场景</h2><p><img src="WechatIMG550.png" width="80%"></p>
-<h2 id="Nginx为什么会出现"><a href="#Nginx为什么会出现" class="headerlink" title="Nginx为什么会出现"></a>Nginx为什么会出现</h2><blockquote>
-<ol>
-<li><p>互联网的数据量快速增长：互联网的快速普及、全球化物联网</p>
-</li>
+<h2 id="Nginx为什么会出现"><a href="#Nginx为什么会出现" class="headerlink" title="Nginx为什么会出现"></a>Nginx为什么会出现</h2><ol>
+<li>互联网的数据量快速增长：互联网的快速普及、全球化物联网</li>
 <li><p>摩尔定律：性能提升</p>
 </li>
 <li><p>低效的Apache：一个连接对应一个进程</p>
 </li>
 </ol>
-</blockquote>
+<h2 id="Nginx优点"><a href="#Nginx优点" class="headerlink" title="Nginx优点"></a>Nginx优点</h2><p>高并发、高性能</p>
+<p>可扩展性好</p>
+<p>高可靠性</p>
+<p>热部署</p>
+<p>BSD许可</p>
 <h2 id="Nginx组成"><a href="#Nginx组成" class="headerlink" title="Nginx组成"></a>Nginx组成</h2><p><img src="WechatIMG552.png" width="80%"></p>
 <h2 id="Nginx配置语法"><a href="#Nginx配置语法" class="headerlink" title="Nginx配置语法"></a>Nginx配置语法</h2><p><img src="WechatIMG559.png" width="80%"></p>
 <h3 id="配置参数-时间单位"><a href="#配置参数-时间单位" class="headerlink" title="配置参数 - 时间单位"></a>配置参数 - 时间单位</h3><table>
