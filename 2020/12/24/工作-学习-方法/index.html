@@ -11,7 +11,7 @@
 
     <title>
         
-        《一站式学习Java网络编程 全面理解BIO/NIO/AIO》study notes - sorozy | sorozy&#39;s Blog
+        工作&amp;学习 - 方法 - sorozy | sorozy&#39;s Blog
         
     </title>
 
@@ -89,7 +89,7 @@
     </div>
     
         <div id="toc" class="toc-article">
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#学习备注"><span class="toc-text">学习备注</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#基础网络层的解析与协议"><span class="toc-text">基础网络层的解析与协议</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#概述"><span class="toc-text">概述</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#java-io"><span class="toc-text">java io</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#字符流"><span class="toc-text">字符流</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#字节流"><span class="toc-text">字节流</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Socket"><span class="toc-text">Socket</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#同步-异步-阻塞-非阻塞"><span class="toc-text">同步 异步 阻塞 非阻塞</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#线程池"><span class="toc-text">线程池</span></a></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#TODO-LIST"><span class="toc-text">TODO LIST</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#为什么要TODO-LIST"><span class="toc-text">为什么要TODO LIST</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#TODOLIST-原理就像是CPU时间片"><span class="toc-text">TODOLIST 原理就像是CPU时间片</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#方法"><span class="toc-text">方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#设置目标"><span class="toc-text">设置目标</span></a></li></ol></li></ol>
 </div>
     
 </div>
@@ -120,18 +120,15 @@
 
 <div class="post-container">
     <div class="post-title">
-        《一站式学习Java网络编程 全面理解BIO/NIO/AIO》study notes
+        工作&amp;学习 - 方法
     </div>
 
     <div class="post-meta">
-        <span class="attr">发布于：<span>2020-09-01 11:51:03</span></span>
+        <span class="attr">发布于：<span>2020-12-24 18:35:42</span></span>
         
         <span class="attr">标签：/
         
-        <a class="tag" href="/tags/#network" title="network">network</a>
-        <span>/</span>
-        
-        <a class="tag" href="/tags/#io" title="io">io</a>
+        <a class="tag" href="/tags/#study" title="study">study</a>
         <span>/</span>
         
         
@@ -141,49 +138,17 @@
 </span>
     </div>
     <div class="post-content ">
-        <h1 id="学习备注"><a href="#学习备注" class="headerlink" title="学习备注"></a>学习备注</h1><blockquote>
-<p>学习java io中的装饰器模式</p>
-<p>学习线程池相关的知识</p>
-<p>学习socket等相关的知识</p>
-<p>多线程并发这块是先导知识，后序要深入理解</p>
-<p>Ok-学习 同步 异步 阻塞 非阻塞</p>
-</blockquote>
-<h1 id="基础网络层的解析与协议"><a href="#基础网络层的解析与协议" class="headerlink" title="基础网络层的解析与协议"></a>基础网络层的解析与协议</h1><p>##### </p>
-<h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><p>BIO：Java 1.4以前</p>
-<p>NIO： java 1.4</p>
-<p>AIO： java 1.7</p>
-<ul>
-<li>网络编程的本质：进程间的通信</li>
-<li>通信的基础：IO模型</li>
-</ul>
-<h2 id="java-io"><a href="#java-io" class="headerlink" title="java io"></a>java io</h2><h2 id="字符流"><a href="#字符流" class="headerlink" title="字符流"></a>字符流</h2><p><img src="WechatIMG702.png"></p>
-<h2 id="字节流"><a href="#字节流" class="headerlink" title="字节流"></a>字节流</h2><p><img src="WechatIMG703.png"></p>
-<h1 id="Socket"><a href="#Socket" class="headerlink" title="Socket"></a>Socket</h1><ul>
-<li>socket也是一种数据源</li>
-<li><p>socket是网络通信的断点</p>
-</li>
-<li><p>通过socket发送数据</p>
-</li>
-</ul>
-<p><img src="WechatIMG706.png"></p>
-<h1 id="同步-异步-阻塞-非阻塞"><a href="#同步-异步-阻塞-非阻塞" class="headerlink" title="同步 异步 阻塞 非阻塞"></a>同步 异步 阻塞 非阻塞</h1><ul>
-<li>同步和异步关注的是<strong>消息通信机制</strong></li>
-</ul>
-<blockquote>
-<p>同步：就是在发出一个<strong>调用</strong>时，在没有得到结果之前，该<strong>调用</strong>就不返回</p>
-<p>异步：<strong>调用</strong>在发出之后，这个<strong>调用</strong>就直接返回了，所以没有返回结果</p>
-</blockquote>
-<ul>
-<li>阻塞和非阻塞关注的是程序在等待调用结果（消息，返回值）时的状态</li>
-</ul>
-<blockquote>
-<p>阻塞调用：是指调用结果返回之前，当前线程会被挂起。调用线程只有在得到结果之后才会返回<br>非阻塞调用：指在不能立刻得到结果之前，该调用不会阻塞当前线程</p>
-</blockquote>
-<h1 id="线程池"><a href="#线程池" class="headerlink" title="线程池"></a>线程池</h1><p><img src="WechatIMG708.png"></p>
-<ul>
-<li>创建线程池的方法</li>
-</ul>
-<p><img src="WechatIMG709.png"></p>
+        <h1 id="TODO-LIST"><a href="#TODO-LIST" class="headerlink" title="TODO LIST"></a>TODO LIST</h1><h2 id="为什么要TODO-LIST"><a href="#为什么要TODO-LIST" class="headerlink" title="为什么要TODO LIST"></a>为什么要TODO LIST</h2><p>（1）记不住 </p>
+<p>（2）拎不清</p>
+<p>（3）被打断</p>
+<h2 id="TODOLIST-原理就像是CPU时间片"><a href="#TODOLIST-原理就像是CPU时间片" class="headerlink" title="TODOLIST 原理就像是CPU时间片"></a>TODOLIST 原理就像是CPU时间片</h2><p>（1）事件</p>
+<p>（2）状态</p>
+<p>（3）优先级 </p>
+<p>==》 进展 </p>
+<h2 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h2><p>（1）番茄工作法（每工作一段时间就休息一下）</p>
+<p>（2）有效的时间管理</p>
+<p>（3）养成习惯</p>
+<h2 id="设置目标"><a href="#设置目标" class="headerlink" title="设置目标"></a>设置目标</h2><p>（1）设置小目标，细化目标，每阶段需要做的事情（可有明确收获）</p>
 
         
         <br />
