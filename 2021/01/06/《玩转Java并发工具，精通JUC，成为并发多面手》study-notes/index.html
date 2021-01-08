@@ -89,7 +89,7 @@
     </div>
     
         <div id="toc" class="toc-article">
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#学习备注"><span class="toc-text">学习备注</span></a></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#学习备注"><span class="toc-text">学习备注</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#并发工具类-分类"><span class="toc-text">并发工具类 - 分类</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#线程池-治理线程的法宝"><span class="toc-text">线程池 - 治理线程的法宝</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#为什么要使用线程池"><span class="toc-text">为什么要使用线程池</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#线程池的好处"><span class="toc-text">线程池的好处</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#线程池适用场合"><span class="toc-text">线程池适用场合</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#创建和停止线程池"><span class="toc-text">创建和停止线程池</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#线程池构造函数及其参数"><span class="toc-text">线程池构造函数及其参数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#添加线程规则"><span class="toc-text">添加线程规则</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#增减线程的特点"><span class="toc-text">增减线程的特点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#线程池应该手动创建还是自动创建"><span class="toc-text">线程池应该手动创建还是自动创建</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#直接调用JDK封装好的线程池会带来的问题"><span class="toc-text">直接调用JDK封装好的线程池会带来的问题</span></a></li></ol></li></ol></li></ol>
 </div>
     
 </div>
@@ -144,6 +144,137 @@
         <h1 id="学习备注"><a href="#学习备注" class="headerlink" title="学习备注"></a>学习备注</h1><blockquote>
 <p>test</p>
 </blockquote>
+<h1 id="并发工具类-分类"><a href="#并发工具类-分类" class="headerlink" title="并发工具类 - 分类"></a>并发工具类 - 分类</h1><p>（1）为了并发安全：互斥同步、非互斥同步、无同步方案</p>
+<p>（2）管理线程、提高效率</p>
+<p>（3）线程协作</p>
+<h1 id="线程池-治理线程的法宝"><a href="#线程池-治理线程的法宝" class="headerlink" title="线程池 - 治理线程的法宝"></a>线程池 - 治理线程的法宝</h1><h2 id="为什么要使用线程池"><a href="#为什么要使用线程池" class="headerlink" title="为什么要使用线程池"></a>为什么要使用线程池</h2><ul>
+<li><p>问题一：反复创建线程（传统创建线程的方式）开销大</p>
+</li>
+<li><p>问题二：过多的线程会占用太多内存</p>
+</li>
+</ul>
+<p>解决思路：</p>
+<blockquote>
+<p>用少量的线程，避免内存占用过多</p>
+<p>让这部分线程都保持工作，且可以反复执行任务，避免生命周期的损耗</p>
+</blockquote>
+<h2 id="线程池的好处"><a href="#线程池的好处" class="headerlink" title="线程池的好处"></a>线程池的好处</h2><p>（1）加快响应速度</p>
+<p>（2）合理利用CPU和内存</p>
+<p>（3）统一管理</p>
+<h2 id="线程池适用场合"><a href="#线程池适用场合" class="headerlink" title="线程池适用场合"></a>线程池适用场合</h2><p>（1）服务器接收到大量请求时，使用线程池技术非常合适，它可以大大减少线程的创建和销毁次数，提高服务器工作效率</p>
+<p>（2）实际开发中，如果需要创建5个以上的线程，则可以使用线程池来管理</p>
+<h2 id="创建和停止线程池"><a href="#创建和停止线程池" class="headerlink" title="创建和停止线程池"></a>创建和停止线程池</h2><h3 id="线程池构造函数及其参数"><a href="#线程池构造函数及其参数" class="headerlink" title="线程池构造函数及其参数"></a>线程池构造函数及其参数</h3><ul>
+<li>ThreadPoolExecutor提供了四个构造函数</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//五个参数的构造函数</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">ThreadPoolExecutor</span><span class="params">(<span class="keyword">int</span> corePoolSize,</span></span></span><br><span class="line"><span class="function"><span class="params">                          <span class="keyword">int</span> maximumPoolSize,</span></span></span><br><span class="line"><span class="function"><span class="params">                          <span class="keyword">long</span> keepAliveTime,</span></span></span><br><span class="line"><span class="function"><span class="params">                          TimeUnit unit,</span></span></span><br><span class="line"><span class="function"><span class="params">                          BlockingQueue&lt;Runnable&gt; workQueue)</span></span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function"><span class="comment">//六个参数的构造函数-1</span></span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">ThreadPoolExecutor</span><span class="params">(<span class="keyword">int</span> corePoolSize,</span></span></span><br><span class="line"><span class="function"><span class="params">                          <span class="keyword">int</span> maximumPoolSize,</span></span></span><br><span class="line"><span class="function"><span class="params">                          <span class="keyword">long</span> keepAliveTime,</span></span></span><br><span class="line"><span class="function"><span class="params">                          TimeUnit unit,</span></span></span><br><span class="line"><span class="function"><span class="params">                          BlockingQueue&lt;Runnable&gt; workQueue,</span></span></span><br><span class="line"><span class="function"><span class="params">                          ThreadFactory threadFactory)</span></span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function"><span class="comment">//六个参数的构造函数-2</span></span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">ThreadPoolExecutor</span><span class="params">(<span class="keyword">int</span> corePoolSize,</span></span></span><br><span class="line"><span class="function"><span class="params">                          <span class="keyword">int</span> maximumPoolSize,</span></span></span><br><span class="line"><span class="function"><span class="params">                          <span class="keyword">long</span> keepAliveTime,</span></span></span><br><span class="line"><span class="function"><span class="params">                          TimeUnit unit,</span></span></span><br><span class="line"><span class="function"><span class="params">                          BlockingQueue&lt;Runnable&gt; workQueue,</span></span></span><br><span class="line"><span class="function"><span class="params">                          RejectedExecutionHandler handler)</span></span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function"><span class="comment">//七个参数的构造函数</span></span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">ThreadPoolExecutor</span><span class="params">(<span class="keyword">int</span> corePoolSize,</span></span></span><br><span class="line"><span class="function"><span class="params">                          <span class="keyword">int</span> maximumPoolSize,</span></span></span><br><span class="line"><span class="function"><span class="params">                          <span class="keyword">long</span> keepAliveTime,</span></span></span><br><span class="line"><span class="function"><span class="params">                          TimeUnit unit,</span></span></span><br><span class="line"><span class="function"><span class="params">                          BlockingQueue&lt;Runnable&gt; workQueue,</span></span></span><br><span class="line"><span class="function"><span class="params">                          ThreadFactory threadFactory,</span></span></span><br><span class="line"><span class="function"><span class="params">                          RejectedExecutionHandler handler)</span></span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>在ThreadPoolExecutor类中有4个构造函数，最终调用的是如下函数：</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">ThreadPoolExecutor</span><span class="params">(<span class="keyword">int</span> corePoolSize,</span></span></span><br><span class="line"><span class="function"><span class="params">                              <span class="keyword">int</span> maximumPoolSize,</span></span></span><br><span class="line"><span class="function"><span class="params">                              <span class="keyword">long</span> keepAliveTime,</span></span></span><br><span class="line"><span class="function"><span class="params">                              TimeUnit unit,</span></span></span><br><span class="line"><span class="function"><span class="params">                              BlockingQueue&lt;Runnable&gt; workQueue,</span></span></span><br><span class="line"><span class="function"><span class="params">                              ThreadFactory threadFactory,</span></span></span><br><span class="line"><span class="function"><span class="params">                              RejectedExecutionHandler handler)</span></span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>线程池构造函数参数</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">参数名</th>
+<th style="text-align:center">类型</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">corePoolSize</td>
+<td style="text-align:center">int</td>
+<td>该线程池中核心线程数最大值</td>
+</tr>
+<tr>
+<td style="text-align:center">maxPoolSize</td>
+<td style="text-align:center">int</td>
+<td>该线程池中线程总数最大值</td>
+</tr>
+<tr>
+<td style="text-align:center">keepAliveTime</td>
+<td style="text-align:center">long</td>
+<td>该线程池中非核心线程闲置超时时长</td>
+</tr>
+<tr>
+<td style="text-align:center">workQueue</td>
+<td style="text-align:center">BlockingQueue</td>
+<td>该线程池中的任务队列：维护着等待执行的Runnable对象</td>
+</tr>
+<tr>
+<td style="text-align:center">threadFactory</td>
+<td style="text-align:center">ThreadFactory</td>
+<td>创建线程的工厂，通过自定义的线程工厂可以给每个新建的线程设置一个具有识别度的线程名</td>
+</tr>
+<tr>
+<td style="text-align:center">handler</td>
+<td style="text-align:center">RejectedExecutionHandler</td>
+<td>线程池的饱和策略，当阻塞队列满了，且没有空闲的工作线程，如果继续提交任务，必须采取一种策略处理该任务，线程池提供了4种策略</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>corePoolSize</strong></li>
+</ul>
+<blockquote>
+<p><code>corePoolSize</code>指的是核心线程数：线程池在完成初始化后，默认情况下，线程池中并没有任何线程。线程池会等到有新任务到来时再去创建新线程执行任务</p>
+<p>线程池可能会在核心线程数的基础上增加一些线程，但这些新增加的线程数有一些上限，不能超过最大量<code>maxPoolSize</code></p>
+<p>线程池新建线程的时候，如果当前线程总数小于corePoolSize，则新建的是核心线程，如果超过corePoolSize，则新建的是非核心线程</p>
+<p>核心线程默认情况下会一直存活在线程池中，即使这个核心线程啥也不干(闲置状态)。如果指定ThreadPoolExecutor的allowCoreThreadTimeOut这个属性为true，那么核心线程如果不干活(闲置状态)的话，超过一定时间(时长下面参数决定)，就会被销毁掉</p>
+</blockquote>
+<ul>
+<li><strong>keepAliveTime</strong></li>
+</ul>
+<blockquote>
+<p>如果线程池当前的线程数大于corePoolSize,那么如果多余的线程的空闲时间大于keepAliveTime，它们就会被终止。</p>
+<p>keepAliveTime参数的使用可以减少线程数过多冗余时的资源消耗。</p>
+<p>如果设置allowCoreThreadTimeOut = true，则会作用于核心线程</p>
+</blockquote>
+<ul>
+<li><strong>threadFactory</strong></li>
+</ul>
+<blockquote>
+<p>新的线程由ThreadFactory创建，默认使用Executors.defaultThreadFactory()，创建出来的线程都在同一个线程组，拥有同样的NORM_PRIORITY优先级并且都不是守护线程。如果自己指定ThreadFactory，那么就可以改变线程名、线程组、优先级、是否是守护线程等。</p>
+<p>通常情况下直接使用defaultThreadFactory就行。</p>
+</blockquote>
+<ul>
+<li><strong>workQueue</strong></li>
+</ul>
+<blockquote>
+<ul>
+<li><strong>直接交接（SynchronousQueue）</strong>：这个队列接收到任务的时候，会直接提交给线程处理，而不保留它，如果所有线程都在工作怎么办？那就新建一个线程来处理这个任务！所以为了保证不出现&lt;线程数达到了maximumPoolSize而不能新建线程&gt;的错误，使用这个类型队列的时候，maximumPoolSize一般指定成Integer.MAX_VALUE，即无限大</li>
+<li><strong>无界队列（LinkedBlockingQueue）</strong>：这个队列接收到任务的时候，如果当前线程数小于核心线程数，则新建线程(核心线程)处理任务；如果当前线程数等于核心线程数，则进入队列等待。由于这个队列没有最大值限制，即所有超过核心线程数的任务都将被添加到队列中，这也就导致了maximumPoolSize的设定失效，因为总线程数永远不会超过corePoolSize</li>
+<li><strong>有界队列（ArrayBlockingQueue）</strong>：可以限定队列的长度，接收到任务的时候，如果没有达到corePoolSize的值，则新建线程(核心线程)执行任务，如果达到了，则入队等候，如果队列已满，则新建线程(非核心线程)执行任务，又如果总线程数到了maximumPoolSize，并且队列也满了，则发生错误</li>
+<li><strong>DelayQueue：</strong>队列内元素必须实现Delayed接口，这就意味着你传进去的任务必须先实现Delayed接口。这个队列接收到任务时，首先先入队，只有达到了指定的延时时间，才会执行任务</li>
+</ul>
+</blockquote>
+<h3 id="添加线程规则"><a href="#添加线程规则" class="headerlink" title="添加线程规则"></a>添加线程规则</h3><p>（1）如果线程数小于<code>corePoolSize</code>，即使其它线程处于空闲状态，也会创建一个新线程来运行新任务</p>
+<p>（2）如果线程数大于或等于<code>corePoolSize</code>但少于<code>maxPoolSize</code>，则将任务放入队列</p>
+<p>（3）如果队列已满，并且线程数小于<code>maxPoolSize</code>，则创建一个新线程来运行任务</p>
+<p>（4）如果队列已满，并且线程数大于或等于<code>maxPoolSize</code>，则拒绝该任务</p>
+<ul>
+<li><p>是否需要增加线程的判断顺序是</p>
+<p><code>corePoolSize</code> -&gt;<code>workQueue</code> -&gt; <code>maxPoolSize</code></p>
+</li>
+</ul>
+<h3 id="增减线程的特点"><a href="#增减线程的特点" class="headerlink" title="增减线程的特点"></a>增减线程的特点</h3><p>（1）将<code>corePoolSize</code>和<code>maxPoolSize</code>设置为相同的值，那么就会创建固定大小的线程池。</p>
+<p>（2）线程池希望保持更少的线程数，并且只有在负载变得很大时才会增加它。</p>
+<p>（3）如果将线程池的<code>maxPoolSize</code>参数设置为很大的值，例如Integer.MAX_VALUE，可以允许线程池容纳任意数量的并发任务。</p>
+<p>（4）只有在队列满了的时候才会去创建大于<code>corePoolSize</code>的线程，所以如果使用了无界队列（如：LinkedBlockingQueue）就不会创建到超过<code>corePoolSize</code>的线程数。</p>
+<h3 id="线程池应该手动创建还是自动创建"><a href="#线程池应该手动创建还是自动创建" class="headerlink" title="线程池应该手动创建还是自动创建"></a>线程池应该手动创建还是自动创建</h3><p>手动创建更好，因为这样可以让我们更加了解线程池的运行规则，避免资源耗尽的风险</p>
+<h3 id="直接调用JDK封装好的线程池会带来的问题"><a href="#直接调用JDK封装好的线程池会带来的问题" class="headerlink" title="直接调用JDK封装好的线程池会带来的问题"></a>直接调用JDK封装好的线程池会带来的问题</h3><ul>
+<li>newFixedThreadPool</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> ExecutorService <span class="title">newFixedThreadPool</span><span class="params">(<span class="keyword">int</span> nThreads)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> ThreadPoolExecutor(nThreads, nThreads,</span><br><span class="line">                                      <span class="number">0L</span>, TimeUnit.MILLISECONDS,</span><br><span class="line">                                      <span class="keyword">new</span> LinkedBlockingQueue&lt;Runnable&gt;());</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>newFixedThreadPool线程池通过传入相同的corePoolSize和maxPoolSize可以保证线程数量固定，0L的keepAliveTime表示时刻被销毁，workQueue使用的是无界队列。</p>
+<p>这样潜在的问题就是当处理任务的速度赶不上任务提交的速度的时候，就可能会让大量任务堆积在workQueue中，从而引发OOM异常。</p>
+<ul>
+<li>演示newFixedThreadPool内存溢出问题</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 演示newFixedThreadPool线程池OOM问题</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FixedThreadPoolOOM</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> ExecutorService executorService = Executors.newFixedThreadPool(<span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; Integer.MAX_VALUE; i++) &#123;</span><br><span class="line">            executorService.execute(<span class="keyword">new</span> SubThread());</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SubThread</span> <span class="keyword">implements</span> <span class="title">Runnable</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="comment">//延长任务时间</span></span><br><span class="line">            Thread.sleep(<span class="number">1000000000</span>);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 更改JVM参数</span></span><br><span class="line">-Xmx8m -Xmx8m</span><br></pre></td></tr></table></figure>
 
         
         <br />
