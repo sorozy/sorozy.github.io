@@ -89,7 +89,7 @@
     </div>
     
         <div id="toc" class="toc-article">
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#备注"><span class="toc-text">备注</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#JVM概述"><span class="toc-text">JVM概述</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#jvm主要功能"><span class="toc-text">jvm主要功能</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#jvm规范作用"><span class="toc-text">jvm规范作用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#jvm规范定义的主要内容"><span class="toc-text">jvm规范定义的主要内容</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#class文件格式概述"><span class="toc-text">class文件格式概述</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#类加载"><span class="toc-text">类加载</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#概述"><span class="toc-text">概述</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#类加载要完成的功能"><span class="toc-text">类加载要完成的功能</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#加载类的方式"><span class="toc-text">加载类的方式</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#类加载器"><span class="toc-text">类加载器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#类加载器说明"><span class="toc-text">类加载器说明</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#双亲委派模型"><span class="toc-text">双亲委派模型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#破坏双亲委派模型"><span class="toc-text">破坏双亲委派模型</span></a></li></ol></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#备注"><span class="toc-text">备注</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#JVM概述"><span class="toc-text">JVM概述</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#jvm是什么"><span class="toc-text">jvm是什么</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#jvm主要功能"><span class="toc-text">jvm主要功能</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#虚拟机是java平台无关的保障"><span class="toc-text">虚拟机是java平台无关的保障</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#jvm规范作用"><span class="toc-text">jvm规范作用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#jvm规范定义的主要内容"><span class="toc-text">jvm规范定义的主要内容</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#class文件格式概述"><span class="toc-text">class文件格式概述</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#类加载"><span class="toc-text">类加载</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#概述"><span class="toc-text">概述</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#类加载要完成的功能"><span class="toc-text">类加载要完成的功能</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#加载类的方式"><span class="toc-text">加载类的方式</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#类加载器"><span class="toc-text">类加载器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#类加载器说明"><span class="toc-text">类加载器说明</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#双亲委派模型"><span class="toc-text">双亲委派模型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#破坏双亲委派模型"><span class="toc-text">破坏双亲委派模型</span></a></li></ol></li></ol></li></ol>
 </div>
     
 </div>
@@ -141,24 +141,17 @@
         <h1 id="备注"><a href="#备注" class="headerlink" title="备注"></a>备注</h1><blockquote>
 <p>Java9模块系统开发需要抽空了解一下</p>
 </blockquote>
-<h1 id="JVM概述"><a href="#JVM概述" class="headerlink" title="JVM概述"></a>JVM概述</h1><ul>
+<h1 id="JVM概述"><a href="#JVM概述" class="headerlink" title="JVM概述"></a>JVM概述</h1><h2 id="jvm是什么"><a href="#jvm是什么" class="headerlink" title="jvm是什么"></a>jvm是什么</h2><ul>
 <li>JVM：Java Virtual Machine（java虚拟机）</li>
 <li>虚拟机：通过软件模拟的具有完整硬件系统功能的、运行在一个完全隔离环境中的计算机系统</li>
 <li>jvm是通过软件来模拟java的字节码指令集，是java程序的运行环境</li>
 </ul>
-<p><br></p>
 <p><img width="700px" src="WechatIMG388.png"></p>
-<h2 id="jvm主要功能"><a href="#jvm主要功能" class="headerlink" title="jvm主要功能"></a>jvm主要功能</h2><ol>
-<li>通过ClassLoader寻找和装载class文件</li>
-<li>解释字节码成为指令并执行，提供class文件的运行环境</li>
-<li>进行运行期间的内存分配和垃圾回收</li>
-<li>提供与硬件交互的平台</li>
-</ol>
-<p><br></p>
-<ul>
-<li>虚拟机是java平台无关的保障</li>
-</ul>
-<p><img width="700px" src="WechatIMG393.png"></p>
+<h2 id="jvm主要功能"><a href="#jvm主要功能" class="headerlink" title="jvm主要功能"></a>jvm主要功能</h2><p>（1）通过ClassLoader寻找和装载class文件</p>
+<p>（2）解释字节码成为指令并执行，提供class文件的运行环境</p>
+<p>（3）进行运行期间的内存分配和垃圾回收</p>
+<p>（4）提供与硬件交互的平台</p>
+<h2 id="虚拟机是java平台无关的保障"><a href="#虚拟机是java平台无关的保障" class="headerlink" title="虚拟机是java平台无关的保障"></a>虚拟机是java平台无关的保障</h2><p><img width="700px" src="WechatIMG393.png"></p>
 <h2 id="jvm规范作用"><a href="#jvm规范作用" class="headerlink" title="jvm规范作用"></a>jvm规范作用</h2><ul>
 <li>java虚拟机规范为不同的硬件平台提供了一种编译java技术代码的规范</li>
 <li>该规范使用java软件独立于平台，因为编译是针对作为虚拟机的<code>一般机器</code>而做</li>
