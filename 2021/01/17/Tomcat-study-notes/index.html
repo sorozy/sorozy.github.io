@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content>
+    <meta name="keyword" content="undefined">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+        Tomcat study notes - sorozy | sorozy&#39;s Blog
+        
+    </title>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/aircloud.css">
+    <link rel="stylesheet" href="/css/gitment.css">
+    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
+    <link href="//at.alicdn.com/t/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i> 起风了，唯有努力生存 </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar ">
+            <img src="/img/avatar.jpg" />
+        </div>
+        <div class="name">
+            <i>sorozy</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li >
+                <a href="/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>主页</span>
+                </a>
+            </li>
+            <li >
+                <a href="/tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>标签</span>
+                </a>
+            </li>
+            <li >
+                <a href="/archive">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>存档</span>
+                </a>
+            </li>
+            <li >
+                <a href="/about/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>关于</span>
+                </a>
+            </li>
+            
+            <li>
+                <a id="search">
+                    <i class="iconfont icon-sousuo1"></i>
+                    <span>搜索</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#学习备注"><span class="toc-text">学习备注</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Tomcat学习基础及前置知识"><span class="toc-text">Tomcat学习基础及前置知识</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#为什么要学习Tomcat"><span class="toc-text">为什么要学习Tomcat</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#web-概念"><span class="toc-text">web 概念</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#常见的web服务器"><span class="toc-text">常见的web服务器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Web-容器是什么？"><span class="toc-text">Web 容器是什么？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HTTP协议"><span class="toc-text">HTTP协议</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#HTTP-的本质"><span class="toc-text">HTTP 的本质</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#HTTP-工作原理"><span class="toc-text">HTTP 工作原理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#HTTP-请求响应实例"><span class="toc-text">HTTP 请求响应实例</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Cookie-技术"><span class="toc-text">Cookie 技术</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Session-技术"><span class="toc-text">Session 技术</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#qa：很多公司喜欢绕过容器，直接在应用中将会话数据存入中间件中？"><span class="toc-text">qa：很多公司喜欢绕过容器，直接在应用中将会话数据存入中间件中？</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Servlet规范和Servlet容器"><span class="toc-text">Servlet规范和Servlet容器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Servlet-接口"><span class="toc-text">Servlet 接口</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Servlet-容器"><span class="toc-text">Servlet 容器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Web-应用"><span class="toc-text">Web 应用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#扩展机制"><span class="toc-text">扩展机制</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Tomcat-目录结构"><span class="toc-text">Tomcat 目录结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Tomcat历史"><span class="toc-text">Tomcat历史</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Tomcat-系统架构"><span class="toc-text">Tomcat 系统架构</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#总体架构"><span class="toc-text">总体架构</span></a></li></ol></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input"/>
+            <span id="begin-search">搜索</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+
+        <div class="index-about-mobile">
+            <i> 起风了，唯有努力生存 </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        Tomcat study notes
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">发布于：<span>2021-01-17 04:57:13</span></span>
+        
+        <span class="attr">标签：/
+        
+        <a class="tag" href="/tags/#tomcat" title="tomcat">tomcat</a>
+        <span>/</span>
+        
+        
+        </span>
+        <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
+</span>
+</span>
+    </div>
+    <div class="post-content ">
+        <h1 id="学习备注"><a href="#学习备注" class="headerlink" title="学习备注"></a>学习备注</h1><figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">session</span> 和 cockie技术底层需要了解一下</span><br></pre></td></tr></table></figure>
+<h1 id="Tomcat学习基础及前置知识"><a href="#Tomcat学习基础及前置知识" class="headerlink" title="Tomcat学习基础及前置知识"></a>Tomcat学习基础及前置知识</h1><h2 id="为什么要学习Tomcat"><a href="#为什么要学习Tomcat" class="headerlink" title="为什么要学习Tomcat"></a>为什么要学习Tomcat</h2><figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">（<span class="number">1</span>）Servlet 技术是 Web 开发的原点，几乎所有的 Java Web 框架（比如 SpringMVC）都是基于 Servlet 的封装，SpringMVC 应用本身就是一个 Servlet，而 Tomcat 和 Jetty 这样的 Web 容器，负责加载和运行 Servlet。</span><br><span class="line"></span><br><span class="line">（<span class="number">2</span>）Tomcat 和 Jetty 中用到不少 Java 高级技术，比如 Java 多线程并发编程、Socket 网络编程以及反射等等。</span><br><span class="line"></span><br><span class="line">（<span class="number">3</span>）通过对 Tomcat 和 Jetty 源码的学习，可以学会在什么样的场景下去用这些技术，这一点至关重要。</span><br><span class="line"></span><br><span class="line">（<span class="number">4</span>）Tomcat 和 Jetty 作为工业级的中间件，它们的设计非常优秀，比如面向接口编程、组件化、骨架抽象类、一键式启停、对象池技术以及各种设计模式，比如模板方法、观察者模式、责任链模式等。可以模仿它们并把这些设计思想运用到实际的工作中。提高系统设计能力。</span><br><span class="line"></span><br><span class="line">（<span class="number">5</span>）弄懂了 Tomcat 和 Jetty，Java Web 开发对你来说就已经毫无“秘密”可言。并且你能体会到大神们是如何设计 Tomcat 和 Jetty 的，体会他们如何思考问题、如何写代码。比如怎样设计服务端程序的 I/O 和线程模型、怎样写高性能高并发程序、Spring 的 IoC 容器为什么设计成这个样子、设计一个中间件或者框架有哪些套路等…这些都能快速增加你的经验值。</span><br></pre></td></tr></table></figure>
+<p><img src="e213f384983f5420884aa085b27eded8.jpg"></p>
+<h2 id="web-概念"><a href="#web-概念" class="headerlink" title="web 概念"></a>web 概念</h2><p>（1）软件架构</p>
+<pre><code>1. C/S： 客户端/服务器端 ------------&gt; QQ , 360 ....
+
+2. B/S： 浏览器/服务器端 ------------&gt; 京东， 网易 ， 淘宝 ， 传智播客官网
+</code></pre><p>（2）资源分类</p>
+<pre><code>1. 静态资源： 所有用户访问后，得到的结果都是一样的，称为静态资源。静态资源可以直接被浏览器解析。
+    * 如： html,css,JavaScript，jpg
+
+2. 动态资源: 每个用户访问相同资源后，得到的结果可能不一样 , 称为动态资源。动态资源被访问后，需要先转换为静态资源，再返回给浏览器，通过浏览器进行解析。
+    * 如：servlet/jsp,php,asp....
+</code></pre><p>（3）网络通信三要素</p>
+<pre><code>1. IP：电子设备(计算机)在网络中的唯一标识。
+
+2. 端口：应用程序在计算机中的唯一标识。 0~65536
+
+3. 传输协议：规定了数据传输的规则
+
+    1. 基础协议：
+
+        1. tcp : 安全协议，三次握手。 速度稍慢
+
+        2. udp：不安全协议。 速度快
+</code></pre><h2 id="常见的web服务器"><a href="#常见的web服务器" class="headerlink" title="常见的web服务器"></a>常见的web服务器</h2><figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span>). webLogic：oracle公司，大型的JavaEE服务器，支持所有的JavaEE规范，收费的。</span><br><span class="line"></span><br><span class="line"><span class="number">2</span>). webSphere：IBM公司，大型的JavaEE服务器，支持所有的JavaEE规范，收费的。</span><br><span class="line"></span><br><span class="line"><span class="number">3</span>). JBOSS：JBOSS公司的，大型的JavaEE服务器，支持所有的JavaEE规范，收费的。</span><br><span class="line"></span><br><span class="line"><span class="number">4</span>). Tomcat：Apache基金组织，中小型的JavaEE服务器，仅仅支持少量的JavaEE规范servlet/jsp。开源的，免费的。</span><br></pre></td></tr></table></figure>
+<h2 id="Web-容器是什么？"><a href="#Web-容器是什么？" class="headerlink" title="Web 容器是什么？"></a>Web 容器是什么？</h2><figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Sun 公司推出了 Servlet 技术。你可以把 Servlet 简单理解为运行在服务端的 <span class="keyword">Java </span>小程序，但是 Servlet 没有 main 方法，不能独立运行，因此必须把它部署到 Servlet 容器中，由容器来实例化并调用 Servlet。</span><br><span class="line"></span><br><span class="line">Tomcat 和 <span class="keyword">Jetty </span>就是一个 Servlet 容器。为了方便使用，它们也具有 HTTP 服务器的功能，因此 Tomcat 或者 <span class="keyword">Jetty </span>就是一个“HTTP 服务器 + Servlet 容器”，我们也叫它们 Web 容器。**</span><br><span class="line"></span><br><span class="line">其他应用服务器比如 <span class="keyword">JBoss </span>和 WebLogic，它们不仅仅有 Servlet 容器的功能，也包含 EJB 容器，是完整的 <span class="keyword">Java </span>EE 应用服务器。Tomcat 和 <span class="keyword">Jetty </span>算是一个轻量级的应用服务器。</span><br><span class="line"></span><br><span class="line">我们希望运行服务的 Web 容器也是轻量级的，Web 容器本身应该消耗较少的内存和 CPU 资源，并且由应用本身来启动一个嵌入式的 Web 容器，而不是通过 Web 容器来部署和启动应用，这样可以降低应用部署的复杂度。</span><br><span class="line"></span><br><span class="line">Tomcat 它本身也是 Spring <span class="keyword">Boot </span>默认的嵌入式 Servlet 容器。最新版本 Tomcat 和 <span class="keyword">Jetty </span>都支持 Servlet <span class="number">4</span>.<span class="number">0</span> 规范。</span><br></pre></td></tr></table></figure>
+<ul>
+<li>内嵌方式运行servlet容器?</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">比如SpringBoot直接调用Web容器的提供的API去创建一个Web容器（HTTP服务器和Servlet容器），同时你的程序注册一个Servlet到Servlet容器中，比如SpringMVC的DispatcherServlet，这样请求到达时，Servlet容器负责调用你的Servlet。</span><br></pre></td></tr></table></figure>
+<h2 id="HTTP协议"><a href="#HTTP协议" class="headerlink" title="HTTP协议"></a>HTTP协议</h2><h3 id="HTTP-的本质"><a href="#HTTP-的本质" class="headerlink" title="HTTP 的本质"></a>HTTP 的本质</h3><p>HTTP 协议是浏览器与服务器之间的数据传送协议。作为应用层协议，HTTP 是基于 TCP/IP 协议来传递数据的（HTML 文件、图片、查询结果等），<strong>HTTP 协议不涉及数据包（Packet）传输，主要规定了客户端和服务器之间的通信格式</strong>。</p>
+<p><strong>HTTP 协议的本质就是一种浏览器与服务器之间约定好的通信格式</strong></p>
+<ul>
+<li>浏览器</li>
+</ul>
+<figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">（<span class="number">1</span>）与服务器建立 Socket 连接。</span><br><span class="line">（<span class="number">2</span>）生成请求数据并通过 Socket 发送出去。</span><br></pre></td></tr></table></figure>
+<h3 id="HTTP-工作原理"><a href="#HTTP-工作原理" class="headerlink" title="HTTP 工作原理"></a>HTTP 工作原理</h3><p><img src="f5bd0c7840160d5a121c191e7e54b4ca.jpg"></p>
+<ul>
+<li>Tomcat 和 Jetty 为了提高服务的能力和并发度，往往会将自己要做的几个事情并行化，具体来说就是使用多线程的技术。</li>
+</ul>
+<h3 id="HTTP-请求响应实例"><a href="#HTTP-请求响应实例" class="headerlink" title="HTTP 请求响应实例"></a>HTTP 请求响应实例</h3><ul>
+<li><strong>当 HTTP 请求数据到达 Tomcat 后，Tomcat 会把 HTTP 请求数据字节流解析成一个 Request 对象，这个 Request 对象封装了 HTTP 所有的请求信息。接着 Tomcat 把这个 Request 对象交给 Web 应用去处理，处理完后得到一个 Response 对象，Tomcat 会把这个 Response 对象转成 HTTP 格式的响应数据并发送给浏览器。</strong></li>
+</ul>
+<h3 id="Cookie-技术"><a href="#Cookie-技术" class="headerlink" title="Cookie 技术"></a>Cookie 技术</h3><p>Cookie 本质上就是一份存储在用户本地的文件，里面包含了每次请求中都需要传递的信息。</p>
+<h3 id="Session-技术"><a href="#Session-技术" class="headerlink" title="Session 技术"></a>Session 技术</h3><p>Session 可以理解为服务器端开辟的存储空间，里面保存了用户的状态</p>
+<p>在 Java 中，是 Web 应用程序在调用 HttpServletRequest 的 getSession 方法时，由 Web 容器（比如 Tomcat）创建的。作为 Web 容器，Tomcat 负责创建和管理 Session，并提供了多种持久化方案来存储 Session。</p>
+<h3 id="qa：很多公司喜欢绕过容器，直接在应用中将会话数据存入中间件中？"><a href="#qa：很多公司喜欢绕过容器，直接在应用中将会话数据存入中间件中？" class="headerlink" title="qa：很多公司喜欢绕过容器，直接在应用中将会话数据存入中间件中？"></a>qa：很多公司喜欢绕过容器，直接在应用中将会话数据存入中间件中？</h3><p>现在的web容器都支持将session存储在第三方中间件（如redis）中，为什么很多公司喜欢绕过容器，直接在应用中将会话数据存入中间件中？</p>
+<figure class="highlight vbscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">用Web容器的Session方案需要侵入特定的Web容器，用Spring Session可能比较简单，不需要跟特定的Servlet容器打交道。</span><br><span class="line"></span><br><span class="line">这正是Spring喜欢做的事情，它使得程序员甚至感觉不到Servlet容器的存在，可以专心开发Web应用。但是Spring到底做了什么，Spring Session是如何实现的，我们还是有必要了解了解~</span><br><span class="line"></span><br><span class="line">其实它是通过Servlet规范中的<span class="built_in">Filter</span>机制拦截了所有Servlet请求，偷梁换柱，将标准的Servlet请求对象包装了一下，换成它自己的<span class="built_in">Request</span>包装类对象，这样当程序员通过包装后的<span class="built_in">Request</span>对象的getSession方法拿Session时，是通过Spring拿Session，没Web容器什么事了。</span><br></pre></td></tr></table></figure>
+<h2 id="Servlet规范和Servlet容器"><a href="#Servlet规范和Servlet容器" class="headerlink" title="Servlet规范和Servlet容器"></a>Servlet规范和Servlet容器</h2><p>浏览器发给服务端的是一个 HTTP 格式的请求，HTTP 服务器收到这个请求后，需要调用服务端程序来处理，所谓的服务端程序就是你写的 Java 类，一般来说不同的请求需要由不同的 Java 类来处理。</p>
+<p>那么问题来了，HTTP 服务器怎么知道要调用哪个 Java 类的哪个方法呢。最直接的做法是在 HTTP 服务器代码里写一大堆 if else 逻辑判断：如果是 A 请求就调 X 类的 M1 方法，如果是 B 请求就调 Y 类的 M2 方法。但这样做明显有问题，因为 HTTP 服务器的代码跟业务逻辑耦合在一起了，如果新加一个业务方法还要改 HTTP 服务器的代码。</p>
+<p>那该怎么解决这个问题呢？我们知道，面向接口编程是解决耦合问题的法宝，于是有一伙人就定义了一个接口，各种业务类都必须实现这个接口，这个接口就叫 Servlet 接口，有时我们也把实现了 Servlet 接口的业务类叫作 Servlet。</p>
+<p>但是这里还有一个问题，对于特定的请求，HTTP 服务器如何知道由哪个 Servlet 来处理呢？Servlet 又是由谁来实例化呢？显然 HTTP 服务器不适合做这个工作，否则又和业务类耦合了。</p>
+<p>于是，还是那伙人又发明了 Servlet 容器，Servlet 容器用来加载和管理业务类。HTTP 服务器不直接跟业务类打交道，而是把请求交给 Servlet 容器去处理，Servlet 容器会将请求转发到具体的 Servlet，如果这个 Servlet 还没创建，就加载并实例化这个 Servlet，然后调用这个 Servlet 的接口方法。因此 Servlet 接口其实是 Servlet 容器跟具体业务类之间的接口。下面我们通过一张图来加深理解。</p>
+<p><img src="dfe304d3336f29d833b97f2cfe8d7801.jpg"></p>
+<p>图的左边表示 HTTP 服务器直接调用具体业务类，它们是紧耦合的。再看图的右边，HTTP 服务器不直接调用业务类，而是把请求交给容器来处理，容器通过 Servlet 接口调用业务类。因此 Servlet 接口和 Servlet 容器的出现，达到了 HTTP 服务器与业务类解耦的目的。</p>
+<p><strong>而 Servlet 接口和 Servlet 容器这一整套规范叫作 Servlet 规范</strong>。Tomcat 和 Jetty 都按照 Servlet 规范的要求实现了 Servlet 容器，同时它们也具有 HTTP 服务器的功能。作为 Java 程序员，如果我们要实现新的业务功能，只需要实现一个 Servlet，并把它注册到 Tomcat（Servlet 容器）中，剩下的事情就由 Tomcat 帮我们处理了。</p>
+<h3 id="Servlet-接口"><a href="#Servlet-接口" class="headerlink" title="Servlet 接口"></a>Servlet 接口</h3><p>Servlet 接口定义了下面五个方法：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Servlet</span> </span>&#123;</span><br><span class="line">  <span class="comment">// Servlet 容器在加载 Servlet 类的时候会调用 init 方法,我们可能会在 init 方法里初始化一些资源，比如 Spring MVC 中的 DispatcherServlet，就是在 init 方法里创建了自己的 Spring 容器</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">init</span><span class="params">(ServletConfig config)</span> <span class="keyword">throws</span> ServletException</span>;</span><br><span class="line">    </span><br><span class="line">  </span><br><span class="line">  <span class="comment">// ServletConfig 的作用就是封装 Servlet 的初始化参数。你可以在web.xml给 Servlet 配置参数，并在程序里通过 getServletConfig 方法拿到这些参数</span></span><br><span class="line">    <span class="function">ServletConfig <span class="title">getServletConfig</span><span class="params">()</span></span>;</span><br><span class="line">    </span><br><span class="line">  </span><br><span class="line">  	<span class="comment">// ServletRequest 用来封装请求信息，ServletResponse 用来封装响应信息，因此本质上这两个类是对通信协议的封装。</span></span><br><span class="line">  <span class="comment">// 比如 HTTP 协议中的请求和响应就是对应了 HttpServletRequest 和 HttpServletResponse 这两个类。可以通过 HttpServletRequest 来获取所有请求相关的信息，包括请求路径、Cookie、HTTP 头、请求参数等。此外，我们还可以通过 HttpServletRequest 来创建和获取 Session。而 HttpServletResponse 是用来封装 HTTP 响应的。</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">service</span><span class="params">(ServletRequest req, ServletResponse res）<span class="keyword">throws</span> ServletException, IOException;</span></span></span><br><span class="line"><span class="function"><span class="params">    </span></span></span><br><span class="line"><span class="function"><span class="params">                 </span></span></span><br><span class="line"><span class="function"><span class="params">    String getServletInfo()</span></span>;</span><br><span class="line">    </span><br><span class="line">                 </span><br><span class="line">    <span class="comment">// servlet容器卸载的时候会调用 destroy 方法，可以在destroy 方法里释放这些资源</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">destroy</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>Servlet 规范提供了 GenericServlet 抽象类，我们可以通过扩展它来实现 Servlet。虽然 Servlet 规范并不在乎通信协议是什么，但是大多数的 Servlet 都是在 HTTP 环境中处理的，因此 Servet 规范还提供了 HttpServlet 来继承 GenericServlet，并且加入了 HTTP 特性。这样我们通过继承 HttpServlet 类来实现自己的 Servlet，只需要重写两个方法：doGet 和 doPost。</li>
+</ul>
+<h3 id="Servlet-容器"><a href="#Servlet-容器" class="headerlink" title="Servlet 容器"></a>Servlet 容器</h3><ul>
+<li>工作流程</li>
+</ul>
+<p>当客户请求某个资源时，HTTP 服务器会用一个 ServletRequest 对象把客户的请求信息封装起来，然后调用 Servlet 容器的 service 方法，Servlet 容器拿到请求后，根据请求的 URL 和 Servlet 的映射关系，找到相应的 Servlet，如果 Servlet 还没有被加载，就用反射机制创建这个 Servlet，并调用 Servlet 的 init 方法来完成初始化，接着调用 Servlet 的 service 方法来处理请求，把 ServletResponse 对象返回给 HTTP 服务器，HTTP 服务器会把响应发送给客户端。</p>
+<p><img src="b70723c89b4ed0bccaf073c84e08e115.jpg"></p>
+<h3 id="Web-应用"><a href="#Web-应用" class="headerlink" title="Web 应用"></a>Web 应用</h3><ul>
+<li>Servlet 是怎么注册到 Servlet 容器中的呢？</li>
+</ul>
+<p>一般来说，我们是以 Web 应用程序的方式来部署 Servlet 的，而根据 Servlet 规范，Web 应用程序有一定的目录结构，在这个目录下分别放置了 Servlet 的类文件、配置文件以及静态资源，Servlet 容器通过读取配置文件，就能找到并加载 Servlet。</p>
+<ul>
+<li>Web 应用的目录结构大概是下面这样的：</li>
+</ul>
+<figure class="highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">| -  MyWebApp</span><br><span class="line">      | -  WEB-INF/web.xml        -- 配置文件，用来配置Servlet等</span><br><span class="line">      | -  WEB-INF/<span class="class"><span class="keyword">lib</span>/           -- 存放<span class="title">Web</span>应用所需各种<span class="title">JAR</span>包</span></span><br><span class="line">      | -  WEB-INF/classes/       -- 存放你的应用类，比如Servlet类</span><br><span class="line">      | -  META-INF/              -- 目录存放工程的一些信息</span><br></pre></td></tr></table></figure>
+<p><strong>Servlet 规范里定义了 ServletContext 这个接口来对应一个 Web 应用</strong>。Web 应用部署好后，Servlet 容器在启动时会加载 Web 应用，并为每个 Web 应用创建唯一的 ServletContext 对象。你可以把 ServletContext 看成是一个全局对象，一个 Web 应用可能有多个 Servlet，这些 Servlet 可以通过全局的 ServletContext 来共享数据，这些数据包括 Web 应用的初始化参数、Web 应用目录下的文件资源等。由于 ServletContext 持有所有 Servlet 实例，你还可以通过它来实现 Servlet 请求的转发。</p>
+<h3 id="扩展机制"><a href="#扩展机制" class="headerlink" title="扩展机制"></a>扩展机制</h3><ul>
+<li>Servlet 规范提供了两种扩展机制：Filter 和 Listener</li>
+</ul>
+<p>Filter 是过滤器，这个接口允许你对请求和响应做一些统一的定制化处理，比如你可以根据请求的频率来限制访问，或者根据国家地区的不同来修改响应内容。过滤器的工作原理是这样的：Web 应用部署完成后，Servlet 容器需要实例化 Filter 并把 Filter 链接成一个 FilterChain。当请求进来时，获取第一个 Filter 并调用 doFilter 方法，doFilter 方法负责调用这个 FilterChain 中的下一个 Filter。</p>
+<p>Listener 是监听器，这是另一种扩展机制。当 Web 应用在 Servlet 容器中运行时，Servlet 容器内部会不断的发生各种事件，如 Web 应用的启动和停止、用户请求到达等。 Servlet 容器提供了一些默认的监听器来监听这些事件，当事件发生时，Servlet 容器会负责调用监听器的方法。当然，你可以定义自己的监听器去监听你感兴趣的事件，将监听器配置在web.xml中。比如 Spring 就实现了自己的监听器，来监听 ServletContext 的启动事件，目的是当 Servlet 容器启动时，创建并初始化全局的 Spring 容器。</p>
+<ul>
+<li><p>Filter 是干预过程的，它是过程的一部分，是基于过程行为的。</p>
+</li>
+<li><p>Listener 是基于状态的，任何行为改变同一个状态，触发的事件是一致的。</p>
+</li>
+</ul>
+<p><strong>Servlet 本质上是一个接口，实现了 Servlet 接口的业务类也叫 Servlet。Servlet 接口其实是 Servlet 容器跟具体 Servlet 业务类之间的接口。Servlet 接口跟 Servlet 容器这一整套规范叫作 Servlet 规范，而 Servlet 规范使得程序员可以专注业务逻辑的开发，同时 Servlet 规范也给开发者提供了扩展的机制 Filter 和 Listener。</strong></p>
+<h2 id="Tomcat-目录结构"><a href="#Tomcat-目录结构" class="headerlink" title="Tomcat 目录结构"></a>Tomcat 目录结构</h2><table>
+<thead>
+<tr>
+<th><strong>目录</strong></th>
+<th><strong>目录下文件</strong></th>
+<th><strong>说明</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>bin</strong></td>
+<td>/</td>
+<td>存放Tomcat的启动、停止等批处理脚本文件</td>
+</tr>
+<tr>
+<td></td>
+<td>startup.bat , startup.sh</td>
+<td>用于在windows和linux下的启动脚本</td>
+</tr>
+<tr>
+<td></td>
+<td>shutdown.bat , shutdown.sh</td>
+<td>用于在windows和linux下的停止脚本</td>
+</tr>
+<tr>
+<td><strong>conf</strong></td>
+<td>/</td>
+<td>用于存放Tomcat的相关配置文件</td>
+</tr>
+<tr>
+<td></td>
+<td>Catalina</td>
+<td>用于存储针对每个虚拟机的Context配置</td>
+</tr>
+<tr>
+<td></td>
+<td>context.xml</td>
+<td>用于定义所有web应用均需加载的Context配置，如果web应用指定了自己的context.xml ，该文件将被覆盖</td>
+</tr>
+<tr>
+<td></td>
+<td>catalina.properties</td>
+<td>Tomcat 的环境变量配置</td>
+</tr>
+<tr>
+<td></td>
+<td>catalina.policy</td>
+<td>Tomcat 运行的安全策略配置</td>
+</tr>
+<tr>
+<td></td>
+<td>logging.properties</td>
+<td>Tomcat 的日志配置文件， 可以通过该文件修改Tomcat  的日志级别及日志路径等</td>
+</tr>
+<tr>
+<td></td>
+<td>server.xml</td>
+<td>Tomcat 服务器的核心配置文件</td>
+</tr>
+<tr>
+<td></td>
+<td>tomcat-users.xml</td>
+<td>定义Tomcat默认的用户及角色映射信息配置</td>
+</tr>
+<tr>
+<td></td>
+<td>web.xml</td>
+<td>Tomcat 中所有应用默认的部署描述文件， 主要定义了基础Servlet和MIME映射。</td>
+</tr>
+<tr>
+<td><strong>lib</strong></td>
+<td>/</td>
+<td>Tomcat 服务器的依赖包</td>
+</tr>
+<tr>
+<td><strong>logs</strong></td>
+<td>/</td>
+<td>Tomcat 默认的日志存放目录</td>
+</tr>
+<tr>
+<td><strong>webapps</strong></td>
+<td>/</td>
+<td>Tomcat 默认的Web应用部署目录</td>
+</tr>
+<tr>
+<td><strong>work</strong></td>
+<td>/</td>
+<td>Web 应用JSP代码生成和编译的临时目录</td>
+</tr>
+</tbody>
+</table>
+<h2 id="Tomcat历史"><a href="#Tomcat历史" class="headerlink" title="Tomcat历史"></a>Tomcat历史</h2><p>1） Tomcat 最初由Sun公司的软件架构师 James Duncan Davidson 开发，名称为 “JavaWebServer”。</p>
+<p>2） 1999年 ，在 Davidson 的帮助下，该项目于1999年于apache 软件基金会旗下的 JServ 项目合并，并发布第一个版本（3.x）, 即是现在的Tomcat，该版本实现了Servlet2.2 和 JSP 1.1 规范 。</p>
+<p>3） 2001年，Tomcat 发布了4.0版本， 作为里程碑式的版本，Tomcat 完全重新设计了其架构，并实现了 Servlet 2.3 和 JSP1.2规范。</p>
+<p>目前 Tomcat 已经更新到 10.x版本 ， 但是目前企业中的Tomcat服务器， 主流版本还是 7.x 和 8.x ， 所以本课程是基于 8.5 版本进行讲解。</p>
+<h1 id="Tomcat-系统架构"><a href="#Tomcat-系统架构" class="headerlink" title="Tomcat 系统架构"></a>Tomcat 系统架构</h1><h2 id="总体架构"><a href="#总体架构" class="headerlink" title="总体架构"></a><strong>总体架构</strong></h2><p><img src="WechatIMG925.png" width="800px"></p>
+<ul>
+<li>tomcat有两个非常重要的功能需要完成</li>
+</ul>
+<p>（1）和客户端浏览器进行交互，进行socket通信，将字节流和Request/Response等对象进行转换</p>
+<p>（2）Servlet容器处理业务逻辑</p>
+<p><img src="WechatIMG926.png" width="800px"></p>
+<ul>
+<li>Tomcat设计了两个核心组件连接器（Connector）和容器（Container）来分别做这两件事情。连接器负责对外交流，容器负责内部处理。</li>
+</ul>
+<p><strong>连接器，负责对外交流:</strong> 处理Socket连接，负责网络字节流与Request和Response对象的转化; </p>
+<p><strong>容器，负责内部处理:</strong>加载和管理Servlet，以及具体处理Request请求;</p>
+
+        
+        <br />
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+
+        <div id="lv-container">
+        </div>
+
+    </div>
+</div>
+
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+
+        
+
+        
+
+        
+        <li>
+            <a target="_blank"  href="https://github.com/sorozy">
+                            <span class="fa-stack fa-lg">
+                                <i class="iconfont icon-github"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+
+    </ul>
+    
+    <p>
+        <span id="busuanzi_container_site_pv">
+            <span id="busuanzi_value_site_pv"></span>PV
+        </span>
+        <span id="busuanzi_container_site_uv">
+            <span id="busuanzi_value_site_uv"></span>UV
+        </span>
+        Created By <a href="https://hexo.io/">Hexo</a>  Theme <a href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a></p>
+</footer>
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = "search.json"
+    window.hexo_root = "/"
+    window.isPost = true
+</script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="/js/index.js"></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+</html>
