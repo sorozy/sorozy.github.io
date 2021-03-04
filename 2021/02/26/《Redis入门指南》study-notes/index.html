@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content>
+    <meta name="keyword" content="undefined">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+        《Redis入门指南》study notes - sorozy | sorozy&#39;s Blog
+        
+    </title>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/aircloud.css">
+    <link rel="stylesheet" href="/css/gitment.css">
+    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
+    <link href="//at.alicdn.com/t/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i> 起风了，唯有努力生存 </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar ">
+            <img src="/img/avatar.jpg" />
+        </div>
+        <div class="name">
+            <i>sorozy</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li >
+                <a href="/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>主页</span>
+                </a>
+            </li>
+            <li >
+                <a href="/tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>标签</span>
+                </a>
+            </li>
+            <li >
+                <a href="/archive">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>存档</span>
+                </a>
+            </li>
+            <li >
+                <a href="/about/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>关于</span>
+                </a>
+            </li>
+            
+            <li>
+                <a id="search">
+                    <i class="iconfont icon-sousuo1"></i>
+                    <span>搜索</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#备注"><span class="toc-text">备注</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#简介"><span class="toc-text">简介</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#特性"><span class="toc-text">特性</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#存储结构"><span class="toc-text">存储结构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#内存存储与持久化"><span class="toc-text">内存存储与持久化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#功能丰富"><span class="toc-text">功能丰富</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#简单稳定"><span class="toc-text">简单稳定</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Install-amp-start-amp-stop"><span class="toc-text">Install &amp; start &amp; stop</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Redis可执行文件说明"><span class="toc-text">Redis可执行文件说明</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#start"><span class="toc-text">start</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#直接启动"><span class="toc-text">直接启动</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#通过初始化脚本启动"><span class="toc-text">通过初始化脚本启动</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#stop"><span class="toc-text">stop</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#通用命令"><span class="toc-text">通用命令</span></a></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input"/>
+            <span id="begin-search">搜索</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+
+        <div class="index-about-mobile">
+            <i> 起风了，唯有努力生存 </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        《Redis入门指南》study notes
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">发布于：<span>2021-02-26 13:19:55</span></span>
+        
+        <span class="attr">标签：/
+        
+        <a class="tag" href="/tags/#redis" title="redis">redis</a>
+        <span>/</span>
+        
+        
+        </span>
+        <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
+</span>
+</span>
+    </div>
+    <div class="post-content ">
+        <h1 id="备注"><a href="#备注" class="headerlink" title="备注"></a>备注</h1><blockquote>
+<p>有空了 好好学习一下正则表达式</p>
+</blockquote>
+<h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>Redis是一个开源的、高性能的、基于键值对的缓存与存储系统，通过提供多种键值数据类型来适应不同场景下的缓存与存储要求。同时Redis的诸多高层级功能使其可以胜任消息队列、任务队列等不同的角色</p>
+<p>Redis REmotes DIctionary Server （远程字典服务器）</p>
+<h2 id="特性"><a href="#特性" class="headerlink" title="特性"></a>特性</h2><h3 id="存储结构"><a href="#存储结构" class="headerlink" title="存储结构"></a>存储结构</h3><p>以字典结构存储数据，并允许其它应用通过TCP协议读写字典中的内容。</p>
+<p>Redis支持的键值数据类型如下</p>
+<ul>
+<li>字符串类型</li>
+<li>散列类型</li>
+<li>列表类型</li>
+<li>集合类型</li>
+<li>有序集合类型</li>
+</ul>
+<h3 id="内存存储与持久化"><a href="#内存存储与持久化" class="headerlink" title="内存存储与持久化"></a>内存存储与持久化</h3><p>Redis将所有数据存储在内存中</p>
+<p>Redis提供了对持久化的支持：将内存中的数据异步写入硬盘</p>
+<h3 id="功能丰富"><a href="#功能丰富" class="headerlink" title="功能丰富"></a>功能丰富</h3><p>为键设置生存时间（Time To Live，TTL），生存时间到期后键会自动被删除</p>
+<p>可以限定数据占用的最大内存空间，在数据达到空间限制后，按照一定规则自动淘汰不需要的键</p>
+<p><em>列表类型键可以用来实现队列，并支持阻塞式读取，可以很容易的实现一个高性能的优先队列</em></p>
+<p><em>Redis还支持“发布/订阅”的消息模式，可以基于此构建聊天室等系统</em></p>
+<h3 id="简单稳定"><a href="#简单稳定" class="headerlink" title="简单稳定"></a>简单稳定</h3><h1 id="Install-amp-start-amp-stop"><a href="#Install-amp-start-amp-stop" class="headerlink" title="Install &amp; start &amp; stop"></a>Install &amp; start &amp; stop</h1><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install wget gcc-c++ -y &amp;&amp; mkdir -p /opt/soft &amp;&amp; cd /opt/soft &amp;&amp;	wget https://mirrors.huaweicloud.com/redis/redis-3.0.7.tar.gz &amp;&amp; tar -zxvf redis-3.0.7.tar.gz &amp;&amp; ln -s redis-3.0.7 redis &amp;&amp; cd redis &amp;&amp; make &amp;&amp; make install</span><br></pre></td></tr></table></figure>
+<h2 id="Redis可执行文件说明"><a href="#Redis可执行文件说明" class="headerlink" title="Redis可执行文件说明"></a>Redis可执行文件说明</h2><table>
+<thead>
+<tr>
+<th>文件名</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>redis-server</td>
+<td>redis服务器</td>
+</tr>
+<tr>
+<td>redis-cli</td>
+<td>redis命令行客户端</td>
+</tr>
+<tr>
+<td>redis-benchmark</td>
+<td>redis性能测试工具</td>
+</tr>
+<tr>
+<td>redis-check-aof</td>
+<td>AOF文件修复工具</td>
+</tr>
+<tr>
+<td>redis-check-dump</td>
+<td>RDB文件检查工具</td>
+</tr>
+<tr>
+<td>redis-sentinel</td>
+<td>sentinel服务器</td>
+</tr>
+</tbody>
+</table>
+<h2 id="start"><a href="#start" class="headerlink" title="start"></a>start</h2><h3 id="直接启动"><a href="#直接启动" class="headerlink" title="直接启动"></a>直接启动</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">redis-server</span><br><span class="line"></span><br><span class="line">redis0-server --port 6380</span><br></pre></td></tr></table></figure>
+<h3 id="通过初始化脚本启动"><a href="#通过初始化脚本启动" class="headerlink" title="通过初始化脚本启动"></a>通过初始化脚本启动</h3><h2 id="stop"><a href="#stop" class="headerlink" title="stop"></a>stop</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 正确停止redis</span></span><br><span class="line">redis-cli SHUTDOWN</span><br></pre></td></tr></table></figure>
+<h1 id="通用命令"><a href="#通用命令" class="headerlink" title="通用命令"></a>通用命令</h1><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">keys pattern</span><br><span class="line"></span><br><span class="line">exists foo</span><br><span class="line"></span><br><span class="line">type key</span><br></pre></td></tr></table></figure>
+
+        
+        <br />
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+
+        <div id="lv-container">
+        </div>
+
+    </div>
+</div>
+
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+
+        
+
+        
+
+        
+        <li>
+            <a target="_blank"  href="https://github.com/sorozy">
+                            <span class="fa-stack fa-lg">
+                                <i class="iconfont icon-github"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+
+    </ul>
+    
+    <p>
+        <span id="busuanzi_container_site_pv">
+            <span id="busuanzi_value_site_pv"></span>PV
+        </span>
+        <span id="busuanzi_container_site_uv">
+            <span id="busuanzi_value_site_uv"></span>UV
+        </span>
+        Created By <a href="https://hexo.io/">Hexo</a>  Theme <a href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a></p>
+</footer>
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = "search.json"
+    window.hexo_root = "/"
+    window.isPost = true
+</script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="/js/index.js"></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+</html>
