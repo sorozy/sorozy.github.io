@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content>
+    <meta name="keyword" content="undefined">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+        《Linux实战技能100讲》study notes - sorozy | sorozy&#39;s Blog
+        
+    </title>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/aircloud.css">
+    <link rel="stylesheet" href="/css/gitment.css">
+    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
+    <link href="//at.alicdn.com/t/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i> 起风了，唯有努力生存 </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar ">
+            <img src="/img/avatar.jpg" />
+        </div>
+        <div class="name">
+            <i>sorozy</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li >
+                <a href="/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>主页</span>
+                </a>
+            </li>
+            <li >
+                <a href="/tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>标签</span>
+                </a>
+            </li>
+            <li >
+                <a href="/archive">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>存档</span>
+                </a>
+            </li>
+            <li >
+                <a href="/about/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>关于</span>
+                </a>
+            </li>
+            
+            <li>
+                <a id="search">
+                    <i class="iconfont icon-sousuo1"></i>
+                    <span>搜索</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#学习备注"><span class="toc-text">学习备注</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#学习内容综述"><span class="toc-text">学习内容综述</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#linux命令行常用光标移动快捷键"><span class="toc-text">linux命令行常用光标移动快捷键</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Linux-系统目录结构"><span class="toc-text">Linux 系统目录结构</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#常见目录介绍"><span class="toc-text">常见目录介绍</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#万能的帮助命令"><span class="toc-text">万能的帮助命令</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#man"><span class="toc-text">man</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#help"><span class="toc-text">help</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#info"><span class="toc-text">info</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#文件管理"><span class="toc-text">文件管理</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#打包和压缩"><span class="toc-text">打包和压缩</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#vi-vim"><span class="toc-text">vi / vim</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#四种模式"><span class="toc-text">四种模式</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#用户和用户组管理"><span class="toc-text">用户和用户组管理</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#网络管理"><span class="toc-text">网络管理</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#软件包的管理和使用"><span class="toc-text">软件包的管理和使用</span></a></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input"/>
+            <span id="begin-search">搜索</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+
+        <div class="index-about-mobile">
+            <i> 起风了，唯有努力生存 </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        《Linux实战技能100讲》study notes
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">发布于：<span>2021-03-04 10:12:16</span></span>
+        
+        <span class="attr">标签：/
+        
+        <a class="tag" href="/tags/#linux" title="linux">linux</a>
+        <span>/</span>
+        
+        
+        </span>
+        <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
+</span>
+</span>
+    </div>
+    <div class="post-content ">
+        <h1 id="学习备注"><a href="#学习备注" class="headerlink" title="学习备注"></a>学习备注</h1><blockquote>
+<p>打包和压缩的命令还需要再熟悉一下</p>
+<p>vim 这块 ，老师讲到的内容需要自己复习 试着做一遍，</p>
+</blockquote>
+<h1 id="学习内容综述"><a href="#学习内容综述" class="headerlink" title="学习内容综述"></a>学习内容综述</h1><ol>
+<li>linux背景介绍</li>
+<li>系统操作</li>
+<li>服务管理</li>
+<li>shell 脚本</li>
+<li>文本操作</li>
+<li>常用服务搭建</li>
+</ol>
+<h1 id="linux命令行常用光标移动快捷键"><a href="#linux命令行常用光标移动快捷键" class="headerlink" title="linux命令行常用光标移动快捷键"></a>linux命令行常用光标移动快捷键</h1><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ctrl+a : 跳到本行的行首</span><br><span class="line">ctrl+e : 跳到行尾s</span><br></pre></td></tr></table></figure>
+<h1 id="Linux-系统目录结构"><a href="#Linux-系统目录结构" class="headerlink" title="Linux 系统目录结构"></a>Linux 系统目录结构</h1><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ll /</span><br></pre></td></tr></table></figure>
+<p><img src="WechatIMG1131.png" width="500px"></p>
+<ul>
+<li>树状目录结构</li>
+</ul>
+<p><img src="WechatIMG1132.jpeg" width="500px"></p>
+<h2 id="常见目录介绍"><a href="#常见目录介绍" class="headerlink" title="常见目录介绍"></a>常见目录介绍</h2><ul>
+<li><p>/根目录</p>
+</li>
+<li><p>/root：root用户家目录。该目录为系统管理员，也称作超级权限者的用户主目录。</p>
+</li>
+<li><p>/home/username：普通用户的家目录</p>
+</li>
+<li><p>/etc： 配置文件目录</p>
+</li>
+<li><p>/bin：命令目录</p>
+</li>
+<li><p>/sbin：管理命令目录</p>
+</li>
+<li><p>/usr/bin /usr/sbin：系统预装的其它命令</p>
+</li>
+</ul>
+<h1 id="万能的帮助命令"><a href="#万能的帮助命令" class="headerlink" title="万能的帮助命令"></a>万能的帮助命令</h1><h2 id="man"><a href="#man" class="headerlink" title="man"></a>man</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> man 是 manual（手册） 的缩写</span></span><br><span class="line">man [命令名称]</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 查看某个章节的帮助</span></span><br><span class="line">man [number] [命令名称]</span><br><span class="line"></span><br><span class="line">man -a [命令名称]</span><br></pre></td></tr></table></figure>
+<h2 id="help"><a href="#help" class="headerlink" title="help"></a>help</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 内部命令使用<span class="built_in">help</span>帮助</span></span><br><span class="line">help cd</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 外部命令使用<span class="built_in">help</span></span></span><br><span class="line">ls --help</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 查看命令类别</span></span><br><span class="line">type cd</span><br><span class="line">type ls</span><br></pre></td></tr></table></figure>
+<h2 id="info"><a href="#info" class="headerlink" title="info"></a>info</h2><ul>
+<li>Info帮助比help更详细，作为help的补充</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">info ls</span><br></pre></td></tr></table></figure>
+<h1 id="文件管理"><a href="#文件管理" class="headerlink" title="文件管理"></a>文件管理</h1><ul>
+<li>Linux 中，一切皆文件</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">pwd</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 更改当前操作目录 path 可以使用相对路径或绝对路径</span></span><br><span class="line">cd [path]</span><br><span class="line">cd ..</span><br><span class="line">cd -</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">ls [option] [file or dir] [file or dir]</span><br><span class="line">-l 长格式显示文件</span><br><span class="line">-a 显示隐藏文件</span><br><span class="line">-r 逆序显示 (默认名字逆向)</span><br><span class="line">-t 按照时间顺序显示</span><br><span class="line">-R 递归显示</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">mkdir [dir1] [dir2]</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> -p 建立多级目录</span></span><br><span class="line">mkdir -p /a/b/c/d</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 只能删除空的目录</span></span><br><span class="line">rmdir [dir]</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> -r 删除非空目录</span></span><br><span class="line">rm -r [dir]</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> -f 无需确认（提示）就删除</span></span><br><span class="line">rm -rf [dir]</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 复制目录 需要 -r</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> -v 显示复制过程 -p 保留原有时间 -a 保留权限，保留属主，保留修改时间等文件属性</span></span><br><span class="line">cp -r [源文件] [目标目录]</span><br><span class="line"></span><br><span class="line">touch </span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 重命名 / 移动 (可以使用通配符)</span></span><br><span class="line">mv</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 文本内容显示到终端</span></span><br><span class="line">cat</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 查看文件开头，可以指定查看几行</span></span><br><span class="line">head -[number]</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 查看文件结尾 ，常用参数 -f 文件内容更新后，显示内容同步更新</span></span><br><span class="line">tail -f -[number]</span><br><span class="line"></span><br><span class="line">more</span><br><span class="line"></span><br><span class="line">less</span><br><span class="line"></span><br><span class="line">wc 统计文件内容信息</span><br></pre></td></tr></table></figure>
+<h2 id="打包和压缩"><a href="#打包和压缩" class="headerlink" title="打包和压缩"></a>打包和压缩</h2><ul>
+<li>最早的linux备份介质是磁带，使用的命令是<code>tar</code></li>
+<li>可以打包后的磁带文件进行压缩存储，压缩的命令是<code>gzip</code>和<code>bzip2</code></li>
+<li>经常使用的扩展名是 <code>.tar.gz</code> <code>.tar.bz2</code> <code>.tgz</code></li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> linux 下分成两步 打包 和 压缩</span></span><br><span class="line">tar</span><br><span class="line">c 打包</span><br><span class="line">x 解包</span><br><span class="line">f 指定操作类型为文件</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 打包并压缩</span></span><br><span class="line">tar cfz /opt/php.tar.gz /opt/php</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 解包</span></span><br><span class="line">tar xf /opt/php.tar /opt</span><br></pre></td></tr></table></figure>
+<h1 id="vi-vim"><a href="#vi-vim" class="headerlink" title="vi / vim"></a>vi / vim</h1><h2 id="四种模式"><a href="#四种模式" class="headerlink" title="四种模式"></a>四种模式</h2><ul>
+<li>正常模式</li>
+<li>插入模式</li>
+<li>命令模式</li>
+<li>可视模式</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">yy #复制光标所在的当前行</span><br><span class="line"></span><br><span class="line">p # 粘贴</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 复制3行</span></span><br><span class="line">3 yy</span><br><span class="line"></span><br><span class="line"><span class="meta">y$</span><span class="bash"> 复制光标到当前行尾的内容</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 剪切</span></span><br><span class="line">dd</span><br><span class="line"><span class="meta">d$</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 撤销</span></span><br><span class="line">u</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 对撤销的内容重做</span></span><br><span class="line">ctrl + r</span><br><span class="line"></span><br><span class="line">单个字符的删除</span><br><span class="line">x</span><br><span class="line">显示行号</span><br><span class="line">:set </span><br><span class="line">移动光标到指定行 如 7 + G</span><br><span class="line">g 移动到第一行</span><br><span class="line">G 移动到最后一行</span><br><span class="line">^ 进入光标所在行行首</span><br><span class="line"><span class="meta">$</span><span class="bash"> 进入光标所在行行尾</span></span><br><span class="line">:w file_save_path 保存文件</span><br><span class="line">:! 执行临时的linux命令</span><br><span class="line">查找</span><br><span class="line">/待查找的字符 移动下一个单词 n 上一个 N</span><br><span class="line">:%s/old/new/g 全局替换</span><br><span class="line">:3,5s/old/new 3-5行内进行替换，没有g就单次替换</span><br><span class="line">:s/old/new 当前行替换</span><br><span class="line">:set nu</span><br><span class="line">:set nonu</span><br><span class="line"></span><br><span class="line">vim /etc/vimrc 修改vim的配置文件</span><br></pre></td></tr></table></figure>
+<h1 id="用户和用户组管理"><a href="#用户和用户组管理" class="headerlink" title="用户和用户组管理"></a>用户和用户组管理</h1><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">useradd wilson</span><br><span class="line"></span><br><span class="line">id wilson</span><br><span class="line"></span><br><span class="line">tail -10 /etc/passwd</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">passwd wilson</span><br><span class="line"></span><br><span class="line">userdel wilson</span><br><span class="line">userdel  -r wilson</span><br><span class="line"></span><br><span class="line">usermod wilson</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> </span></span><br><span class="line">chage</span><br><span class="line"></span><br><span class="line">groupadd</span><br><span class="line"></span><br><span class="line">groupdel</span><br><span class="line"></span><br><span class="line">usermod -g [group_name] [user_name]</span><br><span class="line">useradd -g [group_name] [user_name]</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 临时切换用户</span></span><br><span class="line">su - [user_name]</span><br><span class="line">sudo</span><br><span class="line"><span class="meta">#</span><span class="bash"> su 和 sudo 这块还需要了解</span></span><br></pre></td></tr></table></figure>
+<h1 id="网络管理"><a href="#网络管理" class="headerlink" title="网络管理"></a>网络管理</h1><h1 id="软件包的管理和使用"><a href="#软件包的管理和使用" class="headerlink" title="软件包的管理和使用"></a>软件包的管理和使用</h1>
+        
+        <br />
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+
+        <div id="lv-container">
+        </div>
+
+    </div>
+</div>
+
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+
+        
+
+        
+
+        
+        <li>
+            <a target="_blank"  href="https://github.com/sorozy">
+                            <span class="fa-stack fa-lg">
+                                <i class="iconfont icon-github"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+
+    </ul>
+    
+    <p>
+        <span id="busuanzi_container_site_pv">
+            <span id="busuanzi_value_site_pv"></span>PV
+        </span>
+        <span id="busuanzi_container_site_uv">
+            <span id="busuanzi_value_site_uv"></span>UV
+        </span>
+        Created By <a href="https://hexo.io/">Hexo</a>  Theme <a href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a></p>
+</footer>
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = "search.json"
+    window.hexo_root = "/"
+    window.isPost = true
+</script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="/js/index.js"></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+</html>
