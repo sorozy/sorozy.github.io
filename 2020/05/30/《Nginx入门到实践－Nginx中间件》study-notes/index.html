@@ -148,6 +148,18 @@
 <p>目录、编译参数日后了解</p>
 <p>实战的内容有空需要做一下</p>
 <p>需要了解cdn</p>
+<p>日志配置这一块还要动手实践一下</p>
+<p>了解ab工具的使用</p>
+<p>了解</p>
+<ul>
+<li>2-13 Nginx虚拟主机及实现方式 (09:35)</li>
+<li>2-14 Nginx虚拟主机单网卡多IP配置演示 (15:41)</li>
+<li>2-15 Nginx虚拟主机基于多端口的配置演示 (08:24)</li>
+<li>2-16 Nginx虚拟主机基于host域名的配置演示 (09:50)</li>
+</ul>
+<p>请求限制这一块需要深入了解一下，课程中对应的内容需要动手实践</p>
+<p>访问控制 - http_acces_module 局限性 这部分的笔记需要补充上</p>
+<p>基于用户的信任登录 http_auth_basic_module 需要再看一下</p>
 <p>深入了解跨站访问</p>
 <p>正向代理 需要动手实现一下</p>
 </blockquote>
@@ -193,7 +205,7 @@
 <p>记录每一次请求的访问状态</p>
 <p>分析请求</p>
 <h3 id="log-formate"><a href="#log-formate" class="headerlink" title="log_formate"></a>log_formate</h3><ul>
-<li>Lof_formate配置语法</li>
+<li>log_formate配置语法</li>
 </ul>
 <p><img src="WechatIMG91.png" width="650"><br></p>
 <h2 id="Nginx变量"><a href="#Nginx变量" class="headerlink" title="Nginx变量"></a>Nginx变量</h2><p><img src="WechatIMG92.png" width="650"><br></p>
@@ -201,7 +213,10 @@
 <h2 id="Nginx模块"><a href="#Nginx模块" class="headerlink" title="Nginx模块"></a>Nginx模块</h2><p>Nginx官方模块</p>
 <p>Nginx第三方模块</p>
 <hr>
-<h3 id="http-stub-status-module"><a href="#http-stub-status-module" class="headerlink" title="http_stub_status_module"></a>http_stub_status_module</h3><p><img src="WechatIMG93.png" width="650"><br></p>
+<h3 id="http-stub-status-module"><a href="#http-stub-status-module" class="headerlink" title="http_stub_status_module"></a>http_stub_status_module</h3><ul>
+<li>展示nginx当前连接的状态和信息</li>
+</ul>
+<p><img src="WechatIMG93.png" width="650"><br></p>
 <p><img src="WechatIMG94.png" width="650"><br></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"># vim /etc/nginx/conf.d/default.conf 增加如下内容</span><br><span class="line">location /mystatus &#123;</span><br><span class="line">   stub_status;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"># 访问 http://192.168.2.243/mystatus</span><br><span class="line"></span><br><span class="line">Active connections: 3 	# nginx当前活跃的连接数</span><br><span class="line">server accepts handled requests</span><br><span class="line"> 10 10 9 	# nginx处理的握手次数 连接数 总的请求数</span><br><span class="line">Reading: 0 Writing: 1 Waiting: 2 	# 当前正在读的数量 正在写的数量 等待总数量（开启长连接时）</span><br></pre></td></tr></table></figure>
 <hr>
