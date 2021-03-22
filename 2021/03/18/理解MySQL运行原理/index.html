@@ -89,7 +89,7 @@
     </div>
     
         <div id="toc" class="toc-article">
-    
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#初识MySQL"><span class="toc-text">初识MySQL</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#MySQL的客户端／服务器架构"><span class="toc-text">MySQL的客户端／服务器架构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Linux下MySQL（mysql-5-6-39-tar-gz）的编译安装"><span class="toc-text">Linux下MySQL（mysql-5.6.39.tar.gz）的编译安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#启动MySQL服务器程序"><span class="toc-text">启动MySQL服务器程序</span></a></li></ol></li></ol>
 </div>
     
 </div>
@@ -126,13 +126,78 @@
     <div class="post-meta">
         <span class="attr">发布于：<span>2021-03-18 15:13:02</span></span>
         
+        <span class="attr">标签：/
+        
+        <a class="tag" href="/tags/#mysql" title="mysql">mysql</a>
+        <span>/</span>
+        
+        
         </span>
         <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
 </span>
 </span>
     </div>
     <div class="post-content ">
-        
+        <h1 id="初识MySQL"><a href="#初识MySQL" class="headerlink" title="初识MySQL"></a>初识MySQL</h1><h2 id="MySQL的客户端／服务器架构"><a href="#MySQL的客户端／服务器架构" class="headerlink" title="MySQL的客户端／服务器架构"></a>MySQL的客户端／服务器架构</h2><ul>
+<li><p>服务器程序<span style="color:red">直接和我们存储的数据打交道</span></p>
+</li>
+<li><p><code>MySQL</code>服务器程序的进程也被称为<code>MySQL数据库实例</code>，简称<code>数据库实例</code>。</p>
+</li>
+<li><p>启动的<code>MySQL</code>服务器进程的默认名称为<code>mysqld</code>， 而我们常用的<code>MySQL</code>客户端进程的默认名称为<code>mysql</code></p>
+</li>
+</ul>
+<h2 id="Linux下MySQL（mysql-5-6-39-tar-gz）的编译安装"><a href="#Linux下MySQL（mysql-5-6-39-tar-gz）的编译安装" class="headerlink" title="Linux下MySQL（mysql-5.6.39.tar.gz）的编译安装"></a>Linux下MySQL（mysql-5.6.39.tar.gz）的编译安装</h2><ul>
+<li>备注： 建议使用mysql-5.6.x 低版本的源码包，高版本在cmake过程中会报错</li>
+</ul>
+<p>（1）卸载系统自带的mariadb &amp;&amp; 卸载安装过的旧版本MySQL</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 卸载系统自带的mariadb</span></span><br><span class="line">rpm -qa | grep mariadb</span><br><span class="line">rpm -e --nodeps 文件名</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 卸载安装过的旧版本MySQL</span></span><br><span class="line">rpm -qa | grep mysql</span><br><span class="line">rpm -e --nodeps 文件名</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 删除mysql目录</span></span><br><span class="line">find / -name mysql</span><br><span class="line">rm -rf [mysql的相关目录]</span><br></pre></td></tr></table></figure>
+<p>（2）创建mysql用户和用户组</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 新增mysql用户组，添加mysql用户，并将mysql用户添加至用户组</span></span><br><span class="line">groupadd   mysql &amp;&amp; useradd -r -g mysql mysql</span><br></pre></td></tr></table></figure>
+<p>（3）创建数据库所需目录</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkdir -p  /usr/local/mysql /home/mysql/data /home/mysql/logs /home/mysql/temp</span><br></pre></td></tr></table></figure>
+<p>（4）添加环境变量使mysql命令生效</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">vim  /etc/profile</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> mysql env param</span></span><br><span class="line">PATH=/usr/local/mysql/bin:/usr/local/mysql/lib:$PATH</span><br><span class="line">export PATH</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 刷新环境变量配置文件</span></span><br><span class="line">source  /etc/profile</span><br></pre></td></tr></table></figure>
+<p>（5）安装mysql依赖包</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install -y make cmake gcc gcc-c++ bison bison-devel ncurses ncurses-devel antoconf automake</span><br></pre></td></tr></table></figure>
+<p>（6）上传MySQL源码包</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> mkdir -p /usr/<span class="built_in">local</span>/src [如没有则创建]</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 上传（下载）源码包到 /usr/<span class="built_in">local</span>/src 目录下，并解压</span></span><br><span class="line"></span><br><span class="line">cd /usr/local/src &amp;&amp; wget http://mirrors.sohu.com/mysql/MySQL-5.6/mysql-5.6.39.tar.gz &amp;&amp; tar -zxvf mysql-5.6.39.tar.gz</span><br></pre></td></tr></table></figure>
+<p>（7）MySQL安装前属性设置</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cd /usr/local/src/mysql-5.6.39 &amp;&amp; cmake -DCMAKE_INSTALL_PREFIX=/usr/local/mysql -DMYSQL_UNIX_ADDR=/usr/local/mysql/mysql.sock -DDEFAULT_CHARSET=utf8 -DDEFAULT_COLLATION=utf8_general_ci -DWITH_MYISAM_STORAGE_ENGINE=1 -DWITH_INNOBASE_STORAGE_ENGINE=1 -DWITH_ARCHIVE_STORAGE_ENGINE=1 -DWITH_BLACKHOLE_STORAGE_ENGINE=1 -DWITH_MEMORY_STORAGE_ENGINE=1 -DWITH_READLINE=1 -DENABLED_LOCAL_INFILE=1 -DMYSQL_DATADIR=/home/mysql/data -DMYSQL_USER=mysql -DMSLQ_TCP_PORT=3306 -DENABLE_DOWNLOADS=1</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 需要留意 结果是否有报错信息</span></span><br></pre></td></tr></table></figure>
+<p>（8）编译 &amp;&amp; 安装</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> <span class="built_in">cd</span> /usr/<span class="built_in">local</span>/src/mysql-5.6.39 &amp;&amp; make &amp;&amp; make install &amp;&amp; make clean</span></span><br><span class="line"></span><br><span class="line">cd /usr/local/src/mysql-5.6.39</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 编译</span></span><br><span class="line">make</span><br><span class="line"><span class="meta">#</span><span class="bash"> 安装</span></span><br><span class="line">make install </span><br><span class="line"><span class="meta">#</span><span class="bash"> 清除安装文件</span></span><br><span class="line">make clean</span><br></pre></td></tr></table></figure>
+<p>（9）修改目录权限</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 将 /usr/<span class="built_in">local</span>/mysql 目录 和 /home/mysql 目录的权限设为 mysql用户所有</span></span><br><span class="line"></span><br><span class="line">chown -Rf mysql:mysql /usr/local/mysql &amp;&amp; chown -Rf mysql:mysql /home/mysql</span><br></pre></td></tr></table></figure>
+<p>（10）MySQL初始化</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 进入mysql安装/usr/<span class="built_in">local</span>/mysql目录执行数据库的 初始化脚本并生成my.cnf文件。用于mysql自带的 数据库 和 表的初始化 </span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 将/home/data目录  作为数据存放的目录</span></span><br><span class="line"></span><br><span class="line">cd /usr/local/mysql &amp;&amp; scripts/mysql_install_db --user=mysql --basedir=/usr/local/mysql --datadir=/home/mysql/data</span><br></pre></td></tr></table></figure>
+<p>（11）将my.cnf 文件的所属权限改成 mysql用户</p>
+<ul>
+<li>特别注意</li>
+</ul>
+<blockquote>
+<p>在默认系统中 /etc 目录下也会有一个 my.cnf文件  ，当mysql服务启动时会默认 先读取/etc/my.cnf 文件  ，如果/etc/my.cnf 不存在则会到 mysql的安装目录下读取 my.cnf文件  ，因此需将 /etc/my.cnf 文件 改成其他名字 ，否则会干扰到mysql安装目录下的my.cnf文件 </p>
+</blockquote>
+<p><span style="color:red">但是在生产环境上 建议使用 /etc/my.cnf 文件 </span></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chown -Rf mysql:mysql /usr/local/mysql/my.cnf</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 编辑my.cnf文件   将所有内容删除</span></span><br><span class="line"></span><br><span class="line">vim /etc/my.cnf</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line">[client]</span><br><span class="line">port = 3306</span><br><span class="line">socket = /usr/local/mysql/mysql.sock</span><br><span class="line"></span><br><span class="line">[mysqld]</span><br><span class="line">character-set-server = utf8</span><br><span class="line">collation-server  = utf8_general_ci</span><br><span class="line">skip-external-locking</span><br><span class="line">skip-name-resolve</span><br><span class="line">port = 3306</span><br><span class="line">basedir = /usr/local/mysql</span><br><span class="line">datadir = /home/mysql/data</span><br><span class="line">tmpdir = /home/mysql/temp </span><br><span class="line">socket = /usr/local/mysql/mysql.sock</span><br><span class="line">log-error = /home/mysql/logs/mysql_error.log</span><br><span class="line">pid-file  = /home/mysql/mysql.pid</span><br><span class="line">open_files_limit  = 10240</span><br><span class="line">back_log = 600</span><br><span class="line">max_connections=500</span><br><span class="line">max_connect_errors = 6000</span><br><span class="line">wait_timeout=605800</span><br><span class="line">max_allowed_packet = 32M</span><br><span class="line">sort_buffer_size = 4M</span><br><span class="line">join_buffer_size  = 4M</span><br><span class="line">thread_cache_size = 300 </span><br><span class="line">query_cache_type = 1</span><br><span class="line">query_cache_size = 256M</span><br><span class="line">query_cache_limit = 2M</span><br><span class="line">query_cache_min_res_unit  = 16k</span><br><span class="line">tmp_table_size = 256M</span><br><span class="line">max_heap_table_size = 256M</span><br><span class="line">key_buffer_size = 256M</span><br><span class="line">read_buffer_size = 1M</span><br><span class="line">read_rnd_buffer_size = 16M</span><br><span class="line">bulk_insert_buffer_size  = 64M</span><br><span class="line">lower_case_table_names=1</span><br><span class="line">default-storage-engine = INNODB</span><br><span class="line">innodb_buffer_pool_size  = 512M</span><br><span class="line">innodb_log_buffer_size  = 32M</span><br><span class="line">innodb_log_file_size  = 128M</span><br><span class="line">innodb_flush_method  = O_DIRECT</span><br><span class="line">thread_concurrency = 32</span><br><span class="line">long_query_time=  2</span><br><span class="line">slow-query-log  = on</span><br><span class="line">slow-query-log-file  = /home/mysql/logs/mysql-slow.log  </span><br><span class="line"></span><br><span class="line">skip-grant-tables</span><br><span class="line"></span><br><span class="line">[mysqldump]</span><br><span class="line">quick</span><br><span class="line">max_allowed_packet = 32M</span><br><span class="line"></span><br><span class="line">[mysqld_safe]</span><br><span class="line">log-error=/var/log/mysqld.log</span><br><span class="line">pid-file=/var/run/mysqld/mysqld.pi</span><br></pre></td></tr></table></figure>
+<p>（12）复制mysql启动服务脚本 至 /etc/init.d目录下</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cp /usr/local/mysql/support-files/mysql.server  /etc/init.d/mysql</span><br></pre></td></tr></table></figure>
+<p>（13）启动、停止、重启mysql 服务</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">service mysql start</span><br><span class="line"></span><br><span class="line">service mysql stop</span><br><span class="line"></span><br><span class="line">service mysql restart</span><br></pre></td></tr></table></figure>
+<p>（14）其它设置</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 设置mysql 服务开机自动开启</span></span><br><span class="line">chkconfig mysql on</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 设置mysql数据库root用户本地登录密码   （这里设置的密码为 root）</span></span><br><span class="line">mysqladmin -u root password 'root'</span><br></pre></td></tr></table></figure>
+<h2 id="启动MySQL服务器程序"><a href="#启动MySQL服务器程序" class="headerlink" title="启动MySQL服务器程序"></a>启动MySQL服务器程序</h2><ul>
+<li>mysqld</li>
+</ul>
+<p><code>mysqld</code>这个可执行文件就代表着<code>MySQL</code>服务器程序，运行这个可执行文件就可以直接启动一个服务器进程。</p>
+<ul>
+<li>mysqld_safe</li>
+</ul>
+<p><code>mysqld_safe</code>是一个启动脚本，它会间接的调用<code>mysqld</code>，而且还顺便启动了另外一个监控进程，这个监控进程在服务器进程挂了的时候，可以帮助重启它。另外，使用<code>mysqld_safe</code>启动服务器程序时，它会将服务器程序的出错信息和其他诊断信息重定向到某个文件中，产生出错日志，这样可以方便我们找出发生错误的原因。</p>
+<ul>
+<li>mysql.server</li>
+</ul>
+
         
         <br />
         <div id="comment-container">
